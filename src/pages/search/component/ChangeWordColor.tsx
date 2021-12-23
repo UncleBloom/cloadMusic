@@ -47,19 +47,23 @@ class ChangeWordColor extends Component<
 
   render() {
     return (
-      <p>
+      <span>
         {this.state.words
           ? this.state.words.map((item, index) => {
               //remindUser列表中的标记蓝色
               if (this.props.word === item) {
-                return <p style={{ color: "blue" }}>{item}</p>;
+                return (
+                  <span style={{ color: "blue" }} key={index}>
+                    {item}
+                  </span>
+                );
               }
 
               //item可能为空字符串，不会展示，无妨碍
-              return <p>{item}</p>;
+              return <span key={index}>{item}</span>;
             })
           : this.props.str}
-      </p>
+      </span>
     );
   }
 }

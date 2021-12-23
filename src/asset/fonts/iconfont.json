@@ -6,6 +6,55 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "986671",
+      "name": "男",
+      "font_class": "nan",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    },
+    {
+      "icon_id": "1311994",
+      "name": "女",
+      "font_class": "nv",
+      "unicode": "e644",
+      "unicode_decimal": 58948
+    },
+    {
+      "icon_id": "12323778",
+      "name": "新建文件夹",
+      "font_class": "xinjianwenjianjia",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    },
+    {
+      "icon_id": "16619219",
+      "name": "play",
+      "font_class": "play1",
+      "unicode": "e6cf",
+      "unicode_decimal": 59087
+    },
+    {
+      "icon_id": "1546602",
+      "name": "下载",
+      "font_class": "xiazai",
+      "unicode": "e69a",
+      "unicode_decimal": 59034
+    },
+    {
+      "icon_id": "2076218",
+      "name": "播放2",
+      "font_class": "bofang",
+      "unicode": "e87c",
+      "unicode_decimal": 59516
+    },
+    {
+      "icon_id": "593035",
+      "name": "user01",
+      "font_class": "user01",
+      "unicode": "e6fd",
+      "unicode_decimal": 59133
+    },
+    {
       "icon_id": "11474324",
       "name": "play",
       "font_class": "play",

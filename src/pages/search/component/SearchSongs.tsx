@@ -36,21 +36,19 @@ function SearchSongs(props: ISearchSongsProps) {
     <div className="search-res-songs">
       <table>
         <thead>
-          <th>
-            <tr>
-              <td></td>
-              <td>音乐标题</td>
-              <td>歌手</td>
-              <td>专辑</td>
-              <td>时长</td>
-              <td>热度</td>
-            </tr>
-          </th>
+          <tr>
+            <td></td>
+            <td>音乐标题</td>
+            <td>歌手</td>
+            <td>专辑</td>
+            <td>时长</td>
+            <td>热度</td>
+          </tr>
         </thead>
         <tbody>
           {props.songs.map((song, index) => {
             return (
-              <tr>
+              <tr key={index}>
                 <td className="iconfont">
                   {("0" + (index + 1)).substring(
                     ("0" + (index + 1)).length - 2

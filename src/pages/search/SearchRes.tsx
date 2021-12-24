@@ -58,10 +58,16 @@ interface IBestMatchedProps {
 const SelectedPage = React.createContext<{
   type: number;
   setType: (num: number) => void;
-}>({ type: 1, setType: () => {} });
+  offset: number;
+  setOffset: (num: number) => void;
+}>({ type: 1, setType: () => {}, offset: 1, setOffset: () => {} });
+const SelectedOffset = React.createContext<{
+  offset: number;
+  setOffset: (num: number) => void;
+}>({ offset: 1, setOffset: () => {} });
 
 function SearchNav() {
-  const { type, setType } = useContext(SelectedPage);
+  const { type, setType, offset, setOffset } = useContext(SelectedPage);
   const changeType = (type: number) => {
     setType(type);
   };
@@ -74,6 +80,7 @@ function SearchNav() {
             className={type == 1 ? "search-selected" : ""}
             onClick={() => {
               changeType(1);
+              setOffset(0);
             }}
           >
             单曲
@@ -85,6 +92,7 @@ function SearchNav() {
             className={type == 100 ? "search-selected" : ""}
             onClick={() => {
               changeType(100);
+              setOffset(0);
             }}
           >
             歌手
@@ -96,6 +104,7 @@ function SearchNav() {
             className={type == 10 ? "search-selected" : ""}
             onClick={() => {
               changeType(10);
+              setOffset(0);
             }}
           >
             专辑
@@ -107,6 +116,7 @@ function SearchNav() {
             className={type == 1014 ? "search-selected" : ""}
             onClick={() => {
               changeType(1014);
+              setOffset(0);
             }}
           >
             视频
@@ -118,6 +128,7 @@ function SearchNav() {
             className={type == 1000 ? "search-selected" : ""}
             onClick={() => {
               changeType(1000);
+              setOffset(0);
             }}
           >
             歌单
@@ -129,6 +140,7 @@ function SearchNav() {
             className={type == 1006 ? "search-selected" : ""}
             onClick={() => {
               changeType(1006);
+              setOffset(0);
             }}
           >
             歌词
@@ -140,6 +152,7 @@ function SearchNav() {
             className={type == 1009 ? "search-selected" : ""}
             onClick={() => {
               changeType(1009);
+              setOffset(0);
             }}
           >
             播客
@@ -151,6 +164,7 @@ function SearchNav() {
             className={type == 1002 ? "search-selected" : ""}
             onClick={() => {
               changeType(1002);
+              setOffset(0);
             }}
           >
             用户
@@ -158,6 +172,249 @@ function SearchNav() {
         </li>
       </ul>
     </nav>
+  );
+}
+
+function ChangeOffset(props: { total: number; limit: number }) {
+  const { offset, setOffset } = useContext(SelectedOffset);
+  const list = new Array<number>(Math.ceil(props.total / props.limit));
+  for (let i = 0; i < Math.ceil(props.total / props.limit); i++) {
+    list[i] = i + 1;
+  }
+
+  return (
+    <div
+      className={
+        props.total > props.limit ? "change-offset" : "change-offset hide"
+      }
+    >
+      <span
+        className="change-to-last"
+        onClick={() => {
+          if (offset > 0) {
+            setOffset(offset - 1);
+            window.scrollTo(0, 0);
+          }
+        }}
+      >
+        上一页
+      </span>
+      {Math.ceil(props.total / props.limit) <= 5 ? (
+        <>
+          {list.map((num) => {
+            return (
+              <span
+                onClick={() => {
+                  setOffset(num - 1);
+                  window.scrollTo(0, 0);
+                }}
+                className={
+                  offset === num - 1
+                    ? "offset-num offset-num-selected"
+                    : "offset-num"
+                }
+                key={num}
+              >
+                {num}
+              </span>
+            );
+          })}
+        </>
+      ) : (
+        <>
+          {offset <= 2 ? (
+            <>
+              <span
+                className={
+                  offset === 0 ? "offset-num offset-num-selected" : "offset-num"
+                }
+                onClick={() => {
+                  setOffset(0);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                1
+              </span>
+              <span
+                className={
+                  offset === 1 ? "offset-num offset-num-selected" : "offset-num"
+                }
+                onClick={() => {
+                  setOffset(1);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                2
+              </span>
+              <span
+                className={
+                  offset === 2 ? "offset-num offset-num-selected" : "offset-num"
+                }
+                onClick={() => {
+                  setOffset(2);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                3
+              </span>
+              <span
+                className={
+                  offset === 3 ? "offset-num offset-num-selected" : "offset-num"
+                }
+                onClick={() => {
+                  setOffset(3);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                4
+              </span>
+              <span>...</span>
+              <span
+                className={
+                  offset === Math.ceil(props.total / props.limit) - 1
+                    ? "offset-num offset-num-selected"
+                    : "offset-num"
+                }
+                onClick={() => {
+                  setOffset(Math.ceil(props.total / props.limit) - 1);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                {Math.ceil(props.total / props.limit)}
+              </span>
+            </>
+          ) : offset >= Math.ceil(props.total / props.limit) - 3 ? (
+            <>
+              <span
+                className={
+                  offset === 0 ? "offset-num offset-num-selected" : "offset-num"
+                }
+                onClick={() => {
+                  setOffset(0);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                1
+              </span>
+              <span>...</span>
+              <span
+                className={
+                  offset === Math.ceil(props.total / props.limit) - 4
+                    ? "offset-num offset-num-selected"
+                    : "offset-num"
+                }
+                onClick={() => {
+                  setOffset(Math.ceil(props.total / props.limit) - 4);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                {Math.ceil(props.total / props.limit) - 3}
+              </span>
+              <span
+                className={
+                  offset === Math.ceil(props.total / props.limit) - 3
+                    ? "offset-num offset-num-selected"
+                    : "offset-num"
+                }
+                onClick={() => {
+                  setOffset(Math.ceil(props.total / props.limit) - 3);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                {Math.ceil(props.total / props.limit) - 2}
+              </span>
+              <span
+                className={
+                  offset === Math.ceil(props.total / props.limit) - 2
+                    ? "offset-num offset-num-selected"
+                    : "offset-num"
+                }
+                onClick={() => {
+                  setOffset(Math.ceil(props.total / props.limit) - 2);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                {Math.ceil(props.total / props.limit) - 1}
+              </span>
+              <span
+                className={
+                  offset === Math.ceil(props.total / props.limit) - 1
+                    ? "offset-num offset-num-selected"
+                    : "offset-num"
+                }
+                onClick={() => {
+                  setOffset(Math.ceil(props.total / props.limit) - 1);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                {Math.ceil(props.total / props.limit)}
+              </span>
+            </>
+          ) : (
+            <>
+              <span
+                className="offset-num"
+                onClick={() => {
+                  setOffset(0);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                1
+              </span>
+              <span>...</span>
+              <span
+                className="offset-num"
+                onClick={() => {
+                  setOffset(offset - 1);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                {offset}
+              </span>
+              <span
+                className="offset-num offset-num-selected"
+                onClick={() => {
+                  setOffset(offset);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                {offset + 1}
+              </span>
+              <span
+                className="offset-num"
+                onClick={() => {
+                  setOffset(offset + 1);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                {offset + 2}
+              </span>
+              <span>...</span>
+              <span
+                className="offset-num"
+                onClick={() => {
+                  setOffset(Math.ceil(props.total / props.limit) - 1);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                {Math.ceil(props.total / props.limit)}
+              </span>
+            </>
+          )}
+        </>
+      )}
+      <span
+        className="change-to-next"
+        onClick={() => {
+          if (offset < Math.ceil(props.total / props.limit) - 1) {
+            setOffset(offset + 1);
+            window.scrollTo(0, 0);
+          }
+        }}
+      >
+        下一页
+      </span>
+    </div>
   );
 }
 
@@ -262,9 +519,9 @@ function SearchRes(props: ISearchResProps) {
   const [albumId, setAlbumId] = useState(0);
 
   useEffect(() => {
-    if (type === 1) {
+    if (type === 1 && offset === 0) {
       const data = getSearchDataSong({
-        host: "http://localhost:3000",
+        host: "http://101.33.207.151:3000",
         url: "/search",
         param: {
           keywords: props.keywords,
@@ -284,7 +541,7 @@ function SearchRes(props: ISearchResProps) {
             : 0
         );
         getSearchDataSinger({
-          host: "http://localhost:3000",
+          host: "http://101.33.207.151:3000",
           url: "/search",
           param: {
             keywords: data.result.songs[0].artists[0].name
@@ -293,7 +550,10 @@ function SearchRes(props: ISearchResProps) {
             type: 100,
           },
         }).then((data) => {
-          for (let i = 0; i < 3; i++) {
+          // console.log(data);
+
+          for (let i = 0; i < 2; i++) {
+            if (!data.result.artists[i]) continue;
             if (data.result.artists[i].id === singerId) {
               // console.log("singerId:" + singerId);
               // console.log(
@@ -301,13 +561,18 @@ function SearchRes(props: ISearchResProps) {
               // );
 
               setSingerName(data.result.artists[i].name);
-              setSingerPicUrl(data.result.artists[i].picUrl);
+              setSingerPicUrl(
+                data.result.artists[i].picUrl
+                  ? data.result.artists[i].picUrl
+                  : "../../asset/images/singer.jpg"
+              );
               setSingerAlia(data.result.artists[i].alias[i]);
+              break;
             }
           }
         });
         getSearchDataAlbum({
-          host: "http://localhost:3000",
+          host: "http://101.33.207.151:3000",
           url: "/search",
           param: {
             keywords: data.result.songs[0].artists[0].name
@@ -317,12 +582,21 @@ function SearchRes(props: ISearchResProps) {
           },
         }).then((data) => {
           for (let i = 0; i < 3; i++) {
+            if (!data.result.albums[i]) continue;
             // console.log(albumId);
             // console.log(data.result.albums[0].id);
 
-            if (data.result.albums[i].id === albumId) {
+            if (
+              data.result.albums[i].id === albumId ||
+              data.result.albums[i].picUrl !== ""
+            ) {
               setAlbumName(data.result.albums[i].name);
-              setAlbumPicUrl(data.result.albums[i].picUrl);
+              setAlbumPicUrl(
+                data.result.albums[i].picUrl
+                  ? data.result.albums[i].picUrl
+                  : "../../asset/images/singer.jpg"
+              );
+              break;
             }
           }
         });
@@ -333,28 +607,28 @@ function SearchRes(props: ISearchResProps) {
   useEffect(() => {
     if (type === 1) {
       const data = getSearchDataSong({
-        host: "http://localhost:3000",
+        host: "http://101.33.207.151:3000",
         url: "/search",
         param: {
           keywords: props.keywords,
           limit: limit,
           type: type,
-          offset: offset,
+          offset: offset * limit,
         },
       });
       data.then((data) => {
         setDataSongs(data.result);
-        // console.log(data.result.songCount);
+        // console.log(data.result.songs);
       });
     } else if (type === 100) {
       const data = getSearchDataSinger({
-        host: "http://localhost:3000",
+        host: "http://101.33.207.151:3000",
         url: "/search",
         param: {
           keywords: props.keywords,
           limit: limit,
           type: type,
-          offset: offset,
+          offset: offset * limit,
         },
       });
       data.then((data) => {
@@ -363,13 +637,13 @@ function SearchRes(props: ISearchResProps) {
       });
     } else if (type === 10) {
       const data = getSearchDataAlbum({
-        host: "http://localhost:3000",
+        host: "http://101.33.207.151:3000",
         url: "/search",
         param: {
           keywords: props.keywords,
           limit: limit,
           type: type,
-          offset: offset,
+          offset: offset * limit,
         },
       });
       data.then((data) => {
@@ -378,13 +652,13 @@ function SearchRes(props: ISearchResProps) {
       });
     } else if (type === 1014) {
       const data = getSearchDataVideo({
-        host: "http://localhost:3000",
+        host: "http://101.33.207.151:3000",
         url: "/search",
         param: {
           keywords: props.keywords,
           limit: limit,
           type: type,
-          offset: offset,
+          offset: offset * limit,
         },
       });
       data.then((data) => {
@@ -393,13 +667,13 @@ function SearchRes(props: ISearchResProps) {
       });
     } else if (type === 1000) {
       const data = getSearchDataPlaylist({
-        host: "http://localhost:3000",
+        host: "http://101.33.207.151:3000",
         url: "/search",
         param: {
           keywords: props.keywords,
           limit: limit,
           type: type,
-          offset: offset,
+          offset: offset * limit,
         },
       });
       data.then((data) => {
@@ -408,13 +682,13 @@ function SearchRes(props: ISearchResProps) {
       });
     } else if (type === 1009) {
       const data = getSearchDataDjRadio({
-        host: "http://localhost:3000",
+        host: "http://101.33.207.151:3000",
         url: "/search",
         param: {
           keywords: props.keywords,
           limit: limit,
           type: type,
-          offset: offset,
+          offset: offset * limit,
         },
       });
       data.then((data) => {
@@ -423,13 +697,13 @@ function SearchRes(props: ISearchResProps) {
       });
     } else if (type === 1002) {
       const data = getSearchDataUser({
-        host: "http://localhost:3000",
+        host: "http://101.33.207.151:3000",
         url: "/search",
         param: {
           keywords: props.keywords,
           limit: limit,
           type: type,
-          offset: offset,
+          offset: offset * limit,
         },
       });
       data.then((data) => {
@@ -438,13 +712,13 @@ function SearchRes(props: ISearchResProps) {
       });
     } else if (type === 1006) {
       const data = getSearchDataLyric({
-        host: "http://localhost:3000",
+        host: "http://101.33.207.151:3000",
         url: "/search",
         param: {
           keywords: props.keywords,
           limit: limit,
           type: type,
-          offset: offset,
+          offset: offset * limit,
         },
       });
       data.then((data) => {
@@ -452,7 +726,7 @@ function SearchRes(props: ISearchResProps) {
         // console.log(data.result);
       });
     }
-  }, [type, offset]);
+  }, [type, offset, props.keywords]);
 
   return (
     <div className="search-page">
@@ -519,7 +793,14 @@ function SearchRes(props: ISearchResProps) {
       ) : (
         ""
       )}
-      <SelectedPage.Provider value={{ type: type, setType: setType }}>
+      <SelectedPage.Provider
+        value={{
+          type: type,
+          setType: setType,
+          offset: offset,
+          setOffset: setOffset,
+        }}
+      >
         <SearchNav />
       </SelectedPage.Provider>
       {type === 1 ? (
@@ -541,6 +822,14 @@ function SearchRes(props: ISearchResProps) {
             songCount={dataSongs?.songCount ? dataSongs.songCount : 0}
             songs={dataSongs?.songs ? dataSongs?.songs : []}
           />
+          <SelectedOffset.Provider
+            value={{ offset: offset, setOffset: setOffset }}
+          >
+            <ChangeOffset
+              total={dataSongs?.songCount ? dataSongs?.songCount : 0}
+              limit={limit}
+            />
+          </SelectedOffset.Provider>
         </>
       ) : type === 100 ? (
         <>
@@ -550,6 +839,14 @@ function SearchRes(props: ISearchResProps) {
             artistCount={dataSingers?.artistCount ? dataSingers.artistCount : 0}
             artists={dataSingers?.artists ? dataSingers.artists : []}
           />
+          <SelectedOffset.Provider
+            value={{ offset: offset, setOffset: setOffset }}
+          >
+            <ChangeOffset
+              total={dataSingers?.artistCount ? dataSingers.artistCount : 0}
+              limit={limit}
+            />
+          </SelectedOffset.Provider>
         </>
       ) : type === 10 ? (
         <>
@@ -559,6 +856,14 @@ function SearchRes(props: ISearchResProps) {
             albumCount={dataAlbums?.albumCount ? dataAlbums.albumCount : 0}
             albums={dataAlbums?.albums ? dataAlbums.albums : []}
           />
+          <SelectedOffset.Provider
+            value={{ offset: offset, setOffset: setOffset }}
+          >
+            <ChangeOffset
+              total={dataAlbums?.albumCount ? dataAlbums?.albumCount : 0}
+              limit={limit}
+            />
+          </SelectedOffset.Provider>
         </>
       ) : type === 1014 ? (
         <>
@@ -568,6 +873,14 @@ function SearchRes(props: ISearchResProps) {
             videoCount={dataVideos?.videoCount ? dataVideos?.videoCount : 0}
             videos={dataVideos?.videos ? dataVideos?.videos : []}
           />
+          <SelectedOffset.Provider
+            value={{ offset: offset, setOffset: setOffset }}
+          >
+            <ChangeOffset
+              total={dataVideos?.videoCount ? dataVideos?.videoCount : 0}
+              limit={limit}
+            />
+          </SelectedOffset.Provider>
         </>
       ) : type === 1000 ? (
         <>
@@ -579,6 +892,16 @@ function SearchRes(props: ISearchResProps) {
             }
             playlists={dataPlaylists?.playlists ? dataPlaylists?.playlists : []}
           />
+          <SelectedOffset.Provider
+            value={{ offset: offset, setOffset: setOffset }}
+          >
+            <ChangeOffset
+              total={
+                dataPlaylists?.playlistCount ? dataPlaylists?.playlistCount : 0
+              }
+              limit={limit}
+            />
+          </SelectedOffset.Provider>
         </>
       ) : type === 1009 ? (
         <>
@@ -590,6 +913,16 @@ function SearchRes(props: ISearchResProps) {
             }
             djRadios={dataDjRadios?.djRadios ? dataDjRadios.djRadios : []}
           />
+          <SelectedOffset.Provider
+            value={{ offset: offset, setOffset: setOffset }}
+          >
+            <ChangeOffset
+              total={
+                dataDjRadios?.djRadiosCount ? dataDjRadios?.djRadiosCount : 0
+              }
+              limit={limit}
+            />
+          </SelectedOffset.Provider>
         </>
       ) : type === 1002 ? (
         <>
@@ -603,6 +936,16 @@ function SearchRes(props: ISearchResProps) {
               dataUsers?.userprofiles ? dataUsers?.userprofiles : []
             }
           />
+          <SelectedOffset.Provider
+            value={{ offset: offset, setOffset: setOffset }}
+          >
+            <ChangeOffset
+              total={
+                dataUsers?.userprofileCount ? dataUsers?.userprofileCount : 0
+              }
+              limit={limit}
+            />
+          </SelectedOffset.Provider>
         </>
       ) : type === 1006 ? (
         <>
@@ -612,6 +955,14 @@ function SearchRes(props: ISearchResProps) {
             songCount={dataLyrics?.songCount ? dataLyrics?.songCount : 0}
             songs={dataLyrics?.songs ? dataLyrics?.songs : []}
           />
+          <SelectedOffset.Provider
+            value={{ offset: offset, setOffset: setOffset }}
+          >
+            <ChangeOffset
+              total={dataLyrics?.songCount ? dataLyrics?.songCount : 0}
+              limit={limit}
+            />
+          </SelectedOffset.Provider>
         </>
       ) : (
         <></>

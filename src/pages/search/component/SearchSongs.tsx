@@ -95,7 +95,9 @@ function SearchSongs(props: ISearchSongsProps) {
                       ("0" + Math.floor(song.duration / 60000)).length - 2
                     ) +
                     ":" +
-                    (song.duration % 60)}
+                    ("0" + Math.floor((song.duration / 1000) % 60)).substring(
+                      ("0" + Math.floor((song.duration / 1000) % 60)).length - 2
+                    )}
                 </td>
                 <td className="iconfont">
                   <span />

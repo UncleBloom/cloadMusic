@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import ReactDOM from "react-dom";
 import "../homepage.css";
+import { SearchKeyWords } from "../HomePage";
 // import { Link } from "react-router-dom";
 // 首页Header组件，包含Logo组件、Nav组件,Search组件
 interface ISearchProps {
@@ -118,10 +119,17 @@ function Nav() {
 //有参数placeHolder（placeholder）
 function SearchInput(props: ISearchProps) {
   const [value, setValue] = useState("");
+  const { index, setIndex } = useContext(SelectedPage);
+  const { keyWord, setKeyWord } = useContext(SearchKeyWords);
   const [placeHolder, setPlaceHolder] = useState(props.placeHolder);
   return (
     <div className={"homepage-search"}>
-      <span></span>
+      <span
+        onClick={() => {
+          setKeyWord(value);
+          setIndex(0);
+        }}
+      ></span>
       <input
         placeholder={placeHolder}
         onFocus={(e) => {
@@ -135,6 +143,12 @@ function SearchInput(props: ISearchProps) {
         value={value}
         onChange={(e) => {
           setValue(e.target.value);
+        }}
+        onKeyUp={(e) => {
+          if (e.key === "Enter") {
+            setKeyWord(value);
+            setIndex(0);
+          }
         }}
       />
       <span
@@ -151,14 +165,17 @@ function SearchInput(props: ISearchProps) {
 }
 
 function Header() {
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(0);
+  const { keyWord, setKeyWord } = useContext(SearchKeyWords);
+
   return (
     <header className={"homepage-header"}>
       <SelectedPage.Provider value={{ index: index, setIndex: setIndex }}>
         <Logo />
         <Nav />
+
+        <SearchInput placeHolder={"音乐/视频/电台/用户"} />
       </SelectedPage.Provider>
-      <SearchInput placeHolder={"音乐/视频/电台/用户"} />
       <span className={"writer-center"}>
         <a href="#">创作者中心</a>
       </span>

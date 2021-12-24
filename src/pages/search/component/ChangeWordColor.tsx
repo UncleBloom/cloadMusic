@@ -1,4 +1,4 @@
-import React, { Component, useContext, useState } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 import ReactDOM, { render } from "react-dom";
 // import { Text } from "react-native";
 
@@ -11,61 +11,47 @@ interface IChangeWordColorState {
   words: string[];
 }
 
-class ChangeWordColor extends Component<
-  IChangeWordColorProps,
-  IChangeWordColorState
-> {
-  constructor(props: IChangeWordColorProps) {
-    super(props);
-    this.state = {
-      words: [],
-    };
-  }
-
-  doColor() {
-    let contentArr;
-    if (this.props.word) {
-      let str = this.props.str.replace(
-        `${this.props.word}`,
-        `<^replace$>${this.props.word}<^replace$>`
-      );
-      contentArr = str.split("<^replace$>");
-      this.setState({ words: contentArr });
-    }
-  }
-
-  componentDidMount() {
-    this.doColor();
-  }
-  // const content = '@周杰伦 你要注意这段歌词，@王力宏@方大同，你俩注意这段旋律';
-  // const remindUsrs = [
-  // {name:'周杰伦',code:'1'},
-  // {name:'王力宏',code:'2'},
-  // {name:'方大同',code:'3'}
-  // ];
-  //@人员列表存在，则将content根据@人员列表分裂成数组
-
-  render() {
-    return (
-      <span>
-        {this.state.words
-          ? this.state.words.map((item, index) => {
-              //remindUser列表中的标记蓝色
-              if (this.props.word === item) {
-                return (
-                  <span style={{ color: "blue" }} key={index}>
-                    {item}
-                  </span>
-                );
-              }
-
-              //item可能为空字符串，不会展示，无妨碍
-              return <span key={index}>{item}</span>;
-            })
-          : this.props.str}
-      </span>
+function doColor(props: IChangeWordColorProps): string[] {
+  let contentArr = new Array<string>();
+  if (props.word) {
+    let str = props.str.replace(
+      `${props.word}`,
+      `<^replace$>${props.word}<^replace$>`
     );
+    contentArr = [...str.split("<^replace$>")];
+    return contentArr;
   }
+  return [];
+}
+
+function ChangeWordColor(props: IChangeWordColorProps) {
+  const [words, setWords] = useState<string[]>();
+  // console.log(props.str);
+
+  useEffect(() => {
+    setWords(doColor({ str: props.str, word: props.word }));
+    // console.log(1);
+  }, [props.str]);
+
+  return (
+    <span>
+      {words
+        ? words.map((item, index) => {
+            // remindUser列表中的标记蓝色
+            if (props.word === item) {
+              return (
+                <span style={{ color: "blue" }} key={index}>
+                  {item}
+                </span>
+              );
+            }
+
+            // item可能为空字符串，不会展示，无妨碍
+            return <span key={index}>{item}</span>;
+          })
+        : props.str}
+    </span>
+  );
 }
 
 export default ChangeWordColor;

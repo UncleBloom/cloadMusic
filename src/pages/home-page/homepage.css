@@ -321,3 +321,86 @@
 
 
 /* Footer 组件 end */
+
+
+/* ScrollToTop 组件 start*/
+
+.scroll-to-top {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    left: 50%;
+    bottom: 150px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 550px;
+}
+
+.scroll-to-top span {
+    color: #888;
+}
+
+.scroll-to-top:hover {
+    background-color: #ddd;
+}
+
+
+/* ScrollToTop 组件 end*/
+
+
+/* 翻页组件 start */
+
+.change-offset {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    width: 500px;
+    height: 40px;
+    /* background-color: skyblue; */
+    margin-top: 20px;
+}
+
+.change-offset span {
+    color: #666666;
+    margin: 0 4px;
+}
+
+.change-offset .change-to-last,
+.change-offset .change-to-next {
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.change-offset .offset-num {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.change-offset .change-to-last:hover,
+.change-offset .change-to-next:hover,
+.change-offset .offset-num:hover {
+    background-color: #ccc;
+}
+
+.change-offset .offset-num-selected {
+    background-color: rgb(212, 65, 65) !important;
+    color: white;
+    font-size: bold;
+}
+
+
+/* 翻页组件 end */

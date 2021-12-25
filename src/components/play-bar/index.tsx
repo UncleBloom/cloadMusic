@@ -5,6 +5,7 @@ import { StepBackwardOutlined, StepForwardOutlined } from "@ant-design/icons";
 import "./index.css";
 import PlayPattern from "../../api/types/playPattern";
 import { EmptySongInfo } from "../../api/types/songInfo";
+import { Link } from "react-router-dom";
 
 interface IPlayBarProps {
   songInfo: ISongInfo; // 歌曲信息
@@ -26,6 +27,7 @@ interface IPlayBarProps {
 }
 
 function PlayBar(props: IPlayBarProps) {
+  const [isFolded, setIsFolded] = React.useState(true);
   const info: ISongInfo = props.songInfo;
 
   // 格式化时间输出
@@ -43,7 +45,25 @@ function PlayBar(props: IPlayBarProps) {
       {info === EmptySongInfo ? (
         <img src={"../../asset/images/emptyAlbumPic.jpeg"} alt="" />
       ) : (
-        <img src={info.al.picUrl} alt="" />
+        <img
+          src={info.al.picUrl}
+          alt=""
+          onClick={() => {
+            window.scrollTo(0, 0);
+            if (isFolded) {
+              window.location.hash = "/play-page";
+              document
+                .querySelector(".playPage")
+                ?.setAttribute("class", "playPage");
+            } else {
+              window.history.back();
+              document
+                .querySelector(".playPage")
+                ?.setAttribute("class", "playPage hide");
+            }
+            setIsFolded(!isFolded);
+          }}
+        />
       )}
 
       <div>

@@ -21,7 +21,7 @@ class Play extends React.Component<IPlayProps, IPlayState> {
 
   render(): React.ReactNode {
     return (
-      <div className="playPage">
+      <div className="playPage hide">
         <div className="playPageMiddle">
           <div className="playPageUp">
             <div className="playPageUpLeft">

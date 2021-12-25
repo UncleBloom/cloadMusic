@@ -1,76 +1,94 @@
 .playPage {
-  background-color: #fafafa;
+    /* position: fixed;
+    top: 6000px; */
+    background-color: #fafafa;
+    /* transition: top 0.5s; */
 }
 
+
+/* .playPage-mov {
+    top: 0;
+} */
+
 .playPage .playPageMiddle {
-  width: 900px;
-  margin: 0 auto;
-  padding-bottom: 80px;
+    width: 900px;
+    margin: 0 auto;
+    padding-bottom: 80px;
+    background-color: #fff;
 }
 
 .playPage .playPageUp {
-  height: 800px;
+    height: 800px;
 }
 
 .playPage .playPageUpLeft {
-  display: inline-block;
-  width: 450px;
+    display: inline-block;
+    width: 450px;
 }
 
 .playPage .playPageUpRight {
-  display: inline-block;
-  width: 450px;
+    display: inline-block;
+    width: 450px;
 }
 
 .playPage .playPageUpRight .playPageSongName {
-  display: inline-block;
-  width: 450px;
-  font-size: 26px;
-  color: #302f2f;
-  margin-top: 30px;
-  margin-bottom: 20px;
+    display: inline-block;
+    width: 450px;
+    font-size: 26px;
+    color: #302f2f;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 .playPage .playPageUpRight .playPageArAl {
-  display: flex;
+    display: flex;
 }
-.playPage .playPageUpRight .playPageArAl > span {
-  display: flex;
-  width: 40%;
+
+.playPage .playPageUpRight .playPageArAl>span {
+    display: flex;
+    width: 40%;
 }
-.playPage .playPageUpRight .playPageArAl > span > span {
-  display: flex;
-  color: #747dad;
-  cursor: pointer;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+
+.playPage .playPageUpRight .playPageArAl>span>span {
+    display: flex;
+    color: #747dad;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
-.playPage .playPageUpRight .playPageArAl > span > p {
-  display: inline-block;
-  color: #dad7d7;
-  margin-right: 10px;
+
+.playPage .playPageUpRight .playPageArAl>span>p {
+    display: inline-block;
+    color: #dad7d7;
+    margin-right: 10px;
 }
 
 .playPage .playPageUpRight .lyrics {
-  display: inline-block;
-  height: 350px;
-  width: 450px;
-  margin-top: 30px;
+    display: inline-block;
+    height: 350px;
+    width: 450px;
+    margin-top: 30px;
 }
 
 .playPage .playPageUpRight .lyrics ul {
-  display: inline-block;
-  height: 350px;
-  width: 450px;
-  overflow: scroll;
+    display: inline-block;
+    height: 350px;
+    width: 450px;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
-.playPage .playPageUpRight .lyrics ul > div {
-  display: inline-block;
-  width: 100%;
-  overflow-x:hidden;
-  font-size: 16px;
-  color: #615f5f;
-  margin-top: 10px;
+.playPage .playPageUpRight .lyrics ul>div {
+    display: inline-block;
+    width: 100%;
+    overflow-x: hidden;
+    font-size: 16px;
+    color: #615f5f;
+    margin-top: 10px;
+}
+
+.ant-comment-content-detail {
+    text-align: left;
+    font-size: 12px;
 }

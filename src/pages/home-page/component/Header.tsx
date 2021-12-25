@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import ReactDOM from "react-dom";
 import "../homepage.css";
 import { SearchKeyWords } from "../HomePage";
+import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 // 首页Header组件，包含Logo组件、Nav组件,Search组件
 interface ISearchProps {
@@ -129,7 +130,12 @@ function SearchInput(props: ISearchProps) {
           setKeyWord(value);
           setIndex(0);
         }}
-      ></span>
+      >
+        <Link
+          to={"/search"}
+          style={{ display: "inline-block", width: "100%", height: "100%" }}
+        ></Link>
+      </span>
       <input
         placeholder={placeHolder}
         onFocus={(e) => {
@@ -148,6 +154,7 @@ function SearchInput(props: ISearchProps) {
           if (e.key === "Enter") {
             setKeyWord(value);
             setIndex(0);
+            window.location.hash = "/search";
           }
         }}
       />

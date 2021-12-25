@@ -7,6 +7,10 @@ import PlayPattern from "../../api/types/playPattern";
 import { EmptySongInfo } from "../../api/types/songInfo";
 import { Link } from "react-router-dom";
 
+// export const isPlay = React.createContext<{ isPlaying: boolean }>({
+//   isPlaying: true,
+// });
+
 interface IPlayBarProps {
   songInfo: ISongInfo; // 歌曲信息
   currentTime: number; // 已播放时长

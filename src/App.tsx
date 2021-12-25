@@ -1,14 +1,17 @@
 import React from "react";
 import "./App.css";
+import PlayController from "./components/play-controller";
 import HomePage from "./pages/home-page/HomePage";
-import PlayController from './components/play-controller/index';
+
+import { HashRouter as Router, Route, Link, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      {/* <HomePage /> */}
-      <PlayController/>
-    </div>
+    <Router>
+      <div className="App">
+        <HomePage />
+      </div>
+    </Router>
   );
 }
 

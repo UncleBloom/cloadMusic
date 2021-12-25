@@ -33,33 +33,8 @@ interface IPlayBarProps {
   hidePlayList: () => void;
 }
 
-// interface IPlayBarState {
-//   volume: number;
-//   drag: boolean;
-//   progressDotX: number; // 进度条点的横轴坐标
-// }
-
-// class PlayBar extends React.Component<IPlayBarProps, IPlayBarState> {
-//   constructor(props) {
-//     super(props);
-//     const songAudio = React.createRef();
-//     this.state = {
-//       volume: 70,
-//       drag: false,
-//       progressDotX: 0,
-//     };
-//   }
-
-//   const formatTime = (time: number) => {
-//     const minute = Math.floor(time / 60000),
-//       second = Math.round(time / 1000) % 60;
-//     return `${minute < 10 ? "0" + minute.toString() : minute}:${
-//       second < 10 ? "0" + second.toString() : second
-//     }`;
-//   };
-// }
-
 function PlayBar(props: IPlayBarProps) {
+  const [isFolded, setIsFolded] = React.useState(true);
   const info: ISongInfo = props.songInfo;
   const [volume, setVolume] = useState<number>(70);
   const [drag, setDrag] = useState<boolean>(false);
@@ -183,9 +158,27 @@ function PlayBar(props: IPlayBarProps) {
       <div className="playBarContent">
         <span className="infoDisplayPlayBar">
           {info === EmptySongInfo ? (
-            <img src={"../../asset/images/emptyAlbumPic.jpeg"} alt="" />
+            <img alt="" className="emptyImg" />
           ) : (
-            <img src={info.al.picUrl} alt="" />
+            <img
+              src={info.al.picUrl}
+              alt=""
+              onClick={() => {
+                window.scrollTo(0, 0);
+                if (isFolded) {
+                  window.location.hash = "/play-page";
+                  document
+                    .querySelector(".playPage")
+                    ?.setAttribute("class", "playPage");
+                } else {
+                  window.history.back();
+                  document
+                    .querySelector(".playPage")
+                    ?.setAttribute("class", "playPage hide");
+                }
+                setIsFolded(!isFolded);
+              }}
+            />
           )}
           <div>
             <div className="nameAndArtist">

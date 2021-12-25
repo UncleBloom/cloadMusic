@@ -21,11 +21,25 @@ class Play extends React.Component<IPlayProps, IPlayState> {
 
   render(): React.ReactNode {
     return (
-      <div className="playPage">
+      <div
+        className={
+          window.location.hash === "#/play-page" ? "playPage" : "playPage hide"
+        }
+      >
         <div className="playPageMiddle">
           <div className="playPageUp">
             <div className="playPageUpLeft">
-              <img
+              <div>
+                <div className="diskBar"></div>
+                <div className="disk">
+                  {this.props.song === EmptySongInfo ? (
+                    <img src="../../asset/images/emptyAlbumPic.jpeg" alt="" />
+                  ) : (
+                    <img src={this.props.song.al.picUrl} alt="" />
+                  )}
+                </div>
+              </div>
+              {/* <img
                 src="../../asset/images/Tonearm.png"
                 height={200}
                 width={293}
@@ -51,7 +65,7 @@ class Play extends React.Component<IPlayProps, IPlayState> {
                 height={310}
                 width={310}
                 alt=""
-              />
+              /> */}
             </div>
             <div className="playPageUpRight">
               <div className="playPageSongName">{this.props.song.name}</div>

@@ -34,6 +34,7 @@ import SearchPlaylists from "./component/SearchPlaylists";
 import SearchDjRadios from "./component/SearchDjRadios";
 import SearchUsers from "./component/SearchUsers";
 import SearchLyrics from "./component/SearchLyrics";
+import { Link } from "react-router-dom";
 
 interface ISearchResProps {
   keywords: string;
@@ -75,8 +76,8 @@ function SearchNav() {
     <nav className={"search-nav"}>
       <ul>
         <li>
-          <a
-            href="#"
+          <Link
+            to={"/search"}
             className={type == 1 ? "search-selected" : ""}
             onClick={() => {
               changeType(1);
@@ -84,11 +85,11 @@ function SearchNav() {
             }}
           >
             单曲
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="#"
+          <Link
+            to={"/search"}
             className={type == 100 ? "search-selected" : ""}
             onClick={() => {
               changeType(100);
@@ -96,11 +97,11 @@ function SearchNav() {
             }}
           >
             歌手
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="#"
+          <Link
+            to={"/search"}
             className={type == 10 ? "search-selected" : ""}
             onClick={() => {
               changeType(10);
@@ -108,11 +109,11 @@ function SearchNav() {
             }}
           >
             专辑
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="#"
+          <Link
+            to={"/search"}
             className={type == 1014 ? "search-selected" : ""}
             onClick={() => {
               changeType(1014);
@@ -120,11 +121,11 @@ function SearchNav() {
             }}
           >
             视频
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="#"
+          <Link
+            to={"/search"}
             className={type == 1000 ? "search-selected" : ""}
             onClick={() => {
               changeType(1000);
@@ -132,11 +133,11 @@ function SearchNav() {
             }}
           >
             歌单
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="#"
+          <Link
+            to={"/search"}
             className={type == 1006 ? "search-selected" : ""}
             onClick={() => {
               changeType(1006);
@@ -144,11 +145,11 @@ function SearchNav() {
             }}
           >
             歌词
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="#"
+          <Link
+            to={"/search"}
             className={type == 1009 ? "search-selected" : ""}
             onClick={() => {
               changeType(1009);
@@ -156,11 +157,11 @@ function SearchNav() {
             }}
           >
             播客
-          </a>
+          </Link>
         </li>
         <li>
-          <a
-            href="#"
+          <Link
+            to={"/search"}
             className={type == 1002 ? "search-selected" : ""}
             onClick={() => {
               changeType(1002);
@@ -168,7 +169,7 @@ function SearchNav() {
             }}
           >
             用户
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>

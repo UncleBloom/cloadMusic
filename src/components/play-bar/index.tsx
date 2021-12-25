@@ -39,11 +39,20 @@ function PlayBar(props: IPlayBarProps) {
     }`;
   };
 
+  // React.useEffect(() => {
+  //   if (window.location.hash !== "#/play-page") {
+  //     setIsFolded(true);
+  //     document
+  //       .querySelector(".playPage")
+  //       ?.setAttribute("class", "playPage hide");
+  //   }
+  // }, [window.location.hash]);
+
   // 左侧歌曲信息展示
   let infoDisplayPlayBar: React.ReactNode = (
     <span className="infoDisplayPlayBar">
       {info === EmptySongInfo ? (
-        <img src={"../../asset/images/emptyAlbumPic.jpeg"} alt="" />
+        <img alt="" className="emptyImg" />
       ) : (
         <img
           src={info.al.picUrl}

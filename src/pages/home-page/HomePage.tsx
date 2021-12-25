@@ -19,23 +19,38 @@ export const SearchKeyWords = React.createContext<{
 
 function HomePage() {
   const [keyWord, setKeyWord] = useState("");
+  window.onhashchange = function () {
+    if (window.location.hash === "#/play-page") {
+      document.querySelector(".playPage")?.setAttribute("class", "playPage");
+    } else {
+      document
+        .querySelector(".playPage")
+        ?.setAttribute("class", "playPage hide");
+    }
+  };
   return (
     <>
-      <SearchKeyWords.Provider
-        value={{ keyWord: keyWord, setKeyWord: setKeyWord }}
-      >
-        <Header />
-        <Routes>
-          {keyWord === "" ? (
-            <></>
-          ) : (
-            <Route path="/search" element={<SearchRes keywords={keyWord} />} />
-          )}
-          <Route path="/playPage" element={<></>} />
-        </Routes>
-      </SearchKeyWords.Provider>
-      <ScrollToTop />
-      <PlayController />
+      <div className="homepage-body">
+        <SearchKeyWords.Provider
+          value={{ keyWord: keyWord, setKeyWord: setKeyWord }}
+        >
+          <Header />
+          <Routes>
+            {keyWord === "" ? (
+              <></>
+            ) : (
+              <Route
+                path="/search"
+                element={<SearchRes keywords={keyWord} />}
+              />
+            )}
+            <Route path="/playPage" element={<></>} />
+          </Routes>
+        </SearchKeyWords.Provider>
+        <ScrollToTop />
+        <PlayController />
+      </div>
+
       <Footer />
     </>
   );

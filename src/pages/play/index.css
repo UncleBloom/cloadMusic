@@ -14,10 +14,12 @@
     width: 900px;
     margin: 0 auto;
     padding-bottom: 80px;
-    background-color: #fff;
+    background-color: #fafafa;
 }
 
 .playPage .playPageUp {
+    display: flex;
+    justify-content: space-between;
     height: 800px;
 }
 
@@ -91,4 +93,63 @@
 .ant-comment-content-detail {
     text-align: left;
     font-size: 12px;
+}
+
+.playPageUpLeft {
+    display: inline-block;
+    width: 450px;
+    height: 100%;
+    /* background-color: red; */
+}
+
+.playPageUpLeft>div {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    height: 220px;
+    width: 220px;
+    background-color: rgba(170, 170, 170, .3);
+    border-radius: 50%;
+    padding: 10px;
+    margin-top: 200px;
+}
+
+.playPageUpLeft>div .diskBar {
+    display: inline-block;
+    width: 70px;
+    height: 102px;
+    position: absolute;
+    top: -40px;
+    left: 100px;
+    background: url("../../asset/images/Tonearm.png") no-repeat;
+    background-size: cover;
+    transition: transform 1s;
+}
+
+.playPageUpLeft>div .diskBarOrigin {
+    transform-origin: left top;
+    transform: rotate(-40deg);
+}
+
+.playPageUpLeft>div .diskBarAfter {
+    transform-origin: left top;
+    transform: rotate(0deg);
+}
+
+.playPageUpLeft .disk {
+    display: inline-block;
+    text-align: center;
+    height: 200px;
+    width: 200px;
+    background: url("../../asset/images/disk1.png") no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.playPageUpLeft .disk img {
+    display: inline-block;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin-top: 30px;
 }

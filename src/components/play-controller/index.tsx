@@ -15,10 +15,9 @@ interface IPlayControllerState {
   currentTime: number; //当前时间
   playPause: boolean; //播放:暂停
   playPattern: PlayPattern; //播放模式
-  volume: number; //音量
   mute: boolean; //静音
   playListVisible: boolean; //是否显示播放列表
-  showPlayPage: boolean; // 是否展示播放页
+  playingSongUrl: string;
 }
 
 interface IPlayControllerProps {}
@@ -49,14 +48,11 @@ class PlayController extends React.Component<
       currentTime: 0,
       playPause: false,
       playPattern: PlayPattern.Loop,
-      volume: 70,
       mute: false,
       playListVisible: false,
-      showPlayPage: false,
+      playingSongUrl: "",
     };
-    // this.setSongPlaying(347230);
   }
-
   /**
    * 获取歌曲详情
    * @param songId 歌曲Id
@@ -89,9 +85,8 @@ class PlayController extends React.Component<
    */
   setSongPlaying = (songInfo: ISongInfo) => {
     this.setState({ songPlaying: songInfo });
-    let playingUrl: string;
     this.getSongUrl(songInfo.id).then((Response) => {
-      playingUrl = Response.data.url;
+      this.setState({ playingSongUrl: Response.data.url });
     });
     //TODO: 创建播放器 state.playPause?开始播放:停在开头;
   };
@@ -116,33 +111,10 @@ class PlayController extends React.Component<
     this.setState({ playPause: false });
   };
   /**
-   * 设置音量
-   * @param value 音量值
+   * 获得当前播放时间
    */
-  setVolume = (value: number) => {
-    this.setState({
-      volume: value,
-      mute: value === 0 ? true : false,
-    });
-  };
-
-  /**设置当前播放时间
-   * @param value 当前播放时间
-   */
-  setCurrentTime = (value: number) => {
-    this.setState({ currentTime: value });
-  };
-
-  /**
-   * 设置开关静音
-   */
-  setMute = () => {
-    this.setState((state) => {
-      return {
-        mute: !state.mute,
-        volume: state.volume === 0 ? 1 : state.volume,
-      };
-    });
+  getCurrentTime: React.ReactEventHandler<HTMLAudioElement> = (event) => {
+    this.setState({ currentTime: event.currentTarget.currentTime });
   };
   /**
    * 设置播放列表
@@ -310,14 +282,11 @@ class PlayController extends React.Component<
           currentTime={this.state.currentTime}
           playPause={this.state.playPause}
           pattern={this.state.playPattern}
-          volume={this.state.mute ? 0 : this.state.volume}
           playListVisible={this.state.playListVisible}
           changePattern={this.setPlayPattern}
           setPlay={this.setPlay}
           setPause={this.setPause}
-          setVolume={this.setVolume}
-          setMute={this.setMute}
-          setCurrentTime={this.setCurrentTime}
+          getCurrentTime={this.getCurrentTime}
           playNextSong={this.PlayNextSong}
           playPreviousSong={this.playPreviousSong}
           showPlayList={this.showPlayList}

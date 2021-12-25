@@ -30,7 +30,13 @@ class Play extends React.Component<IPlayProps, IPlayState> {
           <div className="playPageUp">
             <div className="playPageUpLeft">
               <div>
-                <div className="diskBar"></div>
+                <div
+                  className={
+                    this.props.playPause
+                      ? "diskBar diskBarAfter"
+                      : "diskBar diskBarOrigin"
+                  }
+                ></div>
                 <div className="disk">
                   {this.props.song === EmptySongInfo ? (
                     <img src="../../asset/images/emptyAlbumPic.jpeg" alt="" />

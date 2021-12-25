@@ -104,3 +104,7 @@ body {
 input:focus::placeholder {
     color: transparent;
 }
+
+p {
+    margin-bottom: 0;
+}

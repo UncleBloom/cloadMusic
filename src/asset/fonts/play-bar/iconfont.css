@@ -1,0 +1,53 @@
+@font-face {
+  font-family: "iconfont"; 
+  src: url('iconfont.ttf?t=1640056692595') format('truetype');
+}
+
+/* .iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} */
+
+.icon-24gl-volumeDisable:before {
+  content: "\ea0c";
+}
+
+.icon-24gl-volumeHigh:before {
+  content: "\ea0d";
+}
+
+.icon-24gl-volumeLow:before {
+  content: "\ea0e";
+}
+
+.icon-24gl-volumeMiddle:before {
+  content: "\ea0f";
+}
+
+.icon-24gl-repeat:before {
+  content: "\ea75";
+}
+
+.icon-24gl-shuffle:before {
+  content: "\ea76";
+}
+
+.icon-24gl-repeatOnce2:before {
+  content: "\ea77";
+}
+
+.icon-24gf-pauseCircle:before {
+  content: "\ea81";
+}
+
+.icon-24gf-playCircle:before {
+  content: "\ea82";
+}
+
+.icon-24gf-playlist2:before {
+  content: "\ea83";
+}
+

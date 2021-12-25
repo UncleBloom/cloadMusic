@@ -1,0 +1,115 @@
+@import "~antd/dist/antd.css";
+@import "../../asset/fonts/play-bar/iconfont.css";
+
+font-face {
+  font-family: "iconfont";
+  src: url("../../asset/fonts/play-bar/iconfont.ttf?t=1640056692595")
+    format("truetype");
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 20px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: pointer;
+}
+
+.volumeSlider {
+  display: "inline-block";
+  height: 100;
+}
+
+.playBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  min-width: 1100px;
+  height: 70px;
+  background-color: white;
+  padding: 0 10px;
+  z-index: 10;
+}
+
+.playBarContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.infoDisplayPlayBar {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 50px;
+  width: 450px;
+}
+
+.infoDisplayPlayBar img {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+}
+
+.infoDisplayPlayBar > div {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 380px;
+  height: 50px;
+  padding: 5px 0;
+  margin-left: 10px;
+}
+
+.infoDisplayPlayBar .nameAndArtist {
+  display: inline-block;
+  width: 380px;
+  padding: 0;
+  margin: 0;
+  text-align-last: left;
+}
+
+.infoDisplayPlayBar .nameAndArtist .name {
+  /* overflow: hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis; */
+  color: #4c4c4c;
+}
+
+.infoDisplayPlayBar .duration {
+  display: inline-block;
+  width: 140px;
+}
+
+.infoDisplayPlayBar .nameAndArtist .artistName {
+  color: #aaa;
+  font-size: 12px;
+}
+
+.infoDisplayPlayBar .duration {
+  color: #aaa;
+  font-size: 12px;
+}
+
+.playController {
+  display: inline-flex;
+  align-items: center;
+  width: 450px;
+}
+
+.playController > span {
+  display: inline-block;
+}
+
+.playPauseButton {
+  margin: 0 20px;
+}
+
+.listController > span {
+  margin: 0 10px;
+  font-size: 20px;
+}

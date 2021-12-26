@@ -20,7 +20,8 @@
 .playPage .playPageUp {
     display: flex;
     justify-content: space-between;
-    height: 800px;
+    height: 700px;
+    padding-top: 30px;
 }
 
 .playPage .playPageUpLeft {
@@ -39,11 +40,12 @@
     font-size: 26px;
     color: #302f2f;
     margin-top: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .playPage .playPageUpRight .playPageArAl {
     display: flex;
+    margin-left: 100px;
 }
 
 .playPage .playPageUpRight .playPageArAl>span {

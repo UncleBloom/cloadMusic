@@ -79,8 +79,12 @@ function PlayBar(props: IPlayBarProps) {
   }, [audioNode, props.playPause]);
 
   useEffect(() => {
-    setProgressDotX((props.currentTime / (info.dt / 1000)) * window.innerWidth);
-  }, [info.dt, props.currentTime]);
+    if (info) {
+      setProgressDotX(
+        (props.currentTime / (info.dt / 1000)) * window.innerWidth
+      );
+    }
+  }, [info, props.currentTime]);
 
   useEffect(() => {
     const getSongUrl = async (songId: number): Promise<ISongUrlResponse> => {
@@ -94,7 +98,7 @@ function PlayBar(props: IPlayBarProps) {
     getSongUrl(info.id).then((Response) => {
       setSongUrl(Response.data[0].url);
     });
-  }, [info.id]);
+  }, [info]);
 
   /**
    * 鼠标点击进度条时改变当前播放时间

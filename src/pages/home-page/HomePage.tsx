@@ -8,6 +8,7 @@ import ScrollToTop from "./component/ScrollToTop";
 import PlayController from "../../components/play-controller";
 import { HashRouter as Router, Route, Link, Routes } from "react-router-dom";
 import Login from "../../components/Login/Login";
+import { playControllerRef } from "../search/component/SearchSongs";
 
 // import "./homepage.css";
 // import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -52,7 +53,7 @@ function HomePage() {
         </SearchKeyWords.Provider>
         <Login />
         <ScrollToTop />
-        <PlayController />
+        <PlayController ref={playControllerRef} />
       </div>
 
       <Footer />

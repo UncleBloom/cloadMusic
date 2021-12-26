@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { createRef, useContext, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import ChangeWordColor from "./ChangeWordColor";
+import PlayController from "../../../components/play-controller/index";
 
 interface ISearchSongAlbum {
   id?: number;
@@ -31,6 +32,8 @@ interface ISearchSongsProps {
   songs: ISearchSong[];
 }
 
+export const playControllerRef = createRef<PlayController>();
+
 function SearchSongs(props: ISearchSongsProps) {
   return (
     <div className="search-res-songs">
@@ -48,7 +51,12 @@ function SearchSongs(props: ISearchSongsProps) {
         <tbody>
           {props.songs.map((song, index) => {
             return (
-              <tr key={index}>
+              <tr
+                key={index}
+                onDoubleClick={() => {
+                  playControllerRef.current?.addToPlayList(song.id, true);
+                }}
+              >
                 <td className="iconfont">
                   {("0" + (index + 1)).substring(
                     ("0" + (index + 1)).length - 2

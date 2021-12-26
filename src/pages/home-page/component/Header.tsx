@@ -187,7 +187,66 @@ function Header() {
         <a href="#">创作者中心</a>
       </span>
       <span className={"login"}>
-        <a href="#">登录</a>
+        {/* <a
+          href="#"
+          onClick={() => {
+            document
+              .querySelector(".login-shelter")
+              ?.setAttribute("class", "login-shelter");
+          }}
+        >
+          登录
+        </a> */}
+        <span>
+          <img
+            src="http://p2.music.126.net/HlbeTPvXJ5T28_19CSyqzA==/3437073354082507.jpg"
+            alt=""
+          />
+          <div>
+            <div>
+              <span></span>
+            </div>
+            <div>
+              <ul>
+                <li>
+                  <a className="iconfont">
+                    <span>&#xe604;</span>&nbsp;&nbsp;&nbsp;我的主页
+                  </a>
+                </li>
+                <li>
+                  <a className="iconfont">
+                    <span>&#xe863;</span>&nbsp;&nbsp;&nbsp;我的消息
+                  </a>
+                </li>
+                <li>
+                  <a className="iconfont">
+                    <span>&#xe7a0;</span>&nbsp;&nbsp;&nbsp;我的等级
+                  </a>
+                </li>
+                <li>
+                  <a className="iconfont">
+                    <span>&#xe7a3;</span>&nbsp;&nbsp;&nbsp;VIP会员
+                  </a>
+                </li>
+                <li>
+                  <a className="iconfont">
+                    <span>&#xe65e;</span>&nbsp;&nbsp;&nbsp;个人设置
+                  </a>
+                </li>
+                <li>
+                  <a className="iconfont">
+                    <span>&#xe7cb;</span>&nbsp;&nbsp;&nbsp;实名认证
+                  </a>
+                </li>
+                <li>
+                  <a className="iconfont">
+                    <span>&#xe62e;</span>&nbsp;&nbsp;&nbsp;退出
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </span>
       </span>
     </header>
   );

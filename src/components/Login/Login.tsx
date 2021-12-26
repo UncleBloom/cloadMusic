@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import "./Login.css";
 class Login extends React.Component<any, any> {
+  timer: number = 0;
   constructor(props: any) {
     super(props);
     this.state = {
@@ -11,6 +12,9 @@ class Login extends React.Component<any, any> {
       d1: "none",
       d2: "block",
       b1: "disabled",
+      btnText: "发送验证码",
+      btnBool: true,
+      loginway: "密码登录",
     };
   }
   changePhone = (e: any) => {
@@ -18,71 +22,160 @@ class Login extends React.Component<any, any> {
     this.setState({
       phone: phone,
     });
-    console.log(this.state.phone);
+    if (phone.length === 11) {
+      this.setState({
+        btnBool: false,
+      });
+    } else {
+      this.setState({
+        btnBool: true,
+      });
+    }
+    // console.log(this.state.phone);
   };
   changePw = (e: any) => {
     let pw = e.target.value;
     this.setState({
       pw: pw,
     });
-    console.log(this.state.pw);
+    // console.log(this.state.pw);
   };
   changeCapt = (e: any) => {
     let capt = e.target.value;
     this.setState({
       capt: capt,
     });
-    console.log(this.state.phone);
+    // console.log(this.state.phone);
   };
-  changed = (e: any) => {
+  changed = () => {
     if (this.state.d1 === "none") {
       this.setState({
         d1: "block",
         d2: "none",
+        loginway: "验证码登录",
       });
     } else {
       this.setState({
         d1: "none",
         d2: "block",
+        loginway: "密码登录",
       });
     }
   };
-  submit1 = (e: any) => {
+  sendCode() {
+    let maxTime = 60;
+    this.timer = setInterval(() => {
+      if (maxTime > 0) {
+        --maxTime;
+        this.setState({
+          btnText: maxTime + "s",
+          btnBool: true,
+        });
+      } else {
+        this.setState({
+          btnText: "发送验证码",
+          btnBool: false,
+        });
+        clearInterval(this.timer);
+      }
+    }, 1000);
     axios
-      .post("http://101.33.207.151:3000/cellphone/existence/check", {
+      .post("http://101.33.207.151:3000/captcha/sent", {
         phone: this.state.phone,
       })
       .then((res) => {
-        console.log(res);
-        if (res.data.exist === 1) {
-          axios
-            .post("http://101.33.207.151:3000/captcha/sent", {
-              phone: this.state.phone,
-            })
-            .then((res) => {
-              console.log(res);
-            });
-        }
+        // console.log(res);
       });
-  };
-  submit2 = () => {
+  }
+  login = (): boolean => {
+    let flag = true;
     axios
       .post("http://101.33.207.151:3000/login/cellphone", {
         phone: this.state.phone,
         password: this.state.pw,
         captcha: this.state.capt,
       })
+      .then(
+        (res) => {
+          //   console.log(res);
+          if (res.data.code === 502) {
+            alert("密码错误");
+            flag = false;
+          } else {
+            localStorage.setItem("cookie", encodeURIComponent(res.data.cookie));
+            flag = true;
+          }
+        },
+        (err) => {
+          console.log(err);
+          alert("验证码错误");
+          flag = false;
+        }
+      );
+    return flag;
+  };
+  submit1 = () => {
+    axios
+      .post("http://101.33.207.151:3000/cellphone/existence/check", {
+        phone: this.state.phone,
+      })
       .then((res) => {
-        console.log(res);
-        localStorage.setItem("cookie", encodeURIComponent(res.data.cookie));
+        // console.log(res);
+        if (res.data.exist === 1) {
+          this.sendCode();
+        } else {
+          alert("当前手机号未注册");
+        }
       });
   };
-  checklog = (e: any) => {
+  submit2 = async (): Promise<boolean> => {
+    let flag: boolean = false;
+    let phone = this.state.phone;
+    let pw = this.state.pw;
+    let capt = this.state.capt;
+    if (phone.length !== 11) {
+      alert("请正确填写手机号码");
+      return false;
+    } else if (this.state.d1 === "block" && (pw.length < 8 || pw.length > 20)) {
+      alert("请正确填写密码");
+      return false;
+    } else if (this.state.d2 === "block" && capt.length !== 4) {
+      alert("请正确填写验证码");
+      return false;
+    } else {
+      const res = await axios.post(
+        "http://101.33.207.151:3000/cellphone/existence/check",
+        {
+          phone: this.state.phone,
+        }
+      );
+      if (res.data.exist === 1) {
+        flag = this.login();
+        if (flag) {
+          setTimeout(() => {
+            window.location.hash = "/";
+            window.location.reload();
+            document
+              .querySelector(".login-shelter")
+              ?.setAttribute("class", "login-shelter hide");
+          }, 0);
+        }
+        // console.log(flag);
+      } else {
+        alert("当前手机号未注册");
+        flag = false;
+      }
+    }
+    // console.log(flag);
+
+    return flag;
+  };
+  checklog = () => {
     let cookie = localStorage.getItem("cookie");
-    console.log(cookie);
+    // console.log(cookie);
     let url = "http://101.33.207.151:3000/login/status?cookie=" + cookie;
     axios.get(url, {}).then((res) => {
-      console.log(res);
+      //   console.log(res);
     });
   };
   render() {
@@ -144,14 +237,15 @@ class Login extends React.Component<any, any> {
                   <button
                     className={"login-captcha-get"}
                     onClick={this.submit1}
+                    disabled={this.state.btnBool}
                   >
-                    获取验证码
+                    {this.state.btnText}
                   </button>
                 </div>
               </div>
               <div className={"login-actionbox"}>
                 <a className={"captcha-pw"} onClick={this.changed} href="#">
-                  密码登录
+                  {this.state.loginway}
                 </a>
                 <label className="login-auto">
                   <input type="checkbox" className={"login-auto-checkbox"} />
@@ -163,14 +257,17 @@ class Login extends React.Component<any, any> {
                   className={"login-next"}
                   onClick={() => {
                     this.submit2();
-                    let cookie = localStorage.getItem("cookie");
+                    // console.log(flag);
+
+                    // console.log(flag);
+
+                    // let cookie = localStorage.getItem("cookie");
                     // console.log(cookie);
-                    let url =
-                      "http://101.33.207.151:3000/login/status?cookie=" +
-                      cookie;
-                    axios.get(url, {}).then((res) => {
-                      //   console.log(res);
-                    });
+                    // let url =
+                    //   "http://101.33.207.151:3000/login/status?cookie=" +
+                    //   cookie;
+                    // axios.get(url, {}).then((res) => {
+                    // });
                   }}
                 >
                   登录
@@ -179,10 +276,12 @@ class Login extends React.Component<any, any> {
             </div>
           </div>
           <div className={"login-back-wrap"}>
-            <a className={"login-back"} onClick={this.checklog}>
+            <a className={"login-back"} onClick={this.checklog} href="#">
               其他登录方式
             </a>
-            <a className={"login-register"}>没有账号？免费注册</a>
+            <a className={"login-register"} href="#">
+              没有账号？免费注册
+            </a>
           </div>
         </div>
       </div>

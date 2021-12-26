@@ -1,12 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "../homepage.css";
 import { SearchKeyWords } from "../HomePage";
 import { Link } from "react-router-dom";
+import axios from "axios";
 // import { Link } from "react-router-dom";
 // 首页Header组件，包含Logo组件、Nav组件,Search组件
 interface ISearchProps {
   placeHolder: string;
+}
+
+interface IProfile {
+  userId: number;
+  avatarUrl?: string;
+}
+interface IPro {
+  profile: IProfile;
+}
+
+interface IData {
+  data: IPro;
 }
 
 //index用于表示当前页面是第几个page，并对对应的a添加css效果
@@ -173,7 +186,22 @@ function SearchInput(props: ISearchProps) {
 
 function Header() {
   const [index, setIndex] = useState(0);
+  const [person, setPerson] = useState<IProfile>();
   const { keyWord, setKeyWord } = useContext(SearchKeyWords);
+  useEffect(() => {
+    let cookie = localStorage.getItem("cookie");
+    // console.log(cookie);
+    let url = "http://101.33.207.151:3000/login/status?cookie=" + cookie;
+    const data = axios.get(url, {}).then((res): IData => {
+      return res.data;
+    });
+    data.then((data) => {
+      // console.log(data);
+
+      setPerson(data.data.profile);
+      // console.log(data.data.profile);
+    });
+  }, []);
 
   return (
     <header className={"homepage-header"}>
@@ -187,66 +215,73 @@ function Header() {
         <a href="#">创作者中心</a>
       </span>
       <span className={"login"}>
-        {/* <a
-          href="#"
-          onClick={() => {
-            document
-              .querySelector(".login-shelter")
-              ?.setAttribute("class", "login-shelter");
-          }}
-        >
-          登录
-        </a> */}
-        <span>
-          <img
-            src="http://p2.music.126.net/HlbeTPvXJ5T28_19CSyqzA==/3437073354082507.jpg"
-            alt=""
-          />
-          <div>
+        {person ? (
+          <span>
+            <img src={person.avatarUrl} alt="" />
             <div>
-              <span></span>
+              <div>
+                <span></span>
+              </div>
+              <div>
+                <ul>
+                  <li>
+                    <a className="iconfont">
+                      <span>&#xe604;</span>&nbsp;&nbsp;&nbsp;我的主页
+                    </a>
+                  </li>
+                  <li>
+                    <a className="iconfont">
+                      <span>&#xe863;</span>&nbsp;&nbsp;&nbsp;我的消息
+                    </a>
+                  </li>
+                  <li>
+                    <a className="iconfont">
+                      <span>&#xe7a0;</span>&nbsp;&nbsp;&nbsp;我的等级
+                    </a>
+                  </li>
+                  <li>
+                    <a className="iconfont">
+                      <span>&#xe7a3;</span>&nbsp;&nbsp;&nbsp;VIP会员
+                    </a>
+                  </li>
+                  <li>
+                    <a className="iconfont">
+                      <span>&#xe65e;</span>&nbsp;&nbsp;&nbsp;个人设置
+                    </a>
+                  </li>
+                  <li>
+                    <a className="iconfont">
+                      <span>&#xe7cb;</span>&nbsp;&nbsp;&nbsp;实名认证
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="iconfont"
+                      onClick={() => {
+                        localStorage.setItem("cookie", "");
+                        window.location.hash = "/";
+                        window.location.reload();
+                      }}
+                    >
+                      <span>&#xe62e;</span>&nbsp;&nbsp;&nbsp;退出登录
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div>
-              <ul>
-                <li>
-                  <a className="iconfont">
-                    <span>&#xe604;</span>&nbsp;&nbsp;&nbsp;我的主页
-                  </a>
-                </li>
-                <li>
-                  <a className="iconfont">
-                    <span>&#xe863;</span>&nbsp;&nbsp;&nbsp;我的消息
-                  </a>
-                </li>
-                <li>
-                  <a className="iconfont">
-                    <span>&#xe7a0;</span>&nbsp;&nbsp;&nbsp;我的等级
-                  </a>
-                </li>
-                <li>
-                  <a className="iconfont">
-                    <span>&#xe7a3;</span>&nbsp;&nbsp;&nbsp;VIP会员
-                  </a>
-                </li>
-                <li>
-                  <a className="iconfont">
-                    <span>&#xe65e;</span>&nbsp;&nbsp;&nbsp;个人设置
-                  </a>
-                </li>
-                <li>
-                  <a className="iconfont">
-                    <span>&#xe7cb;</span>&nbsp;&nbsp;&nbsp;实名认证
-                  </a>
-                </li>
-                <li>
-                  <a className="iconfont">
-                    <span>&#xe62e;</span>&nbsp;&nbsp;&nbsp;退出
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </span>
+          </span>
+        ) : (
+          <a
+            href="#"
+            onClick={() => {
+              document
+                .querySelector(".login-shelter")
+                ?.setAttribute("class", "login-shelter");
+            }}
+          >
+            登录
+          </a>
+        )}
       </span>
     </header>
   );

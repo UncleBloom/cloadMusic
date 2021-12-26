@@ -44,7 +44,7 @@ class PlayController extends React.Component<
     this.state = {
       songPlaying: EmptySongInfo,
       // playList: EmptyList,
-      playList: testSongList,
+      playList: EmptyList,
       currentTime: 0,
       playPause: false,
       playPattern: PlayPattern.Loop,
@@ -147,19 +147,26 @@ class PlayController extends React.Component<
    * @param song 歌曲的详情(建议)或Id
    * @param andPlay 是否在加入播放队列时开始播放
    */
-  addToPlayList = (song: ISongInfo | number, andPlay: boolean = false) => {
+  addToPlayList = async (
+    song: ISongInfo | number,
+    andPlay: boolean = false
+  ) => {
     let newPlayList = this.state.playList;
     if (typeof song === "number") {
-      let Info: ISongInfo;
-      this.getSongInfo(song).then((Response) => {
-        Info = Response.songs[0];
-        newPlayList.songs.push(Info);
-        if (andPlay) {
-          this.setSongPlaying(newPlayList.songs[-1]);
-          newPlayList.playing = newPlayList.songs.length;
-        }
-        this.setState({ playList: newPlayList });
-      });
+      let Info: ISongInfo = EmptySongInfo;
+      const Response = await this.getSongInfo(song);
+
+      Info = Response.songs[0];
+      newPlayList.songs.push(Info);
+      // console.log(newPlayList.songs);
+
+      if (andPlay) {
+        // console.log(newPlayList.songs[newPlayList.songs.length - 1]);
+
+        this.setSongPlaying(newPlayList.songs[newPlayList.songs.length - 1]);
+        newPlayList.playing = newPlayList.songs.length;
+      }
+      this.setState({ playList: newPlayList });
     } else {
       newPlayList.songs.push(song);
       if (andPlay) {

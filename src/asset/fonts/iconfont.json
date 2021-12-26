@@ -6,6 +6,69 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "25537505",
+      "name": "护盾",
+      "font_class": "hudun",
+      "unicode": "e7cb",
+      "unicode_decimal": 59339
+    },
+    {
+      "icon_id": "1048893",
+      "name": "注销",
+      "font_class": "icon_logout",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "1397978",
+      "name": "Person",
+      "font_class": "Person",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "1469251",
+      "name": "mail",
+      "font_class": "mail",
+      "unicode": "e863",
+      "unicode_decimal": 59491
+    },
+    {
+      "icon_id": "5295577",
+      "name": "勋章",
+      "font_class": "xunzhang",
+      "unicode": "e7a0",
+      "unicode_decimal": 59296
+    },
+    {
+      "icon_id": "5387619",
+      "name": "盾牌保险认证",
+      "font_class": "dunpaibaoxianrenzheng",
+      "unicode": "eb17",
+      "unicode_decimal": 60183
+    },
+    {
+      "icon_id": "8677224",
+      "name": "设置",
+      "font_class": "shezhi",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "15838830",
+      "name": "音乐会员",
+      "font_class": "yinlehuiyuan",
+      "unicode": "e7a3",
+      "unicode_decimal": 59299
+    },
+    {
+      "icon_id": "1179892",
+      "name": "叉号",
+      "font_class": "chahao",
+      "unicode": "e669",
+      "unicode_decimal": 58985
+    },
+    {
       "icon_id": "986671",
       "name": "男",
       "font_class": "nan",

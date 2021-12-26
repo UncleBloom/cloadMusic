@@ -92,9 +92,20 @@ class Register extends React.Component<any,any>{
         this.setState({
             nickname: nickname
         })
+        if(nickname.length!==0){
+            this.setState({
+                b3:''
+            })
+        }
+        else{
+            this.setState({
+                b3:'disabled'
+            })
+        }
         console.log(this.state.nickname)
+
     }
-    submit1 = (e: any) =>{
+    sendCode(){
         axios.post('http://101.33.207.151:3000/captcha/sent',{
             phone: this.state.phone
         })
@@ -106,13 +117,30 @@ class Register extends React.Component<any,any>{
             d2:'block'
         })
     }
-    submit2 = (e: any) =>{
+    submit1 = () =>{
+        axios
+      .post("http://101.33.207.151:3000/cellphone/existence/check", {
+        phone: this.state.phone,
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.exist === -1) {
+          this.sendCode();
+        }
+        else{
+          alert("当前手机号已注册");
+        }
+      });
+    }
+    submit2 = () =>{
         axios.post('http://101.33.207.151:3000/captcha/verify',{
             phone: this.state.phone,
             captcha: this.state.capt
         })
         .then(res=>{
             console.log(res);
+        },err=>{
+            alert('验证码错误')
         });
         this.setState({
             d2:'none',
@@ -128,6 +156,8 @@ class Register extends React.Component<any,any>{
         })
         .then(res=>{
             console.log(res);
+        },err=>{
+            alert("昵称重复")
         });
     }
     render(){
@@ -182,8 +212,8 @@ class Register extends React.Component<any,any>{
                         <div className='register2-msg-wrap'>
                             <p className={'register2-msg-phone-wrap'}>你的手机号是:
                                 <strong>
-                                    <span>+86</span>
-                                    <span>{this.state.phone}</span>
+                                    <span>+86 </span>
+                                    <span>{this.state.phone.substr(0,4)+'****'+this.state.phone.substr(8,11)}</span>
                                 </strong>
                             </p>
                             <p className='register2-msg'>
@@ -223,7 +253,7 @@ class Register extends React.Component<any,any>{
                     </div>
                 </div>
                 <div className={'register-back-wrap'}>
-                    <a className={'register-back'}>返回登录</a>
+                    <a className={'register-back'} href={'#'}>返回登录</a>
                 </div>
             </div>
         )

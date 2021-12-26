@@ -1,155 +1,154 @@
 .playPage {
-    /* position: fixed;
+  /* position: fixed;
     top: 6000px; */
-    background-color: #fafafa;
-    /* transition: top 0.5s; */
+  background-color: #fafafa;
+  /* transition: top 0.5s; */
 }
-
 
 /* .playPage-mov {
     top: 0;
 } */
 
 .playPage .playPageMiddle {
-    width: 900px;
-    margin: 0 auto;
-    padding-bottom: 80px;
-    background-color: #fafafa;
+  width: 900px;
+  margin: 0 auto;
+  padding-bottom: 80px;
+  background-color: #fafafa;
 }
 
 .playPage .playPageUp {
-    display: flex;
-    justify-content: space-between;
-    height: 800px;
+  display: flex;
+  justify-content: space-between;
+  height: 800px;
 }
 
 .playPage .playPageUpLeft {
-    display: inline-block;
-    width: 450px;
+  display: inline-block;
+  width: 450px;
 }
 
 .playPage .playPageUpRight {
-    display: inline-block;
-    width: 450px;
+  display: inline-block;
+  width: 450px;
 }
 
 .playPage .playPageUpRight .playPageSongName {
-    display: inline-block;
-    width: 450px;
-    font-size: 26px;
-    color: #302f2f;
-    margin-top: 30px;
-    margin-bottom: 20px;
+  display: inline-block;
+  width: 450px;
+  font-size: 26px;
+  color: #302f2f;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 .playPage .playPageUpRight .playPageArAl {
-    display: flex;
+  display: flex;
 }
 
-.playPage .playPageUpRight .playPageArAl>span {
-    display: flex;
-    width: 40%;
+.playPage .playPageUpRight .playPageArAl > span {
+  display: flex;
+  width: 40%;
 }
 
-.playPage .playPageUpRight .playPageArAl>span>span {
-    display: flex;
-    color: #747dad;
-    cursor: pointer;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+.playPage .playPageUpRight .playPageArAl > span > span {
+  display: flex;
+  color: #747dad;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
-.playPage .playPageUpRight .playPageArAl>span>p {
-    display: inline-block;
-    color: #dad7d7;
-    margin-right: 10px;
+.playPage .playPageUpRight .playPageArAl > span > p {
+  display: inline-block;
+  color: #dad7d7;
+  margin-right: 10px;
 }
 
 .playPage .playPageUpRight .lyrics {
-    display: inline-block;
-    height: 350px;
-    width: 450px;
-    margin-top: 30px;
+  display: inline-block;
+  height: 350px;
+  width: 450px;
+  margin-top: 30px;
 }
 
 .playPage .playPageUpRight .lyrics ul {
-    display: inline-block;
-    height: 350px;
-    width: 450px;
-    overflow: scroll;
-    overflow-x: hidden;
+  display: inline-block;
+  height: 350px;
+  width: 450px;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
-.playPage .playPageUpRight .lyrics ul>div {
-    display: inline-block;
-    width: 100%;
-    overflow-x: hidden;
-    font-size: 16px;
-    color: #615f5f;
-    margin-top: 10px;
+.playPage .playPageUpRight .lyrics ul > div {
+  display: inline-block;
+  width: 100%;
+  overflow-x: hidden;
+  font-size: 16px;
+  color: #615f5f;
+  margin-top: 10px;
 }
 
 .ant-comment-content-detail {
-    text-align: left;
-    font-size: 12px;
+  text-align: left;
+  font-size: 12px;
 }
 
 .playPageUpLeft {
-    display: inline-block;
-    width: 450px;
-    height: 100%;
-    /* background-color: red; */
+  display: inline-block;
+  width: 450px;
+  height: 100%;
+  /* background-color: red; */
 }
 
-.playPageUpLeft>div {
-    display: inline-block;
-    position: relative;
-    text-align: center;
-    height: 220px;
-    width: 220px;
-    background-color: rgba(170, 170, 170, .3);
-    border-radius: 50%;
-    padding: 10px;
-    margin-top: 200px;
+.playPageUpLeft > div {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  height: 220px;
+  width: 220px;
+  background-color: rgba(170, 170, 170, 0.3);
+  border-radius: 50%;
+  padding: 10px;
+  margin-top: 200px;
 }
 
-.playPageUpLeft>div .diskBar {
-    display: inline-block;
-    width: 70px;
-    height: 102px;
-    position: absolute;
-    top: -40px;
-    left: 100px;
-    background: url("../../asset/images/Tonearm.png") no-repeat;
-    background-size: cover;
-    transition: transform 1s;
+.playPageUpLeft > div .diskBar {
+  display: inline-block;
+  width: 70px;
+  height: 102px;
+  position: absolute;
+  top: -40px;
+  left: 100px;
+  background: url("../../asset/images/Tonearm.png") no-repeat;
+  background-size: cover;
+  transition: transform 1s;
 }
 
-.playPageUpLeft>div .diskBarOrigin {
-    transform-origin: left top;
-    transform: rotate(-40deg);
+.playPageUpLeft > div .diskBarOrigin {
+  transform-origin: left top;
+  transform: rotate(-40deg);
 }
 
-.playPageUpLeft>div .diskBarAfter {
-    transform-origin: left top;
-    transform: rotate(0deg);
+.playPageUpLeft > div .diskBarAfter {
+  transform-origin: left top;
+  transform: rotate(0deg);
 }
 
 .playPageUpLeft .disk {
-    display: inline-block;
-    text-align: center;
-    height: 200px;
-    width: 200px;
-    background: url("../../asset/images/disk1.png") no-repeat;
-    background-size: cover;
-    border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  height: 200px;
+  width: 200px;
+  background: url("../../asset/images/disk1.png") no-repeat;
+  background-size: cover;
+  border-radius: 50%;
 }
 
 .playPageUpLeft .disk img {
-    display: inline-block;
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    margin-top: 30px;
+  display: inline-block;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin-top: 30px;
 }

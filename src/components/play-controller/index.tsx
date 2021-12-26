@@ -314,7 +314,7 @@ const testSongList: IPlayList = {
         id: 74632127,
         name: "劲歌热舞",
         picUrl:
-          "https://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "https://p2.music.126.net/5k_BRr3vUfjJq97LQaj3jQ==/109951166583357991.jpg",
       },
       ar: [
         {
@@ -331,7 +331,7 @@ const testSongList: IPlayList = {
         id: 37174106,
         name: "火车驶向云外，梦安魂于九霄",
         picUrl:
-          "https://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "https://p1.music.126.net/VSRib9gDrSXJEq_1gTfYiw==/109951163102691938.jpg",
       },
       ar: [
         {
@@ -348,7 +348,7 @@ const testSongList: IPlayList = {
         id: 34555329,
         name: "生活因你而火热",
         picUrl:
-          "https://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "https://p2.music.126.net/w4J5DXSUimF5P0iDEzqy9w==/1393081236950048.jpg",
       },
       ar: [
         {

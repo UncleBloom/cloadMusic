@@ -41,37 +41,13 @@ class Play extends React.Component<IPlayProps, IPlayState> {
                   {this.props.song === EmptySongInfo ? (
                     <img src="../../asset/images/emptyAlbumPic.jpeg" alt="" />
                   ) : (
-                    <img src={this.props.song.al.picUrl} alt="" />
+                    <img
+                      src={this.props.song.al.picUrl}
+                      alt=""
+                    />
                   )}
                 </div>
               </div>
-              {/* <img
-                src="../../asset/images/Tonearm.png"
-                height={200}
-                width={293}
-                alt=""
-              />
-              {this.props.song === EmptySongInfo ? (
-                <img
-                  src="../../asset/images/emptyAlbumPic.jpeg"
-                  height={200}
-                  width={200}
-                  alt=""
-                />
-              ) : (
-                <img
-                  src={this.props.song.al.picUrl}
-                  height={200}
-                  width={200}
-                  alt=""
-                />
-              )}
-              <img
-                src="../../asset/images/Disk.png"
-                height={310}
-                width={310}
-                alt=""
-              /> */}
             </div>
             <div className="playPageUpRight">
               <div className="playPageSongName">{this.props.song.name}</div>

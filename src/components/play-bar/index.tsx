@@ -50,14 +50,14 @@ function PlayBar(props: IPlayBarProps) {
   // 格式化时间输出
   const formatDuration = (time: number) => {
     const minute = Math.floor(time / 60000),
-      second = Math.round(time / 1000) % 60;
+      second = Math.floor(time / 1000) % 60;
     return `${minute < 10 ? "0" + minute.toString() : minute}:${
       second < 10 ? "0" + second.toString() : second
     }`;
   };
   const formatCurrentTime = (time: number) => {
     const minute = Math.floor(time / 60),
-      second = Math.round(time % 60);
+      second = Math.floor(time % 60);
     return `${minute < 10 ? "0" + minute.toString() : minute}:${
       second < 10 ? "0" + second.toString() : second
     }`;

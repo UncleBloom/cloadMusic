@@ -1,0 +1,30 @@
+.playPage .playPageUpRight .lyrics {
+  display: inline-block;
+  height: 400px;
+  width: 450px;
+  margin-top: 30px;
+}
+
+.playPage .playPageUpRight .lyrics ul {
+  display: inline-block;
+  height: 400px;
+  width: 450px;
+  overflow: scroll;
+  overflow-x: hidden;
+  div {
+    display: inline-block;
+    width: 100%;
+    overflow-x: hidden;
+    line-height: 28px;
+    font-size: 16px;
+    color: #615f5f;
+  }
+  .currentLine{
+    display: inline-block;
+    width: 100%;
+    overflow-x: hidden;
+    line-height: 32px;
+    font-size: 20px;
+    color: #c34b38;
+  }
+}

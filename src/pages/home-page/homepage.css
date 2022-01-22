@@ -1,0 +1,499 @@
+/* Header组件start */
+
+
+/* Logo组件start */
+
+.logo {
+    display: inline-block;
+    width: 177px;
+    height: 69px;
+    margin-right: 20px;
+}
+
+.logo a {
+    display: inline-block;
+    height: 100%;
+    width: 177px;
+    background: url("../../asset/images/logo.png") center center no-repeat;
+    background-size: contain;
+    text-indent: -9999px;
+}
+
+
+/* Logo组件end */
+
+
+/* Nav组件start */
+
+.homepage-nav {
+    display: inline-block;
+    height: 100%;
+}
+
+.homepage-nav ul li {
+    display: inline-block;
+    height: 70px;
+    font-size: 14px;
+}
+
+.homepage-nav ul li a {
+    display: inline-block;
+    height: 70px;
+    padding: 0 19px;
+    color: #ccc;
+    line-height: 70px;
+    cursor: pointer;
+}
+
+.homepage-nav ul li a:hover {
+    background-color: black;
+    color: white;
+}
+
+.selected {
+    background-color: black !important;
+    color: white !important;
+}
+
+
+/* 下载客户端右上角的hot */
+
+.homepage-nav ul li:last-child {
+    position: relative;
+}
+
+.homepage-nav ul li:last-child sup {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    left: 100px;
+    width: 28px;
+    height: 20px;
+    background: url("../../asset/images/topbar.png");
+    background-position: -190px 0;
+}
+
+
+/* Nav组件end */
+
+
+/* Search组件start */
+
+.homepage-search {
+    display: flex;
+    position: relative;
+    justify-content: space-around;
+    align-items: center;
+    width: 160px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #fff;
+    margin-left: 80px;
+    padding-right: 5px;
+}
+
+.homepage-search span:first-child {
+    display: inline-block;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    /* background-color: black; */
+    line-height: 30px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #aaa;
+}
+
+.homepage-search span:first-child a::before {
+    content: "\e67d";
+    font-family: "iconfont";
+    color: #aaa;
+}
+
+.homepage-search input {
+    height: 14px;
+    width: 110px;
+    /* background-color: transparent; */
+    font-size: 12px;
+    /* color: black; */
+    margin-right: 10px;
+}
+
+.homepage-search input::-webkit-input-placeholder {
+    color: #aaa;
+}
+
+.homepage-search span:last-child {
+    position: absolute;
+    /* margin-right: 5px; */
+    right: 5px;
+    cursor: pointer;
+}
+
+
+/* Search组件end */
+
+
+/* 创作者中心和登录两个链接 */
+
+.homepage-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-width: 1100px;
+    height: 70px;
+    background-color: #242424;
+    border-bottom: 1px solid black;
+}
+
+.homepage-header h1 {
+    margin-bottom: 0;
+}
+
+.homepage-header .writer-center {
+    display: inline-flex;
+    align-items: center;
+    height: 30px;
+    padding: 0 15px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    line-height: 30px;
+    margin: 0 10px;
+}
+
+.homepage-header .writer-center a {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    /* margin-top: -2px; */
+}
+
+.homepage-header .writer-center:hover {
+    border: 1px solid white;
+}
+
+.homepage-header .writer-center:hover a {
+    color: white;
+}
+
+.homepage-header .writer-center a {
+    color: #ccc;
+    font-size: 12px;
+}
+
+.homepage-header .login {
+    margin-left: 10px;
+}
+
+.homepage-header .login a {
+    color: #aaa;
+}
+
+.homepage-header .login a:hover {
+    color: #888;
+    text-decoration: underline;
+}
+
+
+/* Header组件end */
+
+
+/* Footer 组件 start */
+
+.App .homepage-body {
+    min-height: 560px;
+}
+
+.homepage-footer {
+    width: 100%;
+    height: 200px;
+    background-color: #eee;
+    border-top: 1px solid #ddd;
+}
+
+.homepage-footer .footer-msg {
+    display: flex;
+    justify-content: space-between;
+    width: 1100px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.homepage-footer .footer-msg .copy {
+    width: 500px;
+    padding-top: 10px;
+    text-align: left;
+}
+
+.homepage-footer .footer-msg .copy ul {
+    color: #c2c2c2;
+    font-size: 12px;
+}
+
+.homepage-footer .footer-msg .copy ul,
+.homepage-footer .footer-msg .copy>p {
+    margin: 6px 0;
+    font-size: 12px;
+}
+
+.homepage-footer .footer-msg .copy ul li {
+    display: inline-block;
+}
+
+.homepage-footer .footer-msg .copy ul li a {
+    color: #aaa;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.homepage-footer .footer-msg .copy a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.homepage-footer .footer-msg .copy p,
+.homepage-footer .footer-msg .copy a {
+    color: #888;
+}
+
+.homepage-footer .footer-msg .copy p:last-child span {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: url("../../asset/images/police.png");
+    background-size: contain;
+    margin-bottom: -2px;
+}
+
+.homepage-footer .footer-msg .enter-new ul {
+    display: flex;
+    justify-content: right;
+    padding-top: 30px;
+    /* align-items: center; */
+}
+
+.homepage-footer .footer-msg .enter-new ul li {
+    display: inline-block;
+    width: 46px;
+    height: 60px;
+    margin-left: 50px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li a {
+    display: inline-block;
+    width: 46px;
+    height: 45px;
+    background: url("../../asset/images/foot_enter_new.png") no-repeat;
+    background-size: 110px 552px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(1) a {
+    background-position: -63px -456.5px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(2) a {
+    background-position: -63px -101px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(3) a {
+    background-position: 0 0;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(4) a {
+    background-position: -64px -50px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(5) a {
+    background-position: 0 -101px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li span {
+    display: inline-block;
+    width: 72px;
+    height: 14px;
+    background: url("../../asset/images/foot_enter_tt.png") no-repeat;
+    background-size: 180px 139px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(1) span {
+    background-position: 0 -108px;
+    margin-left: -8px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(2) span {
+    background-position: -1px -91px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(3) span {
+    background-position: 0 0;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(4) span {
+    background-position: -0px -54px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(5) span {
+    background-position: -1px -72px;
+}
+
+
+/* Footer 组件 end */
+
+
+/* ScrollToTop 组件 start*/
+
+.scroll-to-top {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    left: 50%;
+    bottom: 200px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 550px;
+}
+
+.scroll-to-top span {
+    color: #888;
+}
+
+.scroll-to-top:hover {
+    background-color: #ddd;
+}
+
+
+/* ScrollToTop 组件 end*/
+
+
+/* 翻页组件 start */
+
+.change-offset {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    width: 500px;
+    height: 40px;
+    /* background-color: skyblue; */
+    margin-top: 20px;
+}
+
+.change-offset span {
+    color: #666666;
+    margin: 0 4px;
+}
+
+.change-offset .change-to-last,
+.change-offset .change-to-next {
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.change-offset .offset-num {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.change-offset .change-to-last:hover,
+.change-offset .change-to-next:hover,
+.change-offset .offset-num:hover {
+    background-color: #ccc;
+}
+
+.change-offset .offset-num-selected {
+    background-color: rgb(212, 65, 65) !important;
+    color: white;
+    font-size: bold;
+}
+
+
+/* 翻页组件 end */
+
+.login>span {
+    display: inline-block;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.login>span img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.login>span:hover {
+    overflow: unset;
+}
+
+.login>span>div {
+    position: absolute;
+    top: 30px;
+    left: -65px;
+    display: inline-block;
+    height: 248px;
+    width: 160px;
+    text-decoration: none;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.login>span>div>div:nth-child(1) {
+    background-color: transparent;
+    height: 10px;
+}
+
+.login>span>div>div:nth-child(1) span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    /* background-color: pink; */
+    /* background-color: rgb(63, 63, 63); */
+    border-bottom: 10px solid rgb(63, 63, 63);
+    border: 10px solid;
+    border-color: transparent transparent rgb(63, 63, 63) transparent;
+    transform: translateY(-10px);
+}
+
+.login>span>div>div:nth-child(2) {
+    background-color: rgb(63, 63, 63);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.homepage-header .login>span>div ul li a {
+    display: block;
+    height: 34px;
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 34px;
+    text-align: left;
+    padding-left: 40px;
+}
+
+.homepage-header .login>span>div ul li a:hover {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(117, 117, 117);
+}

@@ -1,0 +1,146 @@
+.playPage {
+  background-color: #fafafa;
+}
+
+.playPage .playPageMiddle {
+  width: 900px;
+  margin: 0 auto;
+  padding-bottom: 80px;
+  background-color: #fafafa;
+}
+
+.playPage .playPageUp {
+  display: flex;
+  justify-content: space-between;
+  height: 700px;
+  padding-top: 30px;
+}
+
+.playPage .playPageUpLeft {
+  display: inline-block;
+  width: 400px;
+  height: 100%;
+  
+}
+
+.playPageUpLeft > div {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  height: 320px;
+  width: 320px;
+  background-color: rgba(170, 170, 170, 0.3);
+  border-radius: 50%;
+  padding: 10px;
+  margin-top: 180px;
+}
+
+.playPageUpLeft > div .diskBar {
+  display: inline-block;
+  width: 100px;
+  height: 147px;
+  position: absolute;
+  top: -80px;
+  left: 150px;
+  background: url("../../asset/images/Tonearm.png") no-repeat;
+  background-size: cover;
+  transition: transform 1s;
+}
+
+.playPageUpLeft > div .diskBarOrigin {
+  transform-origin: left top;
+  transform: rotate(-40deg);
+}
+
+.playPageUpLeft > div .diskBarAfter {
+  transform-origin: left top;
+  transform: rotate(0deg);
+}
+
+.playPageUpLeft .disk {
+  display: inline-block;
+  text-align: center;
+  height: 300px;
+  width: 300px;
+  background: url("../../asset/images/disk1.png") no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.playPageUpLeft .disk img {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-top: 50px;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.playPageUpLeft .disk .rotateImg {
+  animation: rotation 18s linear infinite;
+  animation-play-state: running;
+}
+
+.playPageUpLeft .disk .standImg {
+  animation: rotation 18s linear infinite;
+  animation-play-state: paused;
+}
+
+.playPage .playPageUpRight {
+  display: inline-block;
+  width: 500px;
+}
+
+.playPage .playPageUpRight .playPageSongName {
+  display: inline-block;
+  width: 450px;
+  font-size: 26px;
+  color: #302f2f;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.playPage .playPageUpRight .playPageArAl {
+  display: flex;
+  width: 450px;
+  justify-content: space-around;
+}
+
+.playPage .playPageUpRight .playPageArAl > span {
+  display: flex;
+}
+
+.playPage .playPageUpRight .playPageArAl > span > span {
+  display: flex;
+  color: #747dad;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.playPage .playPageUpRight .playPageArAl > span > p {
+  display: inline-block;
+  color: #dad7d7;
+  margin-right: 10px;
+}
+
+.commentsDisplay{
+  .Comments{
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+}
+
+.ant-comment-content-detail {
+  text-align: left;
+  font-size: 12px;
+}

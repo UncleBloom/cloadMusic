@@ -8,7 +8,6 @@ import { EmptySongInfo } from "../../api/types/songInfo";
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import serverHost from "../../api/serverHost";
-import useSetState from "../../../../react-netease-music/src/hooks/useSetState";
 
 interface ISongUrlResponse {
   code: number;
@@ -35,8 +34,8 @@ interface IPlayBarProps {
 }
 
 function PlayBar(props: IPlayBarProps) {
-  const [isFolded, setIsFolded] = React.useState(true);
   const info: ISongInfo = props.songInfo;
+  const [isFolded, setIsFolded] = React.useState(true);
   const [volume, setVolume] = useState<number>(70);
   const [mute, setMute] = useState<boolean>(false);
   const [drag, setDrag] = useState<boolean>(false);
@@ -212,7 +211,11 @@ function PlayBar(props: IPlayBarProps) {
               src={info.al.picUrl}
               alt=""
               onClick={() => {
-                window.scrollTo(0, 0);
+                window.scrollTo({
+                  top: 0,
+                  left: 0,
+                  behavior: "smooth",
+                });
                 if (isFolded) {
                   window.location.hash = "/play-page";
                   document

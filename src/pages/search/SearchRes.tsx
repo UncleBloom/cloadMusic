@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import ReactDOM from "react-dom";
 import "./searchres.css";
 import getSearchDataSong, {
   ISearchSongsProps,
@@ -25,7 +24,6 @@ import getSearchDataUser, {
 import getSearchDataLyric, {
   ISearchLyricsProps,
 } from "./component/getSearchDataLyric";
-import { AxiosResponse } from "axios";
 import SearchSongs from "./component/SearchSongs";
 import SearchSingers from "./component/SearchSingers";
 import SearchAlbums from "./component/SearchAlbums";
@@ -35,6 +33,7 @@ import SearchDjRadios from "./component/SearchDjRadios";
 import SearchUsers from "./component/SearchUsers";
 import SearchLyrics from "./component/SearchLyrics";
 import { Link } from "react-router-dom";
+import serverHost from "../../api/serverHost";
 
 interface ISearchResProps {
   keywords: string;
@@ -522,7 +521,7 @@ function SearchRes(props: ISearchResProps) {
   useEffect(() => {
     if (type === 1 && offset === 0) {
       const data = getSearchDataSong({
-        host: "http://101.33.207.151:3000",
+        host: serverHost,
         url: "/search",
         param: {
           keywords: props.keywords,
@@ -542,7 +541,7 @@ function SearchRes(props: ISearchResProps) {
             : 0
         );
         getSearchDataSinger({
-          host: "http://101.33.207.151:3000",
+          host: serverHost,
           url: "/search",
           param: {
             keywords: data.result.songs[0].artists[0].name
@@ -573,7 +572,7 @@ function SearchRes(props: ISearchResProps) {
           }
         });
         getSearchDataAlbum({
-          host: "http://101.33.207.151:3000",
+          host: serverHost,
           url: "/search",
           param: {
             keywords: data.result.songs[0].artists[0].name
@@ -608,7 +607,7 @@ function SearchRes(props: ISearchResProps) {
   useEffect(() => {
     if (type === 1) {
       const data = getSearchDataSong({
-        host: "http://101.33.207.151:3000",
+        host: serverHost,
         url: "/search",
         param: {
           keywords: props.keywords,
@@ -623,7 +622,7 @@ function SearchRes(props: ISearchResProps) {
       });
     } else if (type === 100) {
       const data = getSearchDataSinger({
-        host: "http://101.33.207.151:3000",
+        host: serverHost,
         url: "/search",
         param: {
           keywords: props.keywords,
@@ -638,7 +637,7 @@ function SearchRes(props: ISearchResProps) {
       });
     } else if (type === 10) {
       const data = getSearchDataAlbum({
-        host: "http://101.33.207.151:3000",
+        host: serverHost,
         url: "/search",
         param: {
           keywords: props.keywords,
@@ -653,7 +652,7 @@ function SearchRes(props: ISearchResProps) {
       });
     } else if (type === 1014) {
       const data = getSearchDataVideo({
-        host: "http://101.33.207.151:3000",
+        host: serverHost,
         url: "/search",
         param: {
           keywords: props.keywords,
@@ -668,7 +667,7 @@ function SearchRes(props: ISearchResProps) {
       });
     } else if (type === 1000) {
       const data = getSearchDataPlaylist({
-        host: "http://101.33.207.151:3000",
+        host: serverHost,
         url: "/search",
         param: {
           keywords: props.keywords,
@@ -683,7 +682,7 @@ function SearchRes(props: ISearchResProps) {
       });
     } else if (type === 1009) {
       const data = getSearchDataDjRadio({
-        host: "http://101.33.207.151:3000",
+        host: serverHost,
         url: "/search",
         param: {
           keywords: props.keywords,
@@ -698,7 +697,7 @@ function SearchRes(props: ISearchResProps) {
       });
     } else if (type === 1002) {
       const data = getSearchDataUser({
-        host: "http://101.33.207.151:3000",
+        host: serverHost,
         url: "/search",
         param: {
           keywords: props.keywords,
@@ -713,7 +712,7 @@ function SearchRes(props: ISearchResProps) {
       });
     } else if (type === 1006) {
       const data = getSearchDataLyric({
-        host: "http://101.33.207.151:3000",
+        host: serverHost,
         url: "/search",
         param: {
           keywords: props.keywords,

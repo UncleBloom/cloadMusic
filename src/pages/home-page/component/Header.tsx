@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "../homepage.css";
 import { SearchKeyWords } from "../HomePage";
 import { Link } from "react-router-dom";
+import serverHost from "../../../api/serverHost";
 import axios from "axios";
 // import { Link } from "react-router-dom";
 // 首页Header组件，包含Logo组件、Nav组件,Search组件
@@ -191,7 +192,8 @@ function Header() {
   useEffect(() => {
     let cookie = localStorage.getItem("cookie");
     // console.log(cookie);
-    let url = "http://101.33.207.151:3000/login/status?cookie=" + cookie;
+    // let url = "http://101.33.207.151:3000/login/status?cookie=" + cookie;
+    let url = serverHost + "/login/status?cookie=" + cookie;
     const data = axios.get(url, {}).then((res): IData => {
       return res.data;
     });

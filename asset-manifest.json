@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "./static/css/main.58dbe4e7.css",
+    "main.js": "./static/js/main.07ed756a.js",
+    "static/media/disk1.png": "./static/media/disk1.56f663cb06e6d8eedae0.png",
+    "static/media/singer.jpg": "./static/media/singer.9aaecf9a223dfe878f9b.jpg",
+    "static/media/Tonearm.png": "./static/media/Tonearm.88f70e1dfe29867485a4.png",
+    "static/media/foot_enter_new.png": "./static/media/foot_enter_new.b7e0d2ac65e662c71965.png",
+    "static/media/foot_enter_tt.png": "./static/media/foot_enter_tt.90ba79daf964b08e3ba9.png",
+    "static/media/icon2.png": "./static/media/icon2.42b7dff44eea8d1d2e34.png",
+    "static/media/logo.png": "./static/media/logo.b8871fee53f61df97e2b.png",
+    "static/media/iconfont.ttf": "./static/media/iconfont.749730d3fee7fcaa12f3.ttf",
+    "static/media/iconfont.woff": "./static/media/iconfont.16a93ebcf334fc07f2ba.woff",
+    "static/media/iconfont.woff2": "./static/media/iconfont.464e76bc9ade63526de5.woff2",
+    "static/media/iconfont.ttf?t=1642852017294": "./static/media/iconfont.6ce83416b583500150a1.ttf",
+    "index.html": "./index.html",
+    "main.58dbe4e7.css.map": "./static/css/main.58dbe4e7.css.map",
+    "main.07ed756a.js.map": "./static/js/main.07ed756a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.58dbe4e7.css",
+    "static/js/main.07ed756a.js"
+  ]
+}

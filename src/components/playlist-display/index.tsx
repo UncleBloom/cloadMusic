@@ -1,7 +1,7 @@
 import * as React from "react";
 import IPlayList from "../../api/types/playList";
 import { Drawer } from "antd";
-import "./index.css";
+import "./index.scss";
 
 interface IPlayListDisplayProps {
   playList: IPlayList;
@@ -10,7 +10,6 @@ interface IPlayListDisplayProps {
 }
 
 function PlayListDisplay(params: IPlayListDisplayProps) {
-  
   const formatTime = (time: number) => {
     const minute = Math.floor(time / 60000),
       second = Math.round(time / 1000) % 60;
@@ -19,7 +18,12 @@ function PlayListDisplay(params: IPlayListDisplayProps) {
     }`;
   };
   const listItems = params.playList.songs.map((song, index) => (
-    <div className="playListItem" key={index}>
+    <div
+      className={
+        index === params.playList.playing ? "playingItem" : "playListItem"
+      }
+      key={index}
+    >
       <span className="playListItemName">{song.name}</span>
       <span className="playListItemArtist">{song.ar[0].name}</span>
       <span className="playListItemDuration">{formatTime(song.dt)}</span>
@@ -28,11 +32,14 @@ function PlayListDisplay(params: IPlayListDisplayProps) {
 
   return (
     <Drawer
-      style={{ zIndex: "9", paddingLeft: "0", paddingRight: "0" }}
+      style={{ zIndex: "9" }}
       title="播放列表"
+      headerStyle={{ border: 0, fontSize: "20px" }}
+      bodyStyle={{ padding: 0 }}
       visible={params.visible}
       placement="right"
-      mask={false}
+      mask={true}
+      maskClosable={true}
       closable={false}
       onClose={params.onClose}
     >

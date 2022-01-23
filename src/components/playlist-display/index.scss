@@ -1,0 +1,113 @@
+@import "~antd/dist/antd.css";
+@font-face {
+  font-family: "iconfont";
+  src: url("../../asset/fonts/playlist/iconfont.ttf") format("truetype");
+}
+
+.ant-drawer-mask {
+  background-color: rgba($color: #000000, $alpha: 0.1);
+}
+
+.ant-drawer-body {
+  div:nth-child(2n + 1) {
+    background-color: #fafafa;
+  }
+}
+
+.ant-drawer-body .playingItem {
+  display: flex;
+  justify-content: right;
+  width: 100%;
+  height: 30px;
+  padding-right: 24px;
+  cursor: default;
+  font-size: 12px;
+  line-height: 30px;
+  .playListItemName {
+    display: inline-block;
+    width: 200px;
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    color: #c24b38;
+  }
+  .playListItemArtist {
+    display: inline-block;
+    width: 80px;
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #c24b38;
+  }
+  .playListItemDuration {
+    display: inline-block;
+    text-align: right;
+    width: 45px;
+    height: 100%;
+    color: #aaa;
+  }
+  &::before {
+    content: "\e6b0 \00a0";
+    font-family: "iconfont" !important;
+    font-size: 10px;
+    color: #c24b38;
+  }
+  &:hover {
+    background-color: #f1f1f1;
+    .playListItemDuration {
+      color: #000000;
+    }
+  }
+}
+
+.ant-drawer-body .playListItem {
+  display: flex;
+  justify-content: right;
+  width: 100%;
+  height: 30px;
+  padding-right: 24px;
+  cursor: default;
+  font-size: 12px;
+  line-height: 30px;
+  .playListItemName {
+    display: inline-block;
+    width: 200px;
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    color: #333333;
+  }
+  .playListItemArtist {
+    display: inline-block;
+    width: 80px;
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #6b6b6b;
+  }
+  .playListItemDuration {
+    display: inline-block;
+    text-align: right;
+    width: 45px;
+    height: 100%;
+    color: #aaa;
+  }
+  &:hover {
+    background-color: #f1f1f1;
+    .playListItemName {
+      color: #000000;
+    }
+    .playListItemArtist {
+      color: #000000;
+    }
+    .playListItemDuration {
+      color: #000000;
+    }
+  }
+}

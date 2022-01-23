@@ -2,7 +2,7 @@ import * as React from "react";
 import ISongInfo from "../../api/types/songInfo";
 import { Popover, Slider } from "antd";
 import { StepBackwardOutlined, StepForwardOutlined } from "@ant-design/icons";
-import "./index.css";
+import "./index.scss";
 import PlayPattern from "../../api/types/playPattern";
 import { EmptySongInfo } from "../../api/types/songInfo";
 import { useState, useRef, useEffect } from "react";
@@ -203,7 +203,10 @@ function PlayBar(props: IPlayBarProps) {
         </div>
       </div>
       <div className="playBarContent">
-        <span className="infoDisplayPlayBar">
+        <span
+          className="infoDisplayPlayBar"
+          style={{ visibility: info === EmptySongInfo ? "hidden" : "visible" }}
+        >
           {info === EmptySongInfo ? (
             <img alt="" className="emptyImg" />
           ) : (

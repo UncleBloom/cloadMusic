@@ -40,8 +40,8 @@ class PlayController extends React.Component<
     super(props);
     this.state = {
       songPlaying: EmptySongInfo,
-      // playList: EmptyList,
-      playList: testSongList,
+      playList: EmptyList,
+      // playList: testSongList,
       currentTime: 0,
       playPause: false,
       playPattern: PlayPattern.Loop,

@@ -165,7 +165,7 @@ function PlayBar(params: IPlayBarParams) {
   /**
    * 当播放模式为单曲循环时，点击上一首 或 下一首
    */
-  const handleChangeSongIfSinglePatten = () => {
+  const replayThisSong = () => {
     if (audioNode && params.songInfo !== EmptySongInfo) {
       (audioNode as HTMLAudioElement).currentTime = 0;
     } else {
@@ -257,8 +257,9 @@ function PlayBar(params: IPlayBarParams) {
           <StepBackwardOutlined
             style={{ fontSize: 30, color: "#d43a31" }}
             onClick={
-              params.pattern === PlayPattern.Single
-                ? handleChangeSongIfSinglePatten
+              params.pattern === PlayPattern.Single ||
+              params.playList.songs.length === 1
+                ? replayThisSong
                 : params.playPreviousSong
             }
           />
@@ -285,8 +286,9 @@ function PlayBar(params: IPlayBarParams) {
           <StepForwardOutlined
             style={{ fontSize: 30, color: "#d43a31" }}
             onClick={
-              params.pattern === PlayPattern.Single
-                ? handleChangeSongIfSinglePatten
+              params.pattern === PlayPattern.Single ||
+              params.playList.songs.length === 1
+                ? replayThisSong
                 : params.playNextSong
             }
           />

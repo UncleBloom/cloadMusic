@@ -210,6 +210,7 @@ class PlayController extends React.Component<
         this.setSongPlaying(playList.songs[nextPlayNum]);
         break;
     }
+    this.setPlay();
     return true;
   };
   /**
@@ -219,6 +220,7 @@ class PlayController extends React.Component<
   playPreviousSong = (): boolean => {
     if (this.state.playList.songs.length === 0) {
       message.warning("播放列表为空", 1);
+      this.setSongPlaying(EmptySongInfo);
       return false;
     }
     let nextPlayNum: number;
@@ -262,6 +264,7 @@ class PlayController extends React.Component<
         this.setSongPlaying(playList.songs[nextPlayNum]);
         break;
     }
+    this.setPlay();
     return true;
   };
   /**

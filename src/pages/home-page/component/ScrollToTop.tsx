@@ -16,7 +16,11 @@ function ScrollToTop() {
     <div
       className={show ? "scroll-to-top" : "scroll-to-top  hide"}
       onClick={() => {
-        window.scrollTo(0, 0);
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth",
+        });
       }}
     >
       <span className="iconfont">&#xe66d;</span>

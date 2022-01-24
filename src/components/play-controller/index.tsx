@@ -6,7 +6,6 @@ import PlayPattern from "../../api/types/playPattern";
 import ISongInfo, { EmptySongInfo } from "../../api/types/songInfo";
 import serverHost from "../../api/serverHost";
 import { message } from "antd";
-import PlayListDisplay from "../playlist-display/index";
 import Play from "../../pages/play/index";
 
 interface IPlayControllerState {
@@ -25,7 +24,6 @@ interface ISongInfoResponse {
   code: number;
   songs: ISongInfo[];
 }
-
 interface ISongUrlResponse {
   code: number;
   data: {
@@ -83,9 +81,13 @@ class PlayController extends React.Component<
    */
   setSongPlaying = (songInfo: ISongInfo) => {
     this.setState({ songPlaying: songInfo });
-    this.getSongUrl(songInfo.id).then((Response) => {
-      this.setState({ playingSongUrl: Response.data.url });
-    });
+    if (songInfo === EmptySongInfo) {
+      this.setState({ playPause: false, currentTime: 0, playingSongUrl: "" });
+    } else {
+      this.getSongUrl(songInfo.id).then((Response) => {
+        this.setState({ playingSongUrl: Response.data.url });
+      });
+    }
   };
   /**
    * 改变播放模式
@@ -128,18 +130,6 @@ class PlayController extends React.Component<
     this.setState({ playPause: startPlay });
   };
   /**
-   * 打开播放列表页
-   */
-  showPlayList = () => {
-    this.setState({ playListVisible: true });
-  };
-  /**
-   * 关闭播放列表页
-   */
-  closePlayList = () => {
-    this.setState({ playListVisible: false });
-  };
-  /**
    * 加入一首歌曲至播放队列
    * @param song 歌曲的详情(建议)或Id
    * @param andPlay 是否在加入播放队列时开始播放
@@ -156,16 +146,16 @@ class PlayController extends React.Component<
       Info = Response.songs[0];
       newPlayList.songs.push(Info);
 
-      if (andPlay) {
+      if (andPlay || newPlayList.songs.length === 1) {
         this.setSongPlaying(newPlayList.songs[newPlayList.songs.length - 1]);
-        newPlayList.playing = newPlayList.songs.length;
+        newPlayList.playing = newPlayList.songs.length-1;
       }
       this.setState({ playList: newPlayList });
     } else {
       newPlayList.songs.push(song);
-      if (andPlay) {
+      if (andPlay || newPlayList.songs.length === 1) {
         this.setSongPlaying(newPlayList.songs[-1]);
-        newPlayList.playing = newPlayList.songs.length;
+        newPlayList.playing = newPlayList.songs.length-1;
       }
       this.setState({ playList: newPlayList });
     }
@@ -177,6 +167,7 @@ class PlayController extends React.Component<
   PlayNextSong = (): boolean => {
     if (this.state.playList.songs.length === 0) {
       message.warning("播放列表为空", 1);
+      this.setSongPlaying(EmptySongInfo);
       return false;
     }
     let nextPlayNum: number;
@@ -273,29 +264,50 @@ class PlayController extends React.Component<
     }
     return true;
   };
+  /**
+   * 从播放列表中删除索引为 index 的歌曲
+   * @param index 歌曲索引值
+   */
+  deleteSongFromList = (index: number): void => {
+    let nextList = this.state.playList;
+    nextList.songs.splice(index, 1);
+    nextList.history.map((value, i) => {
+      if (value === index) {
+        nextList.history.splice(i, 1);
+        nextList.historyPointer--;
+      } else if (value > index) {
+        nextList.history[index]--;
+      }
+    });
+    if (index === nextList.playing) {
+      nextList.playing = -1;
+    } else if (index > nextList.playing) {
+      nextList.playing--;
+    }
+    this.setState(() => {
+      return { playList: nextList };
+    });
+    if (this.state.playList.playing === -1) {
+      this.PlayNextSong();
+    }
+  };
 
   render(): React.ReactNode {
     return (
       <>
-        <PlayListDisplay
-          playList={this.state.playList}
-          visible={this.state.playListVisible}
-          onClose={this.closePlayList}
-        />
         <PlayBar
+          playList={this.state.playList}
           songInfo={this.state.songPlaying}
           currentTime={this.state.currentTime}
           playPause={this.state.playPause}
           pattern={this.state.playPattern}
-          playListVisible={this.state.playListVisible}
           changePattern={this.setPlayPattern}
           setPlay={this.setPlay}
           setPause={this.setPause}
           getCurrentTime={this.getCurrentTime}
           playNextSong={this.PlayNextSong}
           playPreviousSong={this.playPreviousSong}
-          showPlayList={this.showPlayList}
-          hidePlayList={this.closePlayList}
+          deleteSong={this.deleteSongFromList}
         ></PlayBar>
         <Play
           song={this.state.songPlaying}

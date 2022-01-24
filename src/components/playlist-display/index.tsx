@@ -7,6 +7,7 @@ interface IPlayListDisplayProps {
   playList: IPlayList;
   visible: boolean;
   onClose: () => void;
+  deleteSong: (index: number) => void;
 }
 
 function PlayListDisplay(params: IPlayListDisplayProps) {
@@ -27,6 +28,15 @@ function PlayListDisplay(params: IPlayListDisplayProps) {
       <span className="playListItemName">{song.name}</span>
       <span className="playListItemArtist">{song.ar[0].name}</span>
       <span className="playListItemDuration">{formatTime(song.dt)}</span>
+
+      <span
+        className="deleteIcon"
+        onClick={() => {
+          params.deleteSong(index);
+        }}
+      >
+        &#xe6d5;
+      </span>
     </div>
   ));
 

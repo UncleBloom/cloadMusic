@@ -6,6 +6,7 @@ import Comment from "./comment";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import serverHost from "../../../api/serverHost";
+import { EmptySongInfo } from "../../../api/types/songInfo";
 
 interface ICommentsBarProps {
   songId: number;
@@ -32,7 +33,14 @@ function CommentsBar(params: ICommentsBarProps) {
       });
       return data.data;
     };
-
+    if (params.songId === EmptySongInfo.id) {
+      setComments({
+        comments: [],
+        hotComments: [],
+        total: 0,
+      });
+      setHotCmts([]);
+    }
     fetchComments(params.songId).then((Response) => {
       setComments(Response);
       if (Response.hotComments && Response.hotComments.length > 0) {
@@ -49,11 +57,9 @@ function CommentsBar(params: ICommentsBarProps) {
         <List
           dataSource={hotCmts}
           itemLayout="horizontal"
-          renderItem={
-            (item) => {
-              return <Comment comment={item}/>
-            }
-          }
+          renderItem={(item) => {
+            return <Comment comment={item} />;
+          }}
         />
       </div>
       <div className="Comments">

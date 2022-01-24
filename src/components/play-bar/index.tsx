@@ -8,6 +8,9 @@ import { EmptySongInfo } from "../../api/types/songInfo";
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import serverHost from "../../api/serverHost";
+import IPlayList from "../../api/types/playList";
+import PlayListDisplay from "../playlist-display";
+import { EmptyList } from "../../api/types/playList";
 
 interface ISongUrlResponse {
   code: number;
@@ -17,28 +20,28 @@ interface ISongUrlResponse {
   }[];
 }
 
-interface IPlayBarProps {
+interface IPlayBarParams {
+  playList: IPlayList;
   songInfo: ISongInfo; // 歌曲信息
   currentTime: number; // 已播放时长
   playPause: boolean; // 播放/暂停
   pattern: PlayPattern; // 播放模式
-  playListVisible: boolean;
   setPlay: () => void;
   setPause: () => void;
   changePattern: () => void; // 改变播放模式的回调函数
   getCurrentTime: React.ReactEventHandler<HTMLAudioElement>; // 获得当前播放时间
   playNextSong: () => boolean; // 播放下一首歌曲
   playPreviousSong: () => boolean; // 播放上一首歌曲
-  showPlayList: () => void;
-  hidePlayList: () => void;
+  deleteSong: (index: number) => void; // 删除歌曲
 }
 
-function PlayBar(props: IPlayBarProps) {
-  const info: ISongInfo = props.songInfo;
+function PlayBar(params: IPlayBarParams) {
+  const info: ISongInfo = params.songInfo;
   const [isFolded, setIsFolded] = React.useState(true);
   const [volume, setVolume] = useState<number>(70);
   const [mute, setMute] = useState<boolean>(false);
   const [drag, setDrag] = useState<boolean>(false);
+  const [playlistVisible, setPlaylistVisible] = useState<boolean>(false);
   const [progressDotX, setProgressDotX] = useState<number>(0);
   const [songUrl, setSongUrl] = useState<string>("");
   const songAudio = useRef<HTMLAudioElement>(null);
@@ -75,9 +78,9 @@ function PlayBar(props: IPlayBarProps) {
    */
   useEffect(() => {
     if (audioNode) {
-      props.playPause ? audioNode.play() : audioNode.pause();
+      params.playPause ? audioNode.play() : audioNode.pause();
     }
-  }, [audioNode, props.playPause]);
+  }, [audioNode, params.playPause]);
 
   /**
    * 改变进度条长度
@@ -85,11 +88,11 @@ function PlayBar(props: IPlayBarProps) {
   useEffect(() => {
     if (info && !drag) {
       setProgressDotX(
-        (props.currentTime / (info.dt / 1000)) * window.innerWidth
+        (params.currentTime / (info.dt / 1000)) * window.innerWidth
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [info, props.currentTime]);
+  }, [info, params.currentTime]);
 
   useEffect(() => {
     const getSongUrl = async (songId: number): Promise<ISongUrlResponse> => {
@@ -163,10 +166,10 @@ function PlayBar(props: IPlayBarProps) {
    * 当播放模式为单曲循环时，点击上一首 或 下一首
    */
   const handleChangeSongIfSinglePatten = () => {
-    if (audioNode && props.songInfo !== EmptySongInfo) {
+    if (audioNode && params.songInfo !== EmptySongInfo) {
       (audioNode as HTMLAudioElement).currentTime = 0;
     } else {
-      props.setPlay();
+      params.setPlay();
     }
   };
 
@@ -183,14 +186,20 @@ function PlayBar(props: IPlayBarProps) {
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
     >
+      <PlayListDisplay
+        playList={params.playList}
+        visible={playlistVisible}
+        onClose={() => setPlaylistVisible(false)}
+        deleteSong={params.deleteSong}
+      />
       <audio
         ref={songAudio}
         src={songUrl}
         autoPlay
-        onTimeUpdate={props.getCurrentTime}
-        onEnded={props.playNextSong}
-        onPlay={props.setPlay}
-        onPause={props.setPause}
+        onTimeUpdate={params.getCurrentTime}
+        onEnded={params.playNextSong}
+        onPlay={params.setPlay}
+        onPause={params.setPause}
       ></audio>
       <div className="progressBar">
         <div className="progressBarLine" onClick={handleClickLine}>
@@ -240,7 +249,7 @@ function PlayBar(props: IPlayBarProps) {
               <span className="artistName">{`  - ${info.ar[0].name}`}</span>
             </div>
             <div className="duration">{`${formatCurrentTime(
-              props.currentTime
+              params.currentTime
             )} / ${formatDuration(info.dt)}`}</div>
           </div>
         </span>
@@ -248,16 +257,16 @@ function PlayBar(props: IPlayBarProps) {
           <StepBackwardOutlined
             style={{ fontSize: 30, color: "#d43a31" }}
             onClick={
-              props.pattern === PlayPattern.Single
+              params.pattern === PlayPattern.Single
                 ? handleChangeSongIfSinglePatten
-                : props.playPreviousSong
+                : params.playPreviousSong
             }
           />
           <span
             className="playPauseButton"
-            onClick={props.playPause ? props.setPause : props.setPlay}
+            onClick={params.playPause ? params.setPause : params.setPlay}
           >
-            {props.playPause ? (
+            {params.playPause ? (
               <span
                 className="iconfont"
                 style={{ fontSize: 40, color: "#d43a31" }}
@@ -276,16 +285,16 @@ function PlayBar(props: IPlayBarProps) {
           <StepForwardOutlined
             style={{ fontSize: 30, color: "#d43a31" }}
             onClick={
-              props.pattern === PlayPattern.Single
+              params.pattern === PlayPattern.Single
                 ? handleChangeSongIfSinglePatten
-                : props.playNextSong
+                : params.playNextSong
             }
           />
         </span>
         <span className="listController">
-          <span className="patternButton" onClick={props.changePattern}>
+          <span className="patternButton" onClick={params.changePattern}>
             {(() => {
-              switch (props.pattern) {
+              switch (params.pattern) {
                 case PlayPattern.Random:
                   return <span className="iconfont">&#xea75;</span>;
                 case PlayPattern.Loop:
@@ -298,10 +307,12 @@ function PlayBar(props: IPlayBarProps) {
           <span
             className="iconfont"
             onClick={
-              props.playListVisible ? props.hidePlayList : props.showPlayList
+              playlistVisible
+                ? () => setPlaylistVisible(false)
+                : () => setPlaylistVisible(true)
             }
             style={
-              props.playListVisible
+              playlistVisible
                 ? { color: "#d43a31", fontWeight: "100" }
                 : { fontWeight: "100" }
             }

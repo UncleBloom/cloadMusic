@@ -8,6 +8,7 @@ interface IPlayListDisplayProps {
   visible: boolean;
   onClose: () => void;
   deleteSong: (index: number) => void;
+  changePlaying: (index: number) => void;
 }
 
 function PlayListDisplay(params: IPlayListDisplayProps) {
@@ -24,6 +25,7 @@ function PlayListDisplay(params: IPlayListDisplayProps) {
         index === params.playList.playing ? "playingItem" : "playListItem"
       }
       key={index}
+      onDoubleClick={() => params.changePlaying(index)}
     >
       <span className="playListItemName">{song.name}</span>
       <span className="playListItemArtist">{song.ar[0].name}</span>

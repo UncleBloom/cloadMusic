@@ -10,7 +10,8 @@ import axios from "axios";
 import serverHost from "../../api/serverHost";
 import IPlayList from "../../api/types/playList";
 import PlayListDisplay from "../playlist-display";
-import { EmptyList } from "../../api/types/playList";
+// import { EmptyList } from "../../api/types/playList";
+import useInterval from "../../hooks/useInterval";
 
 interface ISongUrlResponse {
   code: number;
@@ -23,15 +24,15 @@ interface ISongUrlResponse {
 interface IPlayBarParams {
   playList: IPlayList;
   songInfo: ISongInfo; // 歌曲信息
-  currentTime: number; // 已播放时长
   playPause: boolean; // 播放/暂停
   pattern: PlayPattern; // 播放模式
   setPlay: () => void;
   setPause: () => void;
   changePattern: () => void; // 改变播放模式的回调函数
-  getCurrentTime: React.ReactEventHandler<HTMLAudioElement>; // 获得当前播放时间
-  playNextSong: () => boolean; // 播放下一首歌曲
-  playPreviousSong: () => boolean; // 播放上一首歌曲
+  fetchCurrentTime: (value: number) => void; // 获得当前播放时间的回调函数
+  playNextSong: (replayCallback: () => void) => boolean; // 播放下一首歌曲
+  playPreviousSong: (replayCallback: () => void) => boolean; // 播放上一首歌曲
+  changePlaying: (index: number) => void;
   deleteSong: (index: number) => void; // 删除歌曲
 }
 
@@ -44,24 +45,18 @@ function PlayBar(params: IPlayBarParams) {
   const [playlistVisible, setPlaylistVisible] = useState<boolean>(false);
   const [progressDotX, setProgressDotX] = useState<number>(0);
   const [songUrl, setSongUrl] = useState<string>("");
+  const [currentTime, setCurrentTime] = useState<number>(0);
   const songAudio = useRef<HTMLAudioElement>(null);
   const audioNode = songAudio.current;
 
-  // 格式化时间输出
-  const formatDuration = (time: number) => {
-    const minute = Math.floor(time / 60000),
-      second = Math.floor(time / 1000) % 60;
-    return `${(minute < 10 ? "0" : "") + minute.toString()}:${
-      (second < 10 ? "0" : "") + second.toString()
-    }`;
-  };
-  const formatCurrentTime = (time: number) => {
-    const minute = Math.floor(time / 60),
-      second = Math.floor(time % 60);
-    return `${(minute < 10 ? "0" : "") + minute.toString()}:${
-      (second < 10 ? "0" : "") + second.toString()
-    }`;
-  };
+  /**
+   * 每 200ms 更新一次播放进度
+   */
+  useInterval(() => {
+    if (audioNode?.currentTime) {
+      setCurrentTime(audioNode?.currentTime);
+    }
+  }, 200);
 
   /**
    * 修改音量
@@ -83,16 +78,15 @@ function PlayBar(params: IPlayBarParams) {
   }, [audioNode, params.playPause]);
 
   /**
-   * 改变进度条长度
+   * 改变进度条长度,并更新父组件的 currentTime
    */
   useEffect(() => {
     if (info && !drag) {
-      setProgressDotX(
-        (params.currentTime / (info.dt / 1000)) * window.innerWidth
-      );
+      setProgressDotX((currentTime / (info.dt / 1000)) * window.innerWidth);
     }
+    params.fetchCurrentTime(currentTime);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [info, params.currentTime]);
+  }, [info, currentTime]);
 
   useEffect(() => {
     const getSongUrl = async (songId: number): Promise<ISongUrlResponse> => {
@@ -190,14 +184,14 @@ function PlayBar(params: IPlayBarParams) {
         playList={params.playList}
         visible={playlistVisible}
         onClose={() => setPlaylistVisible(false)}
+        changePlaying={params.changePlaying}
         deleteSong={params.deleteSong}
       />
       <audio
         ref={songAudio}
         src={songUrl}
         autoPlay
-        onTimeUpdate={params.getCurrentTime}
-        onEnded={params.playNextSong}
+        onEnded={() => params.playNextSong(replayThisSong)}
         onPlay={params.setPlay}
         onPause={params.setPause}
       ></audio>
@@ -249,19 +243,14 @@ function PlayBar(params: IPlayBarParams) {
               <span className="artistName">{`  - ${info.ar[0].name}`}</span>
             </div>
             <div className="duration">{`${formatCurrentTime(
-              params.currentTime
+              currentTime
             )} / ${formatDuration(info.dt)}`}</div>
           </div>
         </span>
         <span className="playController">
           <StepBackwardOutlined
             style={{ fontSize: 30, color: "#d43a31" }}
-            onClick={
-              params.pattern === PlayPattern.Single ||
-              params.playList.songs.length === 1
-                ? replayThisSong
-                : params.playPreviousSong
-            }
+            onClick={() => params.playPreviousSong(replayThisSong)}
           />
           <span
             className="playPauseButton"
@@ -285,12 +274,7 @@ function PlayBar(params: IPlayBarParams) {
           </span>
           <StepForwardOutlined
             style={{ fontSize: 30, color: "#d43a31" }}
-            onClick={
-              params.pattern === PlayPattern.Single ||
-              params.playList.songs.length === 1
-                ? replayThisSong
-                : params.playNextSong
-            }
+            onClick={() => params.playNextSong(replayThisSong)}
           />
         </span>
         <span className="listController">
@@ -358,3 +342,19 @@ function PlayBar(params: IPlayBarParams) {
 }
 
 export default PlayBar;
+
+// 格式化时间输出
+const formatDuration = (time: number) => {
+  const minute = Math.floor(time / 60000),
+    second = Math.floor(time / 1000) % 60;
+  return `${(minute < 10 ? "0" : "") + minute.toString()}:${
+    (second < 10 ? "0" : "") + second.toString()
+  }`;
+};
+const formatCurrentTime = (time: number) => {
+  const minute = Math.floor(time / 60),
+    second = Math.floor(time % 60);
+  return `${(minute < 10 ? "0" : "") + minute.toString()}:${
+    (second < 10 ? "0" : "") + second.toString()
+  }`;
+};

@@ -1,14 +1,8 @@
 .playPage .playPageUpRight .lyrics {
-  display: inline-block;
-  height: 400px;
-  width: 450px;
-  margin-top: 30px;
-}
-
-.playPage .playPageUpRight .lyrics {
   display: block;
   height: 400px;
   width: 450px;
+  margin-top: 30px;
   overflow: scroll;
   overflow-x: hidden;
   div{
@@ -24,8 +18,6 @@
   }
   .currentLine {
     display: block;
-    // margin-top: 4px;
-    // margin-bottom: 4px;
     width: 100%;
     overflow-x: hidden;
     height: 30px;

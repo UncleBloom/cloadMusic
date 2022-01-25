@@ -30,7 +30,6 @@ function Play(params: IPlayParam) {
                 }
               ></div>
               <div className="disk">
-                {/* <img src="" alt="" /> */}
                 {params.song === EmptySongInfo ? (
                   <></>
                 ) : (

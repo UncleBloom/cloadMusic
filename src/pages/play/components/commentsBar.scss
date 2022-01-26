@@ -1,0 +1,29 @@
+.commentsDisplay {
+  .Comments {
+    margin-top: 20px;
+    padding-top: 20px;
+    .commentType {
+      font-size: 18px;
+      color: rgba(256, 256, 256, 0.8);
+    }
+  }
+}
+
+.commentsDisplay {
+  .ant-comment .ant-comment-content-detail {
+    text-align: left;
+    font-size: 13px;
+    color: rgba(224, 224, 224, 0.8);
+  }
+  .ant-pagination {
+    li {
+      background-color: rgba(256, 256, 256, 0);
+      a {
+        color: rgba(256, 256, 256, 0.7);
+      }
+      .ant-pagination-item-link {
+        background-color: rgba(256, 256, 256, 0.4);
+      }
+    }
+  }
+}

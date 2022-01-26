@@ -18,6 +18,18 @@ function Play(params: IPlayParam) {
         window.location.hash === "#/play-page" ? "playPage" : "playPage hide"
       }
     >
+      <div className="albg">
+        {params.song === EmptySongInfo ? (
+          <></>
+        ) : (
+          <img
+            src={params.song.al.picUrl}
+            alt="background"
+            style={{ width: Math.max(window.innerWidth, window.innerHeight) }}
+          />
+        )}
+      </div>
+
       <div className="playPageMiddle">
         <div className="playPageUp">
           <div className="playPageUpLeft">

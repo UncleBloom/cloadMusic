@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import serverHost from "../../../api/serverHost";
 import { EmptySongInfo } from "../../../api/types/songInfo";
+import "./commentsBar.scss"
 
 interface ICommentsBarProps {
   songId: number;
@@ -53,7 +54,7 @@ function CommentsBar(params: ICommentsBarProps) {
   return (
     <div className="commentsDisplay">
       <div className="Comments">
-        <h3>精彩评论</h3>
+        <div className="commentType">精彩评论</div>
         <List
           dataSource={hotCmts}
           itemLayout="horizontal"
@@ -63,7 +64,7 @@ function CommentsBar(params: ICommentsBarProps) {
         />
       </div>
       <div className="Comments">
-        <h3>最新评论({comments.total})</h3>
+        <div className="commentType">最新评论({comments.total})</div>
         <List
           dataSource={latestCmts}
           itemLayout="horizontal"

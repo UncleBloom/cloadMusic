@@ -1,12 +1,22 @@
 .playPage {
-  background-color: #fafafa;
+  background-color: rgba(32, 32, 32, 0.6);
+  .albg {
+    position: fixed;
+    filter: blur(100px);
+    z-index: -1;
+    transition: all 0.5s;
+    .img {
+      display: block;
+      // transform: scale(1.5, 1.5);
+    }
+  }
 }
 
 .playPage .playPageMiddle {
   width: 900px;
   margin: 0 auto;
   padding-bottom: 80px;
-  background-color: #fafafa;
+  // background-color: #fafafa;
 }
 
 .playPage .playPageUp {
@@ -20,7 +30,6 @@
   display: inline-block;
   width: 400px;
   height: 100%;
-  
 }
 
 .playPageUpLeft > div {
@@ -97,50 +106,33 @@
 .playPage .playPageUpRight {
   display: inline-block;
   width: 500px;
-}
-
-.playPage .playPageUpRight .playPageSongName {
-  display: inline-block;
-  width: 450px;
-  font-size: 26px;
-  color: #302f2f;
-  margin-top: 30px;
-  margin-bottom: 40px;
-}
-
-.playPage .playPageUpRight .playPageArAl {
-  display: flex;
-  width: 450px;
-  justify-content: space-around;
-}
-
-.playPage .playPageUpRight .playPageArAl > span {
-  display: flex;
-}
-
-.playPage .playPageUpRight .playPageArAl > span > span {
-  display: flex;
-  color: #747dad;
-  cursor: pointer;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.playPage .playPageUpRight .playPageArAl > span > p {
-  display: inline-block;
-  color: #dad7d7;
-  margin-right: 10px;
-}
-
-.commentsDisplay{
-  .Comments{
-    margin-top: 20px;
-    padding-top: 20px;
+  .playPageSongName {
+    display: inline-block;
+    width: 100%;
+    font-size: 26px;
+    color: rgba(256, 256, 256, 0.7);
+    margin-top: 30px;
+    margin-bottom: 40px;
   }
-}
-
-.ant-comment-content-detail {
-  text-align: left;
-  font-size: 12px;
+  .playPageArAl {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    span {
+      display: flex;
+      span {
+        display: flex;
+        color: rgba(130, 151, 235, 0.9);
+        cursor: pointer;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      p {
+        display: inline-block;
+        color: rgba(256, 256, 256, 0.7);
+        margin-right: 10px;
+      }
+    }
+  }
 }

@@ -39,7 +39,7 @@ function SearchSongs(props: ISearchSongsProps) {
       <table>
         <thead>
           <tr>
-            <td></td>
+            <td/>
             <td>音乐标题</td>
             <td>歌手</td>
             <td>专辑</td>

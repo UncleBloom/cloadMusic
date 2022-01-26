@@ -1,7 +1,6 @@
-import React, { createRef, useContext, useRef, useState } from "react";
-import ReactDOM from "react-dom";
+import React, {createRef} from "react";
 import ChangeWordColor from "./ChangeWordColor";
-import PlayController from '../../../components/play-controller/index';
+import PlayController from '../../../components/play-controller/PlayController';
 
 interface ISearchSongAlbum {
   id?: number;

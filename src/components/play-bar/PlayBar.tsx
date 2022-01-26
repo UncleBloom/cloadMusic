@@ -1,15 +1,14 @@
 import * as React from "react";
-import ISongInfo from "../../api/types/songInfo";
-import { Popover, Slider } from "antd";
-import { StepBackwardOutlined, StepForwardOutlined } from "@ant-design/icons";
-import "./index.scss";
+import {useEffect, useRef, useState} from "react";
+import ISongInfo, {EmptySongInfo} from "../../api/types/songInfo";
+import {Popover, Slider} from "antd";
+import {StepBackwardOutlined, StepForwardOutlined} from "@ant-design/icons";
+import "./PlayBar.scss";
 import PlayPattern from "../../api/types/playPattern";
-import { EmptySongInfo } from "../../api/types/songInfo";
-import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import serverHost from "../../api/serverHost";
 import IPlayList from "../../api/types/playList";
-import PlayListDisplay from "../playlist-display";
+import PlayListDisplay from "../playlist-display/PlayListDisplay";
 // import { EmptyList } from "../../api/types/playList";
 import useInterval from "../../hooks/useInterval";
 

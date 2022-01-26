@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
+import React, {useState} from "react";
 import "./base.css";
 import Header from "./component/Header";
 import SearchRes from "../search/SearchRes";
 import Footer from "./component/Footer";
 import ScrollToTop from "./component/ScrollToTop";
-import PlayController from "../../components/play-controller";
-import { HashRouter as Router, Route, Link, Routes } from "react-router-dom";
+import PlayController from "../../components/play-controller/PlayController";
+import {Route, Routes} from "react-router-dom";
 import Login from "../../components/Login/Login";
-import { playControllerRef } from "../search/component/SearchSongs";
+import {playControllerRef} from "../search/component/SearchSongs";
 import Register from "../../components/Register/Register";
 
 // import "./homepage.css";

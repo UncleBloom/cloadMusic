@@ -1,7 +1,7 @@
 import * as React from "react";
 import IPlayList from "../../api/types/playList";
-import { Drawer } from "antd";
-import "./index.scss";
+import {Drawer} from "antd";
+import "./PlayListDisplay.scss";
 
 interface IPlayListDisplayProps {
   playList: IPlayList;
@@ -43,18 +43,18 @@ function PlayListDisplay(params: IPlayListDisplayProps) {
   ));
 
   return (
-    <Drawer
-      style={{ zIndex: "9" }}
-      bodyStyle={{ padding: 0 }}
-      visible={params.visible}
-      placement="right"
-      mask={true}
-      maskClosable={true}
-      closable={false}
-      onClose={params.onClose}
-    >
-      {listItems}
-    </Drawer>
+      <Drawer
+          style={{zIndex: "9"}}
+          bodyStyle={{padding: 0}}
+          visible={params.visible}
+          placement="right"
+          mask={true}
+          maskClosable={true}
+          closable={false}
+          onClose={params.onClose}
+      >
+        {listItems}
+      </Drawer>
   );
 }
 

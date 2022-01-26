@@ -3,7 +3,7 @@
 font-face {
   font-family: "iconfont";
   src: url("../../asset/fonts/play-bar/iconfont.ttf?t=1640056692595")
-    format("truetype");
+    //format("truetype");
 }
 
 .iconfont {
@@ -15,10 +15,10 @@ font-face {
   cursor: pointer;
 }
 
-.volumeSlider {
-  display: "inline-block";
-  height: 100;
-}
+//.volumeSlider {
+//  display: "inline-block";
+//  height: 100;
+//}
 
 .playBar {
   position: fixed;
@@ -27,12 +27,13 @@ font-face {
   width: 100%;
   min-width: 900px;
   height: 70px;
-  background-color: white;
+  backdrop-filter: blur(100px);
+  background-color: rgba(256, 256, 256, 0.65);
   padding: 0 10px;
   z-index: 10;
   user-select: none;
   box-shadow: 0 -6px 12px rgba($color: #000000, $alpha: 0.05),
-    inset 0 -3em 3em rgba(0, 0, 0, 0.1);
+  inset 0 -3em 3em rgba(0, 0, 0, 0.1);
 }
 
 .playBar .progressBar {
@@ -105,10 +106,10 @@ font-face {
 }
 
 .infoDisplayPlayBar .nameAndArtist .name {
-  /* overflow: hidden;
-  white-space:nowrap;
-  text-overflow: ellipsis; */
-  color: #4c4c4c;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #3b3b3b;
 }
 
 .infoDisplayPlayBar .duration {
@@ -118,12 +119,12 @@ font-face {
 }
 
 .infoDisplayPlayBar .nameAndArtist .artistName {
-  color: #aaa;
+  color: rgba(76, 76, 76, 0.8);
   font-size: 12px;
 }
 
 .infoDisplayPlayBar .duration {
-  color: #aaa;
+  color: rgba(76, 76, 76, 0.8);
   font-size: 12px;
 }
 

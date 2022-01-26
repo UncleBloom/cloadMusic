@@ -1,12 +1,12 @@
 import * as React from "react";
 import axios from "axios";
-import PlayBar from "../play-bar/index";
-import IPlayList, { EmptyList } from "../../api/types/playList";
+import PlayBar from "../play-bar/PlayBar";
+import IPlayList, {EmptyList} from "../../api/types/playList";
 import PlayPattern from "../../api/types/playPattern";
-import ISongInfo, { EmptySongInfo } from "../../api/types/songInfo";
+import ISongInfo, {EmptySongInfo} from "../../api/types/songInfo";
 import serverHost from "../../api/serverHost";
-import { message } from "antd";
-import Play from "../../pages/play/index";
+import {message} from "antd";
+import Play from "../../pages/play/Play";
 
 interface IPlayControllerState {
   playList: IPlayList;
@@ -15,11 +15,8 @@ interface IPlayControllerState {
   playPattern: PlayPattern;
 }
 
-interface IPlayControllerProps {}
-
-// interface PlayControllerHandles {
-//   addToPlaylist(id:number,andPlay?:boolean): void;
-// }
+interface IPlayControllerProps {
+}
 
 interface ISongInfoResponse {
   code: number;
@@ -57,9 +54,9 @@ class PlayController extends React.Component<
    * @param startPlay 设置后是否立即开始播放.默认开始播放
    */
   setPlayList = (list: ISongInfo[], startPlay: boolean = true) => {
-    this.setState((state) => {
+    this.setState(() => {
       return {
-        playList: { playing: -1, songs: list, history: [], historyPointer: -1 },
+        playList: {playing: -1, songs: list, history: [], historyPointer: -1},
       };
     });
     this.playNextSong();
@@ -109,7 +106,7 @@ class PlayController extends React.Component<
 
   /**
    * 加入一首歌曲至播放队列
-   * @param song 歌曲的详情(建议)或Id
+   * @param id 歌曲的详情(建议)或Id
    * @param andPlay 是否在加入播放队列时开始播放
    */
   addToPlayList = async (id: number, andPlay: boolean = false) => {
@@ -118,8 +115,8 @@ class PlayController extends React.Component<
     newPlayList.songs.push(info);
 
     if (andPlay || newPlayList.songs.length === 1) {
-      this.setState((state) => {
-        return { playList: newPlayList };
+      this.setState(() => {
+        return {playList: newPlayList};
       });
       this.changePlaying(this.state.playList.songs.length - 1);
     }

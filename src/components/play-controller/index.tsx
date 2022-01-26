@@ -165,8 +165,12 @@ class PlayController extends React.Component<
       case PlayPattern.Loop:
         // 列表循环
         const nextPlaying: number =
-          (this.state.playList.playing - 1 + this.state.playList.songs.length) %
-          this.state.playList.songs.length;
+          this.state.playList.playing === -1
+            ? this.state.playList.songs.length - 1
+            : (this.state.playList.playing -
+                1 +
+                this.state.playList.songs.length) %
+              this.state.playList.songs.length;
         return this.changePlaying(nextPlaying, false);
       case PlayPattern.Single:
         // 单曲循环

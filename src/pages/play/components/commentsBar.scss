@@ -10,10 +10,15 @@
 }
 
 .commentsDisplay {
-  .ant-comment .ant-comment-content-detail {
-    text-align: left;
-    font-size: 13px;
-    color: rgba(224, 224, 224, 0.8);
+  .ant-comment {
+    .ant-comment-content-author-name span {
+      text-shadow: #ccc 0.5px 0.5px 0px;
+    }
+    .ant-comment-content-detail {
+      text-align: left;
+      font-size: 13px;
+      color: rgba(224, 224, 224, 0.8);
+    }
   }
   .ant-pagination {
     li {

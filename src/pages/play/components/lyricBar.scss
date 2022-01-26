@@ -1,6 +1,6 @@
 .playPage .playPageUpRight .lyrics {
   display: block;
-  height: 400px;
+  height: 500px;
   width: 100%;
   margin-top: 30px;
   overflow: scroll;
@@ -23,7 +23,7 @@
   }
   }
   div{
-    transition: all 0.2s linear;
+    transition: all 0.3s;
   }
   .sentence {
     display: block;
@@ -37,9 +37,10 @@
     display: block;
     width: 100%;
     overflow-x: hidden;
-    height: 30px;
-    font-size: 16px;
+    height: 32px;
+    font-size: 18px;
     font-weight: bold;
-    color: #c34b38;
+    color: #b6412f;
+    // text-shadow: #ccc 0px 0px 1px ;
   }
 }

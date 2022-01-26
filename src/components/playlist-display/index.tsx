@@ -45,8 +45,6 @@ function PlayListDisplay(params: IPlayListDisplayProps) {
   return (
     <Drawer
       style={{ zIndex: "9" }}
-      title="播放列表"
-      headerStyle={{ border: 0, fontSize: "20px" }}
       bodyStyle={{ padding: 0 }}
       visible={params.visible}
       placement="right"

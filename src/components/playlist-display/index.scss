@@ -7,10 +7,14 @@
 .ant-drawer-mask {
   background-color: rgba($color: #000000, $alpha: 0.1);
 }
+.ant-drawer-content {
+  backdrop-filter: blur(3px);
+  background-color: rgba(250, 250, 250, 0.6);
+}
 
 .ant-drawer-body {
   div:nth-child(2n + 1) {
-    background-color: #fafafa;
+    background-color: rgba(250,250,250,0.1);
   }
   div {
     display: flex;
@@ -21,7 +25,7 @@
     user-select: none;
     font-size: 12px;
     line-height: 30px;
-    transition: all 0.2s;
+    transition: all 0.1s;
     .playListItemName {
       display: inline-block;
       width: 200px;
@@ -46,9 +50,10 @@
       text-align: right;
       width: 45px;
       height: 100%;
-      color: #aaa;
+      color: #6b6b6b;
     }
     .deleteIcon {
+      visibility: hidden;
       font-family: "iconfont" !important;
       text-align: center;
       font-size: 12px;
@@ -64,7 +69,7 @@
   }
   .playListItem {
     &:hover {
-      background-color: #f1f1f1;
+      background-color: rgba(240, 240, 240, 0.4);
       .playListItemName {
         color: #000000;
       }
@@ -73,6 +78,9 @@
       }
       .playListItemDuration {
         color: #000000;
+      }
+      .deleteIcon {
+        visibility: unset;
       }
     }
   }
@@ -89,7 +97,7 @@
     color: #c24b38;
   }
   .playListItemDuration {
-    color: #aaa;
+    color: #6b6b6b;
   }
   &::before {
     content: "\e6b0 \00a0";
@@ -98,9 +106,12 @@
     color: #c24b38;
   }
   &:hover {
-    background-color: #f1f1f1;
+    background-color: rgba(240, 240, 240, 0.4);
     .playListItemDuration {
-        color: #000000;
-      }
+      color: #000000;
+    }
+    .deleteIcon {
+      visibility: unset;
+    }
   }
 }

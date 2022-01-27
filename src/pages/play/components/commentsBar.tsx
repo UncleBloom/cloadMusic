@@ -1,12 +1,12 @@
 import * as React from "react";
 import ICommentResponse from "../types/commentResponse";
 import IComment from "../types/comment";
-import { List, Pagination } from "antd";
+import {List, Pagination} from "antd";
 import Comment from "./comment";
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import axios from "axios";
 import serverHost from "../../../api/serverHost";
-import { EmptySongInfo } from "../../../api/types/songInfo";
+import {EmptySongInfo} from "../../../api/types/songInfo";
 import "./commentsBar.scss"
 
 interface ICommentsBarProps {
@@ -51,37 +51,38 @@ function CommentsBar(params: ICommentsBarProps) {
   }, [params, page]);
 
   let latestCmts = comments.comments;
+  const timeNow: Date = new Date();
   return (
-    <div className="commentsDisplay">
-      <div className="Comments">
-        <div className="commentType">精彩评论</div>
-        <List
-          dataSource={hotCmts}
-          itemLayout="horizontal"
-          renderItem={(item) => {
-            return <Comment comment={item} />;
-          }}
-        />
+      <div className = "commentsDisplay">
+        <div className = "Comments">
+          <div className = "commentType">精彩评论</div>
+          <List
+              dataSource = {hotCmts}
+              itemLayout = "horizontal"
+              renderItem = {(item) => {
+                return <Comment comment = {item} timeNow = {timeNow} />;
+              }}
+          />
+        </div>
+        <div className = "Comments">
+          <div className = "commentType">最新评论({comments.total})</div>
+          <List
+              dataSource = {latestCmts}
+              itemLayout = "horizontal"
+              renderItem = {(item) => {
+                return <Comment comment = {item} timeNow = {timeNow} />;
+              }}
+          />
+          <Pagination
+              current = {page}
+              total = {comments.total}
+              onChange = {(value) => {
+                setPage(value);
+              }}
+              showSizeChanger = {false}
+          />
+        </div>
       </div>
-      <div className="Comments">
-        <div className="commentType">最新评论({comments.total})</div>
-        <List
-          dataSource={latestCmts}
-          itemLayout="horizontal"
-          renderItem={(item) => {
-            return <Comment comment={item}></Comment>;
-          }}
-        />
-        <Pagination
-          current={page}
-          total={comments.total}
-          onChange={(value) => {
-            setPage(value);
-          }}
-          showSizeChanger={false}
-        />
-      </div>
-    </div>
   );
 }
 

@@ -6,8 +6,8 @@ import serverHost from "../../../api/serverHost";
 import { EmptySongInfo } from "../../../api/types/songInfo";
 import "./lyricBar.scss";
 
-const LYRIC_LINE_HEIGHT: number = 30;
-const REVERSED_HEIGHT: number = 185;
+const LYRIC_LINE_HEIGHT: number = 35;
+const REVERSED_HEIGHT: number = 200;
 
 interface ILyricBarParams {
   songId: number;

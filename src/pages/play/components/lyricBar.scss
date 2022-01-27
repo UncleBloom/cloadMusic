@@ -1,6 +1,6 @@
 .playPage .playPageUpRight .lyrics {
   display: block;
-  height: 500px;
+  height: 530px;
   width: 100%;
   margin-top: 30px;
   overflow: scroll;
@@ -29,18 +29,19 @@
     display: block;
     width: 100%;
     overflow-x: hidden;
-    height: 30px;
-    font-size: 16px;
+    height: 35px;
+    font-size: 17px;
     color: rgba(192, 192, 192, 0.8);
+    overflow:hidden;
   }
   .currentLine {
     display: block;
     width: 100%;
     overflow-x: hidden;
-    height: 32px;
+    height: 37px;
     font-size: 18px;
     font-weight: bold;
     color: #bd4836;
-    // text-shadow: #ccc 0px 0px 1px ;
+    overflow: hidden;
   }
 }

@@ -1,0 +1,29 @@
+/* BackTop 组件 start*/
+
+.scroll-to-top {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  left: 50%;
+  bottom: 200px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 550px;
+}
+
+.scroll-to-top span {
+  color: rgb(155, 155, 155);
+  font-weight: 500;
+}
+
+.scroll-to-top:hover {
+  background-color: #ddd;
+}
+
+
+/* BackTop 组件 end*/

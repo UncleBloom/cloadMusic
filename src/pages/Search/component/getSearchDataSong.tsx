@@ -13,38 +13,50 @@ interface ISearchResProps {
   //type: 搜索类型；默认为 1 即单曲 ,
   //取值意义 : 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合
 }
-//搜索歌手返回结果的数据接口定义start
+//搜索单曲返回结果的数据接口定义start
+interface ISearchSongAlbum {
+  id?: number;
+  publishTime?: BigInt;
+  size?: number;
+  name?: string;
+}
 
-interface ISearchArtist {
+interface ISearchSongArtists {
+  id?: number;
+  name?: string;
+}
+
+interface ISearchSong {
+  album: ISearchSongAlbum;
+  artists: Array<ISearchSongArtists>;
   name: string;
   id: number;
-  accountId?: bigint;
-  alias: string[];
-  picUrl: string;
+  duration: number;
+  transNames?: string[];
 }
 
-interface ISearchSingersProps {
+interface ISearchSongsProps {
   type: number; //type: 搜索类型；默认为 1 即单曲 ,
   //取值意义 : 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合
-  artistCount: number;
-  artists: Array<ISearchArtist>;
+  songCount: number;
+  songs: Array<ISearchSong>;
 }
 
-interface IResponseResultSinger {
+interface IResponseResultSong {
   code: number;
-  result: ISearchSingersProps;
+  result: ISearchSongsProps;
 }
-//搜索歌手返回结果的数据接口定义end
+//搜索单曲返回结果的数据接口定义end
 
 interface ISearchProps {
   host: string; // http://localhost:3001
-  url: string; // 例如 /search
+  url: string; // 例如 /Search
   param: ISearchResProps;
 }
 
-async function getSearchDataSinger(
+async function getSearchDataSong(
   props: ISearchProps
-): Promise<IResponseResultSinger> {
+): Promise<IResponseResultSong> {
   const data = await axios({
     method: "get",
     url: props.host + props.url,
@@ -58,5 +70,5 @@ async function getSearchDataSinger(
   return data.data;
 }
 
-export default getSearchDataSinger;
-export type { ISearchSingersProps };
+export default getSearchDataSong;
+export type { ISearchSongsProps };

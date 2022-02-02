@@ -1,14 +1,15 @@
 import React, {useState} from "react";
 import "./base.css";
-import Header from "./component/Header";
-import SearchRes from "../search/SearchRes";
-import Footer from "./component/Footer";
-import ScrollToTop from "./component/ScrollToTop";
-import PlayController from "../../components/play-controller/PlayController";
+import Header from "../../components/Header/Header";
+import SearchRes from "../Search/SearchRes";
+import Footer from "../../components/Footer/Footer";
+import BackTop from "../../components/BackTop/BackTop";
+import PlayController from "../../components/Play-controller/PlayController";
 import {Route, Routes} from "react-router-dom";
 import Login from "../../components/Login/Login";
-import {playControllerRef} from "../search/component/SearchSongs";
+import {playControllerRef} from "../Search/component/SearchSongs";
 import Register from "../../components/Register/Register";
+import Home from '../Home/Home'
 
 // import "./homepage.css";
 // import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -22,7 +23,7 @@ export const SearchKeyWords = React.createContext<{
 function HomePage() {
   const [keyWord, setKeyWord] = useState("");
   window.onhashchange = function () {
-    if (window.location.hash === "#/play-page") {
+    if (window.location.hash === "#/Play-page") {
       document.querySelector(".playPage")?.setAttribute("class", "playPage");
     } else {
       document
@@ -53,8 +54,9 @@ function HomePage() {
         </SearchKeyWords.Provider>
         <Login />
         <Register />
-        <ScrollToTop />
+        <BackTop />
         <PlayController ref={playControllerRef} />
+        <Home/>
       </div>
 
       <Footer />

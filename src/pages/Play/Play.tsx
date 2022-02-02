@@ -14,7 +14,7 @@ function Play(params: IPlayParam) {
   return (
       <div
           className = {
-            window.location.hash === "#/play-page" ? "playPage" : "playPage hide"
+            window.location.hash === "#/Play-page" ? "playPage" : "playPage hide"
           }
       >
         <div className = "albg">

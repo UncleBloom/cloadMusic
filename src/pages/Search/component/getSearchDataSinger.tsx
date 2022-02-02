@@ -15,37 +15,36 @@ interface ISearchResProps {
 }
 //搜索歌手返回结果的数据接口定义start
 
-interface ISearchUser {
-  nickname: string;
-  signature: string;
-  userId: number;
-  avatarUrl: string;
-  userType: number;
-  gender: number;
+interface ISearchArtist {
+  name: string;
+  id: number;
+  accountId?: bigint;
+  alias: string[];
+  picUrl: string;
 }
 
-interface ISearchUsersProps {
+interface ISearchSingersProps {
   type: number; //type: 搜索类型；默认为 1 即单曲 ,
   //取值意义 : 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合
-  userprofileCount: number;
-  userprofiles: Array<ISearchUser>;
+  artistCount: number;
+  artists: Array<ISearchArtist>;
 }
 
-interface IResponseResultUser {
+interface IResponseResultSinger {
   code: number;
-  result: ISearchUsersProps;
+  result: ISearchSingersProps;
 }
 //搜索歌手返回结果的数据接口定义end
 
 interface ISearchProps {
   host: string; // http://localhost:3001
-  url: string; // 例如 /search
+  url: string; // 例如 /Search
   param: ISearchResProps;
 }
 
-async function getSearchDataUser(
+async function getSearchDataSinger(
   props: ISearchProps
-): Promise<IResponseResultUser> {
+): Promise<IResponseResultSinger> {
   const data = await axios({
     method: "get",
     url: props.host + props.url,
@@ -59,5 +58,5 @@ async function getSearchDataUser(
   return data.data;
 }
 
-export default getSearchDataUser;
-export type { ISearchUsersProps };
+export default getSearchDataSinger;
+export type { ISearchSingersProps };

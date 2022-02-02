@@ -8,7 +8,7 @@ import PlayPattern from "../../api/types/playPattern";
 import axios from "axios";
 import serverHost from "../../api/serverHost";
 import IPlayList from "../../api/types/playList";
-import PlayListDisplay from "../playlist-display/PlayListDisplay";
+import PlayListDisplay from "../Playlist-display/PlayListDisplay";
 // import { EmptyList } from "../../api/types/playList";
 import useInterval from "../../hooks/useInterval";
 
@@ -218,7 +218,7 @@ function PlayBar(params: IPlayBarParams) {
                           behavior: "smooth",
                       });
                       if (isFolded) {
-                          window.location.hash = "/play-page";
+                          window.location.hash = "/Play-page";
                           document
                               .querySelector(".playPage")
                               ?.setAttribute("class", "playPage");

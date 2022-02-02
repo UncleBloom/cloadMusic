@@ -15,40 +15,40 @@ interface ISearchResProps {
 }
 //搜索歌手返回结果的数据接口定义start
 
-interface IDj {
-  userId: number;
-  nickname: string;
-}
-
-interface ISearchDjRadio {
-  name: string;
+interface ISearchVideo {
+  title: string;
   id: number;
-  picUrl: string;
-  dj: IDj;
+  durationms: number;
+  //   accountId?: bigint;
+  //   alias: string[];
+  coverUrl: string;
+  type: number;
+  creator: { userId: number; userName: string }[];
+  playTime: number;
 }
 
-interface ISearchDjRadiosProps {
+interface ISearchVideosProps {
   type: number; //type: 搜索类型；默认为 1 即单曲 ,
   //取值意义 : 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合
-  djRadiosCount: number;
-  djRadios: Array<ISearchDjRadio>;
+  videoCount: number;
+  videos: Array<ISearchVideo>;
 }
 
-interface IResponseResultDjRadio {
+interface IResponseResultVideo {
   code: number;
-  result: ISearchDjRadiosProps;
+  result: ISearchVideosProps;
 }
 //搜索歌手返回结果的数据接口定义end
 
 interface ISearchProps {
   host: string; // http://localhost:3001
-  url: string; // 例如 /search
+  url: string; // 例如 /Search
   param: ISearchResProps;
 }
 
-async function getSearchDataDjRadio(
+async function getSearchDataVideo(
   props: ISearchProps
-): Promise<IResponseResultDjRadio> {
+): Promise<IResponseResultVideo> {
   const data = await axios({
     method: "get",
     url: props.host + props.url,
@@ -62,5 +62,5 @@ async function getSearchDataDjRadio(
   return data.data;
 }
 
-export default getSearchDataDjRadio;
-export type { ISearchDjRadiosProps };
+export default getSearchDataVideo;
+export type { ISearchVideosProps };

@@ -1,0 +1,141 @@
+
+/* Footer 组件 start */
+
+.App .homepage-body {
+  min-height: 560px;
+}
+
+.homepage-footer {
+  width: 100%;
+  height: 200px;
+  background-color: rgba(32, 32, 32, 0.6);
+}
+
+.homepage-footer .footer-msg {
+  display: flex;
+  justify-content: space-between;
+  width: 1100px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.homepage-footer .footer-msg .copy {
+  width: 500px;
+  padding-top: 10px;
+  text-align: left;
+}
+
+.homepage-footer .footer-msg .copy ul {
+  color: #e9e9e9;
+  font-size: 12px;
+}
+
+.homepage-footer .footer-msg .copy ul,
+.homepage-footer .footer-msg .copy>p {
+  margin: 6px 0;
+  font-size: 12px;
+}
+
+.homepage-footer .footer-msg .copy ul li {
+  display: inline-block;
+}
+
+.homepage-footer .footer-msg .copy ul li a {
+  color: #e9e9e9;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.homepage-footer .footer-msg .copy a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.homepage-footer .footer-msg .copy p,
+.homepage-footer .footer-msg .copy a {
+  color: #e9e9e9;
+}
+
+.homepage-footer .footer-msg .copy p:last-child span {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: url("../../asset/images/police.png");
+  background-size: contain;
+  margin-bottom: -2px;
+}
+
+.homepage-footer .footer-msg .enter-new ul {
+  display: flex;
+  justify-content: right;
+  padding-top: 30px;
+  /* align-items: center; */
+}
+
+.homepage-footer .footer-msg .enter-new ul li {
+  display: inline-block;
+  width: 46px;
+  height: 60px;
+  margin-left: 50px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li a {
+  display: inline-block;
+  width: 46px;
+  height: 45px;
+  background: url("../../asset/images/foot_enter_new.png") no-repeat;
+  background-size: 110px 552px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(1) a {
+  background-position: -63px -456.5px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(2) a {
+  background-position: -63px -101px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(3) a {
+  background-position: 0 0;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(4) a {
+  background-position: -64px -50px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(5) a {
+  background-position: 0 -101px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li span {
+  display: inline-block;
+  width: 60px;
+  height: 14px;
+  background: url("../../asset/images/foot_enter_tt.png") no-repeat;
+  background-size: 180px 139px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(1) span {
+  background-position: 0 -108px;
+  width: 72px;
+  margin-left: -8px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(2) span {
+  background-position: -1px -91px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(3) span {
+  background-position: 0 0;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(4) span {
+  background-position: -0px -54px;
+}
+
+.homepage-footer .footer-msg .enter-new ul li:nth-child(5) span {
+  background-position: -1px -72px;
+}
+
+
+/* Footer 组件 end */

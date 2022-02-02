@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {useContext, useEffect, useState} from "react";
 import "./searchres.css";
 import getSearchDataSong, {
   ISearchSongsProps,
@@ -32,7 +32,7 @@ import SearchPlaylists from "./component/SearchPlaylists";
 import SearchDjRadios from "./component/SearchDjRadios";
 import SearchUsers from "./component/SearchUsers";
 import SearchLyrics from "./component/SearchLyrics";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import serverHost from "../../api/serverHost";
 
 interface ISearchResProps {
@@ -60,14 +60,21 @@ const SelectedPage = React.createContext<{
   setType: (num: number) => void;
   offset: number;
   setOffset: (num: number) => void;
-}>({ type: 1, setType: () => {}, offset: 1, setOffset: () => {} });
+}>({
+  type: 1, setType: () => {
+  }, offset: 1, setOffset: () => {
+  }
+});
 const SelectedOffset = React.createContext<{
   offset: number;
   setOffset: (num: number) => void;
-}>({ offset: 1, setOffset: () => {} });
+}>({
+  offset: 1, setOffset: () => {
+  }
+});
 
 function SearchNav() {
-  const { type, setType, offset, setOffset } = useContext(SelectedPage);
+  const {type, setType, offset, setOffset} = useContext(SelectedPage);
   const changeType = (type: number) => {
     setType(type);
   };
@@ -76,7 +83,7 @@ function SearchNav() {
       <ul>
         <li>
           <Link
-            to={"/search"}
+            to={"/Search"}
             className={type == 1 ? "search-selected" : ""}
             onClick={() => {
               changeType(1);
@@ -88,7 +95,7 @@ function SearchNav() {
         </li>
         <li>
           <Link
-            to={"/search"}
+            to={"/Search"}
             className={type == 100 ? "search-selected" : ""}
             onClick={() => {
               changeType(100);
@@ -100,7 +107,7 @@ function SearchNav() {
         </li>
         <li>
           <Link
-            to={"/search"}
+            to={"/Search"}
             className={type == 10 ? "search-selected" : ""}
             onClick={() => {
               changeType(10);
@@ -112,7 +119,7 @@ function SearchNav() {
         </li>
         <li>
           <Link
-            to={"/search"}
+            to={"/Search"}
             className={type == 1014 ? "search-selected" : ""}
             onClick={() => {
               changeType(1014);
@@ -124,7 +131,7 @@ function SearchNav() {
         </li>
         <li>
           <Link
-            to={"/search"}
+            to={"/Search"}
             className={type == 1000 ? "search-selected" : ""}
             onClick={() => {
               changeType(1000);
@@ -136,7 +143,7 @@ function SearchNav() {
         </li>
         <li>
           <Link
-            to={"/search"}
+            to={"/Search"}
             className={type == 1006 ? "search-selected" : ""}
             onClick={() => {
               changeType(1006);
@@ -148,7 +155,7 @@ function SearchNav() {
         </li>
         <li>
           <Link
-            to={"/search"}
+            to={"/Search"}
             className={type == 1009 ? "search-selected" : ""}
             onClick={() => {
               changeType(1009);
@@ -160,7 +167,7 @@ function SearchNav() {
         </li>
         <li>
           <Link
-            to={"/search"}
+            to={"/Search"}
             className={type == 1002 ? "search-selected" : ""}
             onClick={() => {
               changeType(1002);
@@ -176,7 +183,7 @@ function SearchNav() {
 }
 
 function ChangeOffset(props: { total: number; limit: number }) {
-  const { offset, setOffset } = useContext(SelectedOffset);
+  const {offset, setOffset} = useContext(SelectedOffset);
   const list = new Array<number>(Math.ceil(props.total / props.limit));
   for (let i = 0; i < Math.ceil(props.total / props.limit); i++) {
     list[i] = i + 1;
@@ -801,7 +808,7 @@ function SearchRes(props: ISearchResProps) {
           setOffset: setOffset,
         }}
       >
-        <SearchNav />
+        <SearchNav/>
       </SelectedPage.Provider>
       {type === 1 ? (
         <>
@@ -813,8 +820,8 @@ function SearchRes(props: ISearchResProps) {
             alia={singerAlia}
           />
           <div className="play-download-all">
-            <PlayAll />
-            <DownLoadAll />
+            <PlayAll/>
+            <DownLoadAll/>
           </div>
           <SearchSongs
             value={props.keywords}
@@ -823,7 +830,7 @@ function SearchRes(props: ISearchResProps) {
             songs={dataSongs?.songs ? dataSongs?.songs : []}
           />
           <SelectedOffset.Provider
-            value={{ offset: offset, setOffset: setOffset }}
+            value={{offset: offset, setOffset: setOffset}}
           >
             <ChangeOffset
               total={dataSongs?.songCount ? dataSongs?.songCount : 0}
@@ -840,7 +847,7 @@ function SearchRes(props: ISearchResProps) {
             artists={dataSingers?.artists ? dataSingers.artists : []}
           />
           <SelectedOffset.Provider
-            value={{ offset: offset, setOffset: setOffset }}
+            value={{offset: offset, setOffset: setOffset}}
           >
             <ChangeOffset
               total={dataSingers?.artistCount ? dataSingers.artistCount : 0}
@@ -857,7 +864,7 @@ function SearchRes(props: ISearchResProps) {
             albums={dataAlbums?.albums ? dataAlbums.albums : []}
           />
           <SelectedOffset.Provider
-            value={{ offset: offset, setOffset: setOffset }}
+            value={{offset: offset, setOffset: setOffset}}
           >
             <ChangeOffset
               total={dataAlbums?.albumCount ? dataAlbums?.albumCount : 0}
@@ -874,7 +881,7 @@ function SearchRes(props: ISearchResProps) {
             videos={dataVideos?.videos ? dataVideos?.videos : []}
           />
           <SelectedOffset.Provider
-            value={{ offset: offset, setOffset: setOffset }}
+            value={{offset: offset, setOffset: setOffset}}
           >
             <ChangeOffset
               total={dataVideos?.videoCount ? dataVideos?.videoCount : 0}
@@ -893,7 +900,7 @@ function SearchRes(props: ISearchResProps) {
             playlists={dataPlaylists?.playlists ? dataPlaylists?.playlists : []}
           />
           <SelectedOffset.Provider
-            value={{ offset: offset, setOffset: setOffset }}
+            value={{offset: offset, setOffset: setOffset}}
           >
             <ChangeOffset
               total={
@@ -914,7 +921,7 @@ function SearchRes(props: ISearchResProps) {
             djRadios={dataDjRadios?.djRadios ? dataDjRadios.djRadios : []}
           />
           <SelectedOffset.Provider
-            value={{ offset: offset, setOffset: setOffset }}
+            value={{offset: offset, setOffset: setOffset}}
           >
             <ChangeOffset
               total={
@@ -937,7 +944,7 @@ function SearchRes(props: ISearchResProps) {
             }
           />
           <SelectedOffset.Provider
-            value={{ offset: offset, setOffset: setOffset }}
+            value={{offset: offset, setOffset: setOffset}}
           >
             <ChangeOffset
               total={
@@ -956,7 +963,7 @@ function SearchRes(props: ISearchResProps) {
             songs={dataLyrics?.songs ? dataLyrics?.songs : []}
           />
           <SelectedOffset.Provider
-            value={{ offset: offset, setOffset: setOffset }}
+            value={{offset: offset, setOffset: setOffset}}
           >
             <ChangeOffset
               total={dataLyrics?.songCount ? dataLyrics?.songCount : 0}

@@ -13,58 +13,48 @@ interface ISearchResProps {
   //type: 搜索类型；默认为 1 即单曲 ,
   //取值意义 : 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合
 }
+//搜索歌手返回结果的数据接口定义start
 
-interface IArtist {
-  id: number;
+interface ICreator {
+  userId: number;
+  nickname: string;
+}
+
+interface ISearchPlaylist {
   name: string;
-}
-
-interface IAlbum {
   id: number;
-  name: string;
+  durationms: number;
+  //   accountId?: bigint;
+  //   alias: string[];
+  coverImgUrl: string;
+  trackCount: number;
+  playCount: number;
+  bookCount: number;
+  creator: ICreator;
 }
 
-interface IRange {
-  first: number;
-  second: number;
-}
-
-interface ILyrics {
-  txt: string;
-  range: IRange[];
-}
-
-interface ISearchSong {
-  id: number;
-  name: string;
-  artists: IArtist[];
-  album: IAlbum;
-  duration: number;
-  transNames: string[];
-  lyrics: ILyrics;
-}
-
-interface ISearchLyricsProps {
+interface ISearchPlaylistsProps {
   type: number; //type: 搜索类型；默认为 1 即单曲 ,
   //取值意义 : 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合
-  songCount: number;
-  songs: Array<ISearchSong>;
+  playlistCount: number;
+  playlists: Array<ISearchPlaylist>;
 }
 
-interface IResponseResultLyric {
+interface IResponseResultPlaylist {
   code: number;
-  result: ISearchLyricsProps;
+  result: ISearchPlaylistsProps;
 }
+//搜索歌手返回结果的数据接口定义end
 
 interface ISearchProps {
   host: string; // http://localhost:3001
-  url: string; // 例如 /search
+  url: string; // 例如 /Search
   param: ISearchResProps;
 }
 
-async function getSearchDataLyric(
+async function getSearchDataPlaylist(
   props: ISearchProps
-): Promise<IResponseResultLyric> {
+): Promise<IResponseResultPlaylist> {
   const data = await axios({
     method: "get",
     url: props.host + props.url,
@@ -80,5 +70,5 @@ async function getSearchDataLyric(
   return data.data;
 }
 
-export default getSearchDataLyric;
-export type { ISearchLyricsProps };
+export default getSearchDataPlaylist;
+export type { ISearchPlaylistsProps };

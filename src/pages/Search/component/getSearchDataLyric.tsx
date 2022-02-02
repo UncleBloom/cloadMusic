@@ -13,44 +13,58 @@ interface ISearchResProps {
   //type: 搜索类型；默认为 1 即单曲 ,
   //取值意义 : 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合
 }
-//搜索专辑返回结果的数据接口定义start
-interface ISearchArtist {
-  name: string;
+
+interface IArtist {
   id: number;
-  accountId?: bigint;
-  alias: string[];
-  picUrl?: string;
+  name: string;
 }
 
-interface ISearchAlbum {
-  name: string;
+interface IAlbum {
   id: number;
-  alias: string[];
-  picUrl: string;
-  artist: ISearchArtist;
+  name: string;
 }
 
-interface ISearchAlbumsProps {
+interface IRange {
+  first: number;
+  second: number;
+}
+
+interface ILyrics {
+  txt: string;
+  range: IRange[];
+}
+
+interface ISearchSong {
+  id: number;
+  name: string;
+  artists: IArtist[];
+  album: IAlbum;
+  duration: number;
+  transNames: string[];
+  lyrics: ILyrics;
+}
+
+interface ISearchLyricsProps {
   type: number; //type: 搜索类型；默认为 1 即单曲 ,
   //取值意义 : 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合
-  albumCount: number;
-  albums: Array<ISearchAlbum>;
+  songCount: number;
+  songs: Array<ISearchSong>;
 }
 
-interface IResponseResultAlbum {
+interface IResponseResultLyric {
   code: number;
-  result: ISearchAlbumsProps;
+  result: ISearchLyricsProps;
 }
-//搜索专辑返回结果的数据接口定义end
 
 interface ISearchProps {
   host: string; // http://localhost:3001
-  url: string; // 例如 /search
+  url: string; // 例如 /Search
   param: ISearchResProps;
 }
-async function getSearchDataSinger(
+
+async function getSearchDataLyric(
   props: ISearchProps
-): Promise<IResponseResultAlbum> {
+): Promise<IResponseResultLyric> {
   const data = await axios({
     method: "get",
     url: props.host + props.url,
@@ -61,8 +75,10 @@ async function getSearchDataSinger(
       offset: props.param.offset,
     },
   });
+  //   console.log(data.data);
+
   return data.data;
 }
 
-export default getSearchDataSinger;
-export type { ISearchAlbumsProps };
+export default getSearchDataLyric;
+export type { ISearchLyricsProps };

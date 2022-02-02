@@ -13,48 +13,44 @@ interface ISearchResProps {
   //type: 搜索类型；默认为 1 即单曲 ,
   //取值意义 : 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合
 }
-//搜索歌手返回结果的数据接口定义start
-
-interface ICreator {
-  userId: number;
-  nickname: string;
-}
-
-interface ISearchPlaylist {
+//搜索专辑返回结果的数据接口定义start
+interface ISearchArtist {
   name: string;
   id: number;
-  durationms: number;
-  //   accountId?: bigint;
-  //   alias: string[];
-  coverImgUrl: string;
-  trackCount: number;
-  playCount: number;
-  bookCount: number;
-  creator: ICreator;
+  accountId?: bigint;
+  alias: string[];
+  picUrl?: string;
 }
 
-interface ISearchPlaylistsProps {
+interface ISearchAlbum {
+  name: string;
+  id: number;
+  alias: string[];
+  picUrl: string;
+  artist: ISearchArtist;
+}
+
+interface ISearchAlbumsProps {
   type: number; //type: 搜索类型；默认为 1 即单曲 ,
   //取值意义 : 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合
-  playlistCount: number;
-  playlists: Array<ISearchPlaylist>;
+  albumCount: number;
+  albums: Array<ISearchAlbum>;
 }
 
-interface IResponseResultPlaylist {
+interface IResponseResultAlbum {
   code: number;
-  result: ISearchPlaylistsProps;
+  result: ISearchAlbumsProps;
 }
-//搜索歌手返回结果的数据接口定义end
+//搜索专辑返回结果的数据接口定义end
 
 interface ISearchProps {
   host: string; // http://localhost:3001
-  url: string; // 例如 /search
+  url: string; // 例如 /Search
   param: ISearchResProps;
 }
-
-async function getSearchDataPlaylist(
+async function getSearchDataSinger(
   props: ISearchProps
-): Promise<IResponseResultPlaylist> {
+): Promise<IResponseResultAlbum> {
   const data = await axios({
     method: "get",
     url: props.host + props.url,
@@ -65,10 +61,8 @@ async function getSearchDataPlaylist(
       offset: props.param.offset,
     },
   });
-  //   console.log(data.data);
-
   return data.data;
 }
 
-export default getSearchDataPlaylist;
-export type { ISearchPlaylistsProps };
+export default getSearchDataSinger;
+export type { ISearchAlbumsProps };

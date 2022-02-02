@@ -1,12 +1,12 @@
 import * as React from "react";
 import axios from "axios";
-import PlayBar from "../play-bar/PlayBar";
+import PlayBar from "../Play-bar/PlayBar";
 import IPlayList, { EmptyList } from "../../api/types/playList";
 import PlayPattern from "../../api/types/playPattern";
 import ISongInfo, { EmptySongInfo } from "../../api/types/songInfo";
 import serverHost from "../../api/serverHost";
 import { message } from "antd";
-import Play from "../../pages/play/Play";
+import Play from "../../pages/Play/Play";
 
 interface IPlayControllerState {
   playList: IPlayList;

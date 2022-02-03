@@ -1,0 +1,41 @@
+$itemWidth: 140px;
+
+.PlaylistRecommended {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .listItem {
+    display: flex;
+    width: $itemWidth;
+    height: 220px;
+    flex-flow: column;
+
+    .listPic {
+      position: relative;
+      width: $itemWidth;
+      height: $itemWidth;
+      background-color: #666666;
+
+      img {
+        width: $itemWidth;
+        border-radius: 5px;
+      }
+
+      .playCount {
+        position: absolute;
+        top: 2px;
+        right: 5px;
+        color: white;
+        font-size: 10px;
+      }
+    }
+
+    .listName {
+      text-align: left;
+      margin-top: 4px;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+}

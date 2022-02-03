@@ -3,12 +3,12 @@ import {Carousel} from 'antd';
 import IBannerResponse, {IBannerInfo, LoadingBannerInfo} from '../../types/IBannerResponse'
 import axios from 'axios'
 import serverHost from '../../../../api/serverHost'
-import {CarouselRef} from 'antd/lib/carousel';
+// import {CarouselRef} from 'antd/lib/carousel';
 import "./Banners.scss";
 
 function Banner() {
   const [bannerContent, setBannerContent] = useState<IBannerInfo[]>([LoadingBannerInfo]);
-  const carousel = useRef<CarouselRef>(null);
+  // const carousel = useRef<CarouselRef>(null);
 
   /**
    * 在组件挂载时获取首页 banner
@@ -25,10 +25,10 @@ function Banner() {
 
   return (
     <div className="banners">
-      <Carousel autoplay autoplaySpeed={5000} ref={carousel}>
+      <Carousel autoplay autoplaySpeed={5000}>
         {bannerContent.map((value, index) => {
           return (
-            <div className="bannerContent">
+            <div className="bannerContent" key={index}>
               <div className="bannerImage">
                 <img src={value.imageUrl} alt="" loading={'lazy'}/>
               </div>

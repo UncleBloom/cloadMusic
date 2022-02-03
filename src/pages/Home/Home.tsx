@@ -1,5 +1,6 @@
 import React from 'react';
 import Banners from './components/Banners/Banners'
+import PlaylistRecommended from './components/PlaylistRecommended/PlaylistRecommended';
 import "./Home.scss"
 
 function Home() {
@@ -11,7 +12,8 @@ function Home() {
 
         </div>
         <div className="finding">
-          <Banners/>
+          <Banners />
+          <PlaylistRecommended />
         </div>
       </div>
 

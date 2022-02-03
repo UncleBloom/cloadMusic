@@ -1,0 +1,27 @@
+.Home {
+  height: 100%;
+  min-width: 1000px;
+  background-color: #ededed;
+
+  .HomeMiddle {
+    display: flex;
+    width: 1000px;
+    margin: 0 auto;
+    min-height: 100vh;
+    align-items: flex-start;
+  }
+
+  .user {
+    display: inline-block;
+    background-color: #ededed;
+    width: 200px;
+    min-height: 100vh;
+    //box-shadow: 0 2px 2px 2px #6b6b6b;
+    border-right: #6b6b6b groove thin;
+  }
+
+  .finding {
+    display: inline-block;
+    width: 800px;
+  }
+}

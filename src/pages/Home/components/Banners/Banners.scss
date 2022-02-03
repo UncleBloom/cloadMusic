@@ -1,0 +1,12 @@
+.banners {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 800px;
+  padding: 20px 20px 20px 20px;
+
+  .bannerContent {
+    img {
+      width: 100%;
+    }
+  }
+}

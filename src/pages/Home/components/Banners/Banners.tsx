@@ -4,6 +4,7 @@ import IBannerResponse, {IBannerInfo, LoadingBannerInfo} from '../../types/IBann
 import axios from 'axios'
 import serverHost from '../../../../api/serverHost'
 import {CarouselRef} from 'antd/lib/carousel';
+import "./Banners.scss";
 
 function Banner() {
   const [bannerContent, setBannerContent] = useState<IBannerInfo[]>([LoadingBannerInfo]);
@@ -22,7 +23,6 @@ function Banner() {
     });
   }, []);
 
-
   return (
     <div className="banners">
       <Carousel autoplay autoplaySpeed={5000} ref={carousel}>
@@ -30,8 +30,7 @@ function Banner() {
           return (
             <div className="bannerContent">
               <div className="bannerImage">
-                <img src={value.imageUrl} alt=""/>
-                <div className="bannerType">{value.typeTitle}</div>
+                <img src={value.imageUrl} alt="" loading={'lazy'}/>
               </div>
             </div>)
         })}

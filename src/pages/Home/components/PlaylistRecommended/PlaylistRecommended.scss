@@ -1,4 +1,5 @@
-$itemWidth: 140px;
+$itemInnerWidth: 120px;
+$itemOuterWidth: 160px;
 
 .PlaylistRecommended {
   display: flex;
@@ -7,18 +8,20 @@ $itemWidth: 140px;
 
   .listItem {
     display: flex;
-    width: $itemWidth;
-    height: 220px;
+    width: $itemInnerWidth;
+    margin-left: ($itemOuterWidth - $itemInnerWidth)/2;
+    margin-right: ($itemOuterWidth - $itemInnerWidth)/2;
+    height: 200px;
     flex-flow: column;
 
     .listPic {
       position: relative;
-      width: $itemWidth;
-      height: $itemWidth;
+      width: $itemInnerWidth;
+      height: $itemInnerWidth;
       background-color: #666666;
 
       img {
-        width: $itemWidth;
+        width: $itemInnerWidth;
         border-radius: 5px;
       }
 
@@ -34,8 +37,15 @@ $itemWidth: 140px;
     .listName {
       text-align: left;
       margin-top: 4px;
-      font-size: 12px;
-      line-height: 16px;
+      font-size: 13px;
+      line-height: 18px;
+
+      // 文本多于两行时省略
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
   }
 }

@@ -1,12 +1,15 @@
 .banners {
   display: inline-block;
   box-sizing: border-box;
-  width: 800px;
-  padding: 20px 20px 20px 20px;
+  margin: 20px;
+  width: 760px;
+  height: 281px;
+  background-color: #666666;
 
   .bannerContent {
     img {
       width: 100%;
+      cursor: pointer;
     }
   }
 }

@@ -7,6 +7,8 @@ export default interface ISongInfo {
   dt: number; // 歌曲时长 duration
   al: IAlbumInfo; // 专辑 album
   ar: Array<IArtist>; // 艺术家 artists
+  alias?: string;
+  alia?: string;
 }
 
 // 当songInfo为此值时表示当前没有播放任务

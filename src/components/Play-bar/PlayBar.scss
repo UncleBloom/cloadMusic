@@ -3,7 +3,6 @@
 font-face {
   font-family: "iconfont";
   src: url("../../asset/fonts/play-bar/iconfont.ttf?t=1640056692595")
-    //format("truetype");
 }
 
 .iconfont {
@@ -14,11 +13,6 @@ font-face {
   -moz-osx-font-smoothing: grayscale;
   cursor: pointer;
 }
-
-//.volumeSlider {
-//  display: "inline-block";
-//  height: 100;
-//}
 
 .playBar {
   position: fixed;

@@ -31,6 +31,13 @@ $itemOuterWidth: 160px;
         right: 5px;
         color: white;
         font-size: 10px;
+        &::before {
+          content: "\ea6d";
+          font-family: "iconfont" !important;
+          font-weight: bold;
+          margin-right: 2px;
+          font-size: 10px;
+        }
       }
     }
 

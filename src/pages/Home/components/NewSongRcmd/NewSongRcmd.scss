@@ -2,6 +2,22 @@ $itemOuterWidth: 380px;
 $itemOuterHeight: 80px;
 $itemInnerHeight: 60px;
 
+@import "../../../../asset/fonts/home/iconfont.css";
+font-face {
+  font-family: "iconfont";
+  src: url("../../../../asset/fonts/home/iconfont.ttf?t=1644068845673")
+    format("truetype");
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 20px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: pointer;
+}
+
 .NewSongRcmd {
   display: flex;
   flex-direction: column;

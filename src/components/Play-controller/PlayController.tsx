@@ -29,8 +29,8 @@ class PlayController extends React.Component<
   constructor(props: IPlayControllerProps) {
     super(props);
     this.state = {
-      // playList: EmptyList,
-      playList: testSongList,
+      playList: EmptyList,
+      // playList: testSongList,
       currentTime: 0,
       playPause: false,
       playPattern: PlayPattern.Loop,

@@ -29,8 +29,8 @@ class PlayController extends React.Component<
   constructor(props: IPlayControllerProps) {
     super(props);
     this.state = {
-      playList: EmptyList,
-      // playList: testSongList,
+      // playList: EmptyList,
+      playList: testSongList,
       currentTime: 0,
       playPause: false,
       playPattern: PlayPattern.Loop,
@@ -188,6 +188,10 @@ class PlayController extends React.Component<
    * @param index 歌曲索引值
    */
   deleteSong = (index: number): void => {
+    if (this.state.playList.songs.length === 1) {
+      this.setState({ playList: EmptyList, playPause: false });
+      return;
+    }
     let nextList = this.state.playList;
     nextList.songs.splice(index, 1);
     nextList.history.forEach((value: number, i: number) => {
@@ -200,13 +204,12 @@ class PlayController extends React.Component<
         nextList.history[index]--;
       }
     });
-    if (index <= nextList.playing) {
+    if (index < nextList.playing) {
       nextList.playing--;
     }
     this.setState(() => {
       return { playList: nextList };
     });
-    this.playNextSong();
   };
 
   replay = (callback: () => void) => {
@@ -214,7 +217,7 @@ class PlayController extends React.Component<
   };
 
   render(): React.ReactNode {
-    const playingInfo =
+    let playingInfo =
       this.state.playList === EmptyList || this.state.playList.playing === -1
         ? EmptySongInfo
         : this.state.playList.songs[this.state.playList.playing];

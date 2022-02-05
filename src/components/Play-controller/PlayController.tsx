@@ -29,8 +29,8 @@ class PlayController extends React.Component<
   constructor(props: IPlayControllerProps) {
     super(props);
     this.state = {
-      // playList: EmptyList,
-      playList: testSongList,
+      playList: EmptyList,
+      // playList: testSongList,
       currentTime: 0,
       playPause: false,
       playPattern: PlayPattern.Loop,
@@ -109,17 +109,27 @@ class PlayController extends React.Component<
    * @param andPlay 是否在加入播放队列时开始播放
    */
   addToPlayList = async (id: number, andPlay: boolean = false) => {
+    // TODO: 存在bug：在播放列表为空后再添加歌曲总判定为真
+    // if (
+    //   this.state.playList.songs.length !== 0 &&
+    //   (() => {
+    //     this.state.playList.songs.forEach((value) => {
+    //       if (value.id === id) return true;
+    //     });
+    //   })
+    // ) {
+    //   message.warning("播放队列中已有当前歌曲", 1);
+    //   return;
+    // }
+
     let newPlayList = this.state.playList;
     const info = (await fetchSongInfo(id)).songs[0];
     newPlayList.songs.push(info);
 
-    if (andPlay || newPlayList.songs.length === 1) {
-      this.setState(() => {
-        return { playList: newPlayList };
-      });
+    this.setState({ playList: newPlayList });
+    if (andPlay) {
       this.changePlaying(this.state.playList.songs.length - 1);
     }
-    this.setState({ playList: newPlayList });
   };
 
   /**
@@ -218,7 +228,7 @@ class PlayController extends React.Component<
 
   render(): React.ReactNode {
     let playingInfo =
-      this.state.playList === EmptyList || this.state.playList.playing === -1
+      this.state.playList.playing === -1
         ? EmptySongInfo
         : this.state.playList.songs[this.state.playList.playing];
     return (

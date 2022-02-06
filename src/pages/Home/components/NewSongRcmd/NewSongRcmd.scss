@@ -39,14 +39,49 @@ font-face {
     }
 
     .SongPic {
-      height: 100%;
+      display: flex;
+      position: relative;
+      height: $itemInnerHeight;
       width: $itemInnerHeight;
       background-color: #666666;
+
+      flex-shrink: 0;
       border-radius: 5px;
+      overflow: hidden;
+      cursor: pointer;
+
+      justify-content: center;
+      align-items: center;
 
       img {
         width: $itemInnerHeight;
         background-color: #666666;
+      }
+
+      .iconContainer {
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        background-color: rgba($color: #ffffff, $alpha: 0.5);
+        backdrop-filter: blur(5px);
+        transition: all 0.3s;
+        .iconfont {
+          transition: all 0.3s;
+          text-align: center;
+          line-height: 30px;
+          font-size: 16px;
+          color: #d43a31;
+        }
+      }
+
+      &:hover .iconContainer {
+        height: 40px;
+        width: 40px;
+        .iconfont {
+          line-height: 40px;
+          font-size: 20px;
+        }
       }
     }
 

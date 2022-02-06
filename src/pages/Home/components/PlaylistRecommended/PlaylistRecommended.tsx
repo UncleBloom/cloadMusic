@@ -37,6 +37,9 @@ function PlaylistRecommended() {
               <div className="playCount">
                 {formatPlayCount(value.playCount)}
               </div>
+              <div className="iconContainer">
+                <div className="iconfont">&#xea82;</div>
+              </div>
             </div>
             <div className="listName">{value.name}</div>
           </div>

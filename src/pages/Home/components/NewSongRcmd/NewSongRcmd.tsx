@@ -32,6 +32,9 @@ function NewSongRcmd() {
           <div className="NewSongItem" key={index}>
             <div className="SongPic">
               <img src={value.picUrl} alt="" loading="lazy" />
+              <div className="iconContainer">
+                <div className="iconfont">&#xea82;</div>
+              </div>
             </div>
             <div className="SongIndex">
               {index + 1 < 10

@@ -3,6 +3,11 @@ import "./Head.scss";
 import Search from "./Search";
 
 function Header() {
+
+  const initiateSearchRequest = (content: string) => {
+    alert(content);
+  }
+
   return (
       <div className = "Header">
         <div className = "HeaderLeft">
@@ -33,7 +38,7 @@ function Header() {
           </div>
           <div className = "about">
             <div className = "searchContainer">
-              <Search />
+              <Search launchRequestCallback = {initiateSearchRequest} />
             </div>
             <div className = "aboutIcons">
               <div className = "settingIconContainer">

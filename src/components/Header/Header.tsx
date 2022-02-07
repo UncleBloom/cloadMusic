@@ -4,6 +4,7 @@ import {SearchKeyWords} from "../../pages/home-page/HomePage";
 import {Link} from "react-router-dom";
 import serverHost from "../../api/serverHost";
 import axios from "axios";
+
 // 首页Header组件，包含Logo组件、Nav组件,Search组件
 interface ISearchProps {
   placeHolder: string;
@@ -38,16 +39,16 @@ function Logo() {
     setIndex(index);
   };
   return (
-    <h1
-      className={"logo"}
-      onClick={() => {
-        changePage(1);
-      }}
-    >
-      <a title="网易云音乐" href="#">
-        网易云音乐
-      </a>
-    </h1>
+      <h1
+          className = {"logo"}
+          onClick = {() => {
+            changePage(1);
+          }}
+      >
+        <a title = "网易云音乐" href = "#">
+          网易云音乐
+        </a>
+      </h1>
   );
 }
 
@@ -58,77 +59,77 @@ function Nav() {
     setIndex(index);
   };
   return (
-    <nav className={"homepage-nav"}>
-      <ul>
-        <li>
-          <a
-            href="#"
-            className={index == 1 ? "selected" : ""}
-            onClick={() => {
-              changePage(1);
-            }}
-          >
-            发现音乐
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className={index === 2 ? "selected" : ""}
-            onClick={() => {
-              changePage(2);
-            }}
-          >
-            我的音乐
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className={index === 3 ? "selected" : ""}
-            onClick={() => {
-              changePage(3);
-            }}
-          >
-            朋友
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className={index === 4 ? "selected" : ""}
-            onClick={() => {
-              changePage(4);
-            }}
-          >
-            商城
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className={index === 5 ? "selected" : ""}
-            onClick={() => {
-              changePage(5);
-            }}
-          >
-            音乐人
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className={index == 6 ? "selected" : ""}
-            onClick={() => {
-              changePage(6);
-            }}
-          >
-            下载客户端
-          </a>
-          <sup/>
-        </li>
-      </ul>
-    </nav>
+      <nav className = {"homepage-nav"}>
+        <ul>
+          <li>
+            <a
+                href = "#"
+                className = {index == 1 ? "selected" : ""}
+                onClick = {() => {
+                  changePage(1);
+                }}
+            >
+              发现音乐
+            </a>
+          </li>
+          <li>
+            <a
+                href = "#"
+                className = {index === 2 ? "selected" : ""}
+                onClick = {() => {
+                  changePage(2);
+                }}
+            >
+              我的音乐
+            </a>
+          </li>
+          <li>
+            <a
+                href = "#"
+                className = {index === 3 ? "selected" : ""}
+                onClick = {() => {
+                  changePage(3);
+                }}
+            >
+              朋友
+            </a>
+          </li>
+          <li>
+            <a
+                href = "#"
+                className = {index === 4 ? "selected" : ""}
+                onClick = {() => {
+                  changePage(4);
+                }}
+            >
+              商城
+            </a>
+          </li>
+          <li>
+            <a
+                href = "#"
+                className = {index === 5 ? "selected" : ""}
+                onClick = {() => {
+                  changePage(5);
+                }}
+            >
+              音乐人
+            </a>
+          </li>
+          <li>
+            <a
+                href = "#"
+                className = {index == 6 ? "selected" : ""}
+                onClick = {() => {
+                  changePage(6);
+                }}
+            >
+              下载客户端
+            </a>
+            <sup />
+          </li>
+        </ul>
+      </nav>
   );
 }
 
@@ -140,50 +141,50 @@ function SearchInput(props: ISearchProps) {
   const {keyWord, setKeyWord} = useContext(SearchKeyWords);
   const [placeHolder, setPlaceHolder] = useState(props.placeHolder);
   return (
-    <div className={"homepage-search"}>
+      <div className = {"homepage-search"}>
       <span
-        onClick={() => {
-          setKeyWord(value);
-          setIndex(0);
-        }}
-      >
-        <Link
-          to={"/Search"}
-          style={{display: "inline-block", width: "100%", height: "100%"}}
-        />
-      </span>
-      <input
-        placeholder={placeHolder}
-        onFocus={(e) => {
-          setPlaceHolder("");
-        }}
-        onBlur={(e) => {
-          if (e.target.value === "") {
-            setPlaceHolder(props.placeHolder);
-          }
-        }}
-        value={value}
-        onChange={(e) => {
-          setValue(e.target.value);
-        }}
-        onKeyUp={(e) => {
-          if (e.key === "Enter") {
+          onClick = {() => {
             setKeyWord(value);
             setIndex(0);
-            window.location.hash = "/Search";
-          }
-        }}
-      />
-      <span
-        className={value === "" ? "hide" : ""}
-        onClick={() => {
-          setValue("");
-          setPlaceHolder(props.placeHolder);
-        }}
+          }}
       >
+        <Link
+            to = {"/Search"}
+            style = {{display: "inline-block", width: "100%", height: "100%"}}
+        />
+      </span>
+        <input
+            placeholder = {placeHolder}
+            onFocus = {(e) => {
+              setPlaceHolder("");
+            }}
+            onBlur = {(e) => {
+              if (e.target.value === "") {
+                setPlaceHolder(props.placeHolder);
+              }
+            }}
+            value = {value}
+            onChange = {(e) => {
+              setValue(e.target.value);
+            }}
+            onKeyUp = {(e) => {
+              if (e.key === "Enter") {
+                setKeyWord(value);
+                setIndex(0);
+                window.location.hash = "/Search";
+              }
+            }}
+        />
+        <span
+            className = {value === "" ? "hide" : ""}
+            onClick = {() => {
+              setValue("");
+              setPlaceHolder(props.placeHolder);
+            }}
+        >
         ×
       </span>
-    </div>
+      </div>
   );
 }
 
@@ -208,64 +209,64 @@ function Header() {
   }, []);
 
   return (
-    <header className={"homepage-header"}>
-      <SelectedPage.Provider value={{index: index, setIndex: setIndex}}>
-        <Logo/>
-        <Nav/>
+      <header className = {"homepage-header"}>
+        <SelectedPage.Provider value = {{index: index, setIndex: setIndex}}>
+          <Logo />
+          <Nav />
 
-        <SearchInput placeHolder={"音乐/视频/电台/用户"}/>
-      </SelectedPage.Provider>
-      <span className={"writer-center"}>
-        <a href="#">创作者中心</a>
+          <SearchInput placeHolder = {"音乐/视频/电台/用户"} />
+        </SelectedPage.Provider>
+        <span className = {"writer-center"}>
+        <a href = "#">创作者中心</a>
       </span>
-      <span className={"login"}>
+        <span className = {"login"}>
         {person ? (
-          <span>
-            <img src={person.avatarUrl} alt=""/>
+            <span>
+            <img src = {person.avatarUrl} alt = "" />
             <div>
               <div>
-                <span/>
+                <span />
               </div>
               <div>
                 <ul>
                   <li>
-                    <a className="iconfont">
+                    <a className = "iconfont">
                       <span>&#xe604;</span>&nbsp;&nbsp;&nbsp;我的主页
                     </a>
                   </li>
                   <li>
-                    <a className="iconfont">
+                    <a className = "iconfont">
                       <span>&#xe863;</span>&nbsp;&nbsp;&nbsp;我的消息
                     </a>
                   </li>
                   <li>
-                    <a className="iconfont">
+                    <a className = "iconfont">
                       <span>&#xe7a0;</span>&nbsp;&nbsp;&nbsp;我的等级
                     </a>
                   </li>
                   <li>
-                    <a className="iconfont">
+                    <a className = "iconfont">
                       <span>&#xe7a3;</span>&nbsp;&nbsp;&nbsp;VIP会员
                     </a>
                   </li>
                   <li>
-                    <a className="iconfont">
+                    <a className = "iconfont">
                       <span>&#xe65e;</span>&nbsp;&nbsp;&nbsp;个人设置
                     </a>
                   </li>
                   <li>
-                    <a className="iconfont">
+                    <a className = "iconfont">
                       <span>&#xe7cb;</span>&nbsp;&nbsp;&nbsp;实名认证
                     </a>
                   </li>
                   <li>
                     <a
-                      className="iconfont"
-                      onClick={() => {
-                        localStorage.setItem("cookie", "");
-                        window.location.hash = "/";
-                        window.location.reload();
-                      }}
+                        className = "iconfont"
+                        onClick = {() => {
+                          localStorage.setItem("cookie", "");
+                          window.location.hash = "/";
+                          window.location.reload();
+                        }}
                     >
                       <span>&#xe62e;</span>&nbsp;&nbsp;&nbsp;退出登录
                     </a>
@@ -275,19 +276,19 @@ function Header() {
             </div>
           </span>
         ) : (
-          <a
-            href="#"
-            onClick={() => {
-              document
-                .querySelector(".login-shelter")
-                ?.setAttribute("class", "login-shelter");
-            }}
-          >
-            登录
-          </a>
+            <a
+                href = "#"
+                onClick = {() => {
+                  document
+                      .querySelector(".login-shelter")
+                      ?.setAttribute("class", "login-shelter");
+                }}
+            >
+              登录
+            </a>
         )}
       </span>
-    </header>
+      </header>
   );
 }
 

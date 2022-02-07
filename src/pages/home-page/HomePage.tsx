@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import "./base.css";
-import Header from "../../components/Header/Header";
+import Header from "../../components/Head/Head";
 import SearchRes from "../Search/SearchRes";
 import Footer from "../../components/Footer/Footer";
 import BackTop from "../../components/BackTop/BackTop";
@@ -18,7 +18,10 @@ import Home from '../Home/Home'
 export const SearchKeyWords = React.createContext<{
   keyWord: string;
   setKeyWord: (str: string) => void;
-}>({ keyWord: "", setKeyWord: () => {} });
+}>({
+  keyWord: "", setKeyWord: () => {
+  }
+});
 
 function HomePage() {
   const [keyWord, setKeyWord] = useState("");
@@ -27,40 +30,40 @@ function HomePage() {
       document.querySelector(".playPage")?.setAttribute("class", "playPage");
     } else {
       document
-        .querySelector(".playPage")
-        ?.setAttribute("class", "playPage hide");
+          .querySelector(".playPage")
+          ?.setAttribute("class", "playPage hide");
     }
   };
   return (
-    <>
-      <div className="homepage-body">
-        <SearchKeyWords.Provider
-          value={{ keyWord: keyWord, setKeyWord: setKeyWord }}
-        >
-          <Header />
-          <Routes>
-            {keyWord === "" ? (
-              <></>
-            ) : (
-              <Route
-                path="/search"
-                element={<SearchRes keywords={keyWord} />}
-              />
-            )}
-            <Route path="/playPage" element={<></>} />
+      <>
+        <div className = "homepage-body">
+          <SearchKeyWords.Provider
+              value = {{keyWord: keyWord, setKeyWord: setKeyWord}}
+          >
+            <Header />
+            <Routes>
+              {keyWord === "" ? (
+                  <></>
+              ) : (
+                  <Route
+                      path = "/search"
+                      element = {<SearchRes keywords = {keyWord} />}
+                  />
+              )}
+              <Route path = "/playPage" element = {<></>} />
 
-            {/* <Route path="/login" element={<Login />} /> */}
-          </Routes>
-        </SearchKeyWords.Provider>
-        <Login />
-        <Register />
-        <BackTop />
-        <PlayController ref={playControllerRef} />
-        <Home/>
-      </div>
+              {/* <Route path="/login" element={<Login />} /> */}
+            </Routes>
+          </SearchKeyWords.Provider>
+          <Login />
+          <Register />
+          <BackTop />
+          <PlayController ref = {playControllerRef} />
+          <Home />
+        </div>
 
-      <Footer />
-    </>
+        <Footer />
+      </>
   );
 }
 

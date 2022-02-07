@@ -1,3 +1,9 @@
 import "./Search.scss";
 
-function 
+function Search() {
+  return (
+      <></>
+  )
+}
+
+export default Search;

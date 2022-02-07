@@ -1,8 +1,9 @@
 @import "~antd/dist/antd.css";
-@import "../../asset/fonts/play-bar/iconfont.css";
+@import "font/iconfont.css";
+
 font-face {
   font-family: "iconfont";
-  src: url("../../asset/fonts/play-bar/iconfont.ttf?t=1640056692595")
+  src: url("font/iconfont.ttf?t=1640056692595")
 }
 
 .iconfont {
@@ -33,10 +34,12 @@ font-face {
 .playBar .progressBar {
   width: 100%;
   height: 5px;
+
   .progressBarLine {
     width: 100%;
     height: 100%;
     cursor: pointer;
+
     .progressBarPlayedLine {
       display: inline-block;
       position: absolute;
@@ -44,6 +47,7 @@ font-face {
       height: 2px;
       background-color: #d43a31;
     }
+
     .progressBarDot {
       display: inline-block;
       position: absolute;
@@ -53,7 +57,7 @@ font-face {
       width: 10px;
       background-color: #d43a31;
       border-radius: 50%;
-      transition: left 0.2s; 
+      transition: left 0.2s;
     }
   }
 }

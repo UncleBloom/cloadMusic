@@ -106,7 +106,7 @@ function PlayBar(params: IPlayBarParams) {
    * @param event 鼠标点击事件
    */
   const handleClickLine: React.MouseEventHandler<HTMLDivElement> = (
-    event: React.MouseEvent
+      event: React.MouseEvent
   ) => {
     setProgressDotX(event.clientX);
     (audioNode as HTMLAudioElement).currentTime = ((event.clientX / window.innerWidth) * info.dt) / 1000;
@@ -115,14 +115,14 @@ function PlayBar(params: IPlayBarParams) {
     setDrag(true);
   };
   const handleMouseMove: React.MouseEventHandler<HTMLDivElement> = (
-    event: React.MouseEvent
+      event: React.MouseEvent
   ) => {
     if (drag) {
       setProgressDotX(event.clientX);
     }
   };
   const handleMouseUp: React.MouseEventHandler<HTMLDivElement> = (
-    event: React.MouseEvent
+      event: React.MouseEvent
   ) => {
     if (drag) {
       (audioNode as HTMLAudioElement).currentTime = ((event.clientX / window.innerWidth) * info.dt) / 1000;
@@ -170,169 +170,169 @@ function PlayBar(params: IPlayBarParams) {
   };
 
   return (
-    <div
-      className="playBar"
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-    >
-      <PlayListDisplay
-        playList={params.playList}
-        visible={playlistVisible}
-        onClose={() => setPlaylistVisible(false)}
-        changePlaying={params.changePlaying}
-        deleteSong={params.deleteSong}
-      />
-      <audio
-        ref={songAudio}
-        src={songUrl}
-        autoPlay
-        onEnded={() => params.playNextSong(replayThisSong)}
-        onPlay={params.setPlay}
-        onPause={params.setPause}
-      />
-      <div className="progressBar">
-        <div className="progressBarLine" onClick={handleClickLine}>
-          <div className="progressBarPlayedLine" style={playedLineCss}/>
-          <div
-            className="progressBarDot"
-            onMouseDown={handleMouseDown}
-            style={progressDotCss}
-          />
+      <div
+          className = "playBar"
+          onMouseMove = {handleMouseMove}
+          onMouseUp = {handleMouseUp}
+      >
+        <PlayListDisplay
+            playList = {params.playList}
+            visible = {playlistVisible}
+            onClose = {() => setPlaylistVisible(false)}
+            changePlaying = {params.changePlaying}
+            deleteSong = {params.deleteSong}
+        />
+        <audio
+            ref = {songAudio}
+            src = {songUrl}
+            autoPlay
+            onEnded = {() => params.playNextSong(replayThisSong)}
+            onPlay = {params.setPlay}
+            onPause = {params.setPause}
+        />
+        <div className = "progressBar">
+          <div className = "progressBarLine" onClick = {handleClickLine}>
+            <div className = "progressBarPlayedLine" style = {playedLineCss} />
+            <div
+                className = "progressBarDot"
+                onMouseDown = {handleMouseDown}
+                style = {progressDotCss}
+            />
+          </div>
         </div>
-      </div>
-      <div className="playBarContent">
+        <div className = "playBarContent">
         <span
-          className="infoDisplayPlayBar"
-          style={{visibility: info === EmptySongInfo ? "hidden" : "visible"}}
+            className = "infoDisplayPlayBar"
+            style = {{visibility: info === EmptySongInfo ? "hidden" : "visible"}}
         >
           {info === EmptySongInfo ? (
-            <img alt="" className="emptyImg"/>
+              <img alt = "" className = "emptyImg" />
           ) : (
-            <img
-              src={info.al.picUrl}
-              alt=""
-              onClick={() => {
-                window.scrollTo({
-                  top: 0,
-                  left: 0,
-                  behavior: "smooth",
-                });
-                if (isFolded) {
-                  window.location.hash = "/Play-page";
-                  document
-                    .querySelector(".playPage")
-                    ?.setAttribute("class", "playPage");
-                } else {
-                  window.history.back();
-                  document
-                    .querySelector(".playPage")
-                    ?.setAttribute("class", "playPage hide");
-                }
-                setIsFolded(!isFolded);
-              }}
-            />
+              <img
+                  src = {info.al.picUrl}
+                  alt = ""
+                  onClick = {() => {
+                    window.scrollTo({
+                      top: 0,
+                      left: 0,
+                      behavior: "smooth",
+                    });
+                    if (isFolded) {
+                      window.location.hash = "/Play-page";
+                      document
+                          .querySelector(".playPage")
+                          ?.setAttribute("class", "playPage");
+                    } else {
+                      window.history.back();
+                      document
+                          .querySelector(".playPage")
+                          ?.setAttribute("class", "playPage hide");
+                    }
+                    setIsFolded(!isFolded);
+                  }}
+              />
           )}
           <div>
-            <div className="nameAndArtist">
-              <span className="name">{info.name}</span>
-              <span className="artistName">{`  - ${info.ar[0].name}`}</span>
+            <div className = "nameAndArtist">
+              <span className = "name">{info.name}</span>
+              <span className = "artistName">{`  - ${info.ar[0].name}`}</span>
             </div>
-            <div className="duration">{`${formatCurrentTime(
-              currentTime
+            <div className = "duration">{`${formatCurrentTime(
+                currentTime
             )} / ${formatDuration(info.dt)}`}</div>
           </div>
         </span>
-        <span className="playController">
+          <span className = "playController">
           <StepBackwardOutlined
-            style={{fontSize: 30, color: "#d43a31"}}
-            onClick={() => params.playPreviousSong(replayThisSong)}
+              style = {{fontSize: 30, color: "#d43a31"}}
+              onClick = {() => params.playPreviousSong(replayThisSong)}
           />
           <span
-            className="playPauseButton"
-            onClick={params.playPause ? params.setPause : params.setPlay}
+              className = "playPauseButton"
+              onClick = {params.playPause ? params.setPause : params.setPlay}
           >
             {params.playPause ? (
-              <span
-                className="iconfont"
-                style={{fontSize: 40, color: "#d43a31"}}
-              >
+                <span
+                    className = "iconfont"
+                    style = {{fontSize: 40, color: "#d43a31"}}
+                >
                 &#xe61b;
               </span>
             ) : (
-              <span
-                className="iconfont"
-                style={{fontSize: 40, color: "#d43a31"}}
-              >
+                <span
+                    className = "iconfont"
+                    style = {{fontSize: 40, color: "#d43a31"}}
+                >
                 &#xea82;
               </span>
             )}
           </span>
           <StepForwardOutlined
-            style={{fontSize: 30, color: "#d43a31"}}
-            onClick={() => params.playNextSong(replayThisSong)}
+              style = {{fontSize: 30, color: "#d43a31"}}
+              onClick = {() => params.playNextSong(replayThisSong)}
           />
         </span>
-        <span className="listController">
-          <span className="patternButton" onClick={params.changePattern}>
+          <span className = "listController">
+          <span className = "patternButton" onClick = {params.changePattern}>
             {(() => {
               switch (params.pattern) {
                 case PlayPattern.Random:
-                  return <span className="iconfont">&#xea75;</span>;
+                  return <span className = "iconfont">&#xea75;</span>;
                 case PlayPattern.Loop:
-                  return <span className="iconfont">&#xea76;</span>;
+                  return <span className = "iconfont">&#xea76;</span>;
                 case PlayPattern.Single:
-                  return <span className="iconfont">&#xea77;</span>;
+                  return <span className = "iconfont">&#xea77;</span>;
               }
             })()}
           </span>
           <span
-            className="iconfont"
-            onClick={
-              playlistVisible
-                ? () => setPlaylistVisible(false)
-                : () => setPlaylistVisible(true)
-            }
-            style={
-              playlistVisible
-                ? {color: "#d43a31", fontWeight: "100"}
-                : {fontWeight: "100"}
-            }
+              className = "iconfont"
+              onClick = {
+                playlistVisible
+                    ? () => setPlaylistVisible(false)
+                    : () => setPlaylistVisible(true)
+              }
+              style = {
+                playlistVisible
+                    ? {color: "#d43a31", fontWeight: "100"}
+                    : {fontWeight: "100"}
+              }
           >
             &#xea6f;
           </span>
           <Popover
-            content={
-              <Slider
-                style={{
-                  display: "inline-block",
-                  height: 100,
-                }}
-                className="volumeSlider"
-                min={0}
-                max={100}
-                vertical={true}
-                value={mute ? 0 : volume}
-                onChange={handleSetVolume}
-              />
-            }
-            placement="top"
-            trigger="hover"
+              content = {
+                <Slider
+                    style = {{
+                      display: "inline-block",
+                      height: 100,
+                    }}
+                    className = "volumeSlider"
+                    min = {0}
+                    max = {100}
+                    vertical = {true}
+                    value = {mute ? 0 : volume}
+                    onChange = {handleSetVolume}
+                />
+              }
+              placement = "top"
+              trigger = "hover"
           >
-            <span className="iconfont" onClick={handleSetMute}>
+            <span className = "iconfont" onClick = {handleSetMute}>
               {volume === 0 || mute ? (
-                <>&#xea0b;</>
+                  <>&#xea0b;</>
               ) : volume <= 33 ? (
-                <>&#xea0d;</>
+                  <>&#xea0d;</>
               ) : volume <= 67 ? (
-                <>&#xea0e;</>
+                  <>&#xea0e;</>
               ) : (
-                <>&#xea0c;</>
+                  <>&#xea0c;</>
               )}
             </span>
           </Popover>
         </span>
+        </div>
       </div>
-    </div>
   );
 }
 
@@ -341,15 +341,15 @@ export default PlayBar;
 // 格式化时间输出
 const formatDuration = (time: number) => {
   const minute = Math.floor(time / 60000),
-    second = Math.floor(time / 1000) % 60;
+      second = Math.floor(time / 1000) % 60;
   return `${(minute < 10 ? "0" : "") + minute.toString()}:${
-    (second < 10 ? "0" : "") + second.toString()
+      (second < 10 ? "0" : "") + second.toString()
   }`;
 };
 const formatCurrentTime = (time: number) => {
   const minute = Math.floor(time / 60),
-    second = Math.floor(time % 60);
+      second = Math.floor(time % 60);
   return `${(minute < 10 ? "0" : "") + minute.toString()}:${
-    (second < 10 ? "0" : "") + second.toString()
+      (second < 10 ? "0" : "") + second.toString()
   }`;
 };

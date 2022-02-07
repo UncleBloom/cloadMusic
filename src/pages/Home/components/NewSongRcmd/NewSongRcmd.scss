@@ -2,11 +2,10 @@ $itemOuterWidth: 380px;
 $itemOuterHeight: 80px;
 $itemInnerHeight: 60px;
 
-@import "../../../../asset/fonts/home/iconfont.css";
+@import "../../font/iconfont.css";
 font-face {
   font-family: "iconfont";
-  src: url("../../../../asset/fonts/home/iconfont.ttf?t=1644068845673")
-    format("truetype");
+  src: url("../../font/iconfont.ttf?t=1644068845673")
 }
 
 .iconfont {
@@ -66,6 +65,7 @@ font-face {
         background-color: rgba($color: #ffffff, $alpha: 0.5);
         backdrop-filter: blur(5px);
         transition: all 0.3s;
+
         .iconfont {
           transition: all 0.3s;
           text-align: center;
@@ -78,6 +78,7 @@ font-face {
       &:hover .iconContainer {
         height: 40px;
         width: 40px;
+
         .iconfont {
           line-height: 40px;
           font-size: 20px;

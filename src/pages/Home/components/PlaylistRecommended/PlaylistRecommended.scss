@@ -1,12 +1,12 @@
-$itemInnerWidth: 120px;
-$itemOuterWidth: 160px;
+@import "../../font/iconfont.css";
 
-@import "../../../../asset/fonts/home/iconfont.css";
 font-face {
   font-family: "iconfont";
-  src: url("../../../../asset/fonts/home/iconfont.ttf?t=1644068845673")
-    format("truetype");
+  src: url("../../font/iconfont.ttf?t=1644068845673")
 }
+
+$itemInnerWidth: 120px;
+$itemOuterWidth: 160px;
 
 .PlaylistRecommended {
   display: flex;
@@ -39,6 +39,7 @@ font-face {
         right: 5px;
         color: white;
         font-size: 10px;
+
         &::before {
           content: "\ea6d";
           font-family: "iconfont" !important;

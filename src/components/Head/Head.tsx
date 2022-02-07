@@ -1,5 +1,6 @@
 import * as React from "react";
 import "./Head.scss";
+import Search from "./Search";
 
 function Header() {
   return (
@@ -25,6 +26,7 @@ function Header() {
           <div className="latestMusic pageItem">最新音乐</div>
         </div>
         <div className="about">
+          <Search />
           <div className="settingIconContainer"></div>
           <div className="mailIconContainer"></div>
           <div className="themeIconContainer"></div>

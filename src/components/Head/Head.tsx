@@ -32,7 +32,9 @@ function Header() {
             <div className = "latestMusic pageItem">最新音乐</div>
           </div>
           <div className = "about">
-            <Search />
+            <div className = "searchContainer">
+              <Search />
+            </div>
             <div className = "aboutIcons">
               <div className = "settingIconContainer">
                 <div className = "iconfont">&#xf021b;</div>

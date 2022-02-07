@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'iconfont';
+  src: url('font/iconfont.ttf?t=1644134888615') format('truetype');
+}
+
+.Search {
+  display: flex;
+  width: 150px;
+  height: 25px;
+  margin: auto;
+  border-radius: 15px;
+  background-color: #ececec;
+
+  .searchIcon {
+    width: 25px;
+    height: 25px;
+    margin: auto 5px;
+    line-height: 25px;
+    font-size: 20px;
+    color: #666666;
+  }
+
+  input {
+    height: 25px;
+    width: 85px;
+    border: none;
+    background-color: #ececec;
+    color: #666666;
+  }
+
+  .deleteIcon {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    line-height: 25px;
+    font-size: 16px;
+    color: #666666;
+  }
+}

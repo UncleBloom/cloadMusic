@@ -41,7 +41,7 @@ $HeaderHeight: 50px;
           font-size: 12px;
           line-height: 15px;
           font-weight: 700;
-          color: rgba(0,0,0,0.5);
+          color: rgba(0, 0, 0, 0.5);
           visibility: hidden;
         }
       }
@@ -90,6 +90,15 @@ $HeaderHeight: 50px;
     .about {
       display: flex;
 
+      .searchContainer {
+        display: flex;
+        height: 100%;
+
+        > div {
+          margin: auto;
+        }
+      }
+
       .aboutIcons {
         display: flex;
         padding: 0 10px;
@@ -100,7 +109,7 @@ $HeaderHeight: 50px;
           border-radius: 50%;
           margin: auto 5px;
 
-          &:hover{
+          &:hover {
             background-color: #eaeaea;
           }
 

@@ -24,3 +24,16 @@ yarn-error.log*
 
 /.idea
 /.vscode
+
+# 字体的 demo.html 文件
+src/components/Head/font/demo.css
+src/components/Head/font/demo_index.html
+
+src/components/Play-bar/font/demo.css
+src/components/Play-bar/font/demo_index.html
+
+src/components/Playlist-display/font/demo.css
+src/components/Playlist-display/font/demo_index.html
+
+src/pages/Home/font/demo.css
+src/pages/Home/font/demo_index.html

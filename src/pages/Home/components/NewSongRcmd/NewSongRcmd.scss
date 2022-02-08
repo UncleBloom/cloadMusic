@@ -3,18 +3,9 @@ $itemOuterHeight: 80px;
 $itemInnerHeight: 60px;
 
 @import "../../font/iconfont.css";
-font-face {
-  font-family: "iconfont";
-  src: url("../../font/iconfont.ttf?t=1644068845673")
-}
-
-.iconfont {
-  font-family: "iconfont" !important;
-  font-size: 20px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  cursor: pointer;
+@font-face {
+  font-family: "iconfontHome";
+  src: url("../../font/iconfont.ttf?t=1644068845673") format('truetype');
 }
 
 .NewSongRcmd {
@@ -67,6 +58,7 @@ font-face {
         transition: all 0.3s;
 
         .iconfont {
+          font-family: "iconfontHome" !important;
           transition: all 0.3s;
           text-align: center;
           line-height: 30px;

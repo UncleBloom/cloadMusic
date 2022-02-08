@@ -1,8 +1,8 @@
 @import "../../font/iconfont.css";
 
-font-face {
-  font-family: "iconfont";
-  src: url("../../font/iconfont.ttf?t=1644068845673")
+@font-face {
+  font-family: "iconfontHome";
+  src: url("../../font/iconfont.ttf?t=1644068845673") format('truetype');
 }
 
 $itemInnerWidth: 120px;
@@ -42,7 +42,7 @@ $itemOuterWidth: 160px;
 
         &::before {
           content: "\ea6d";
-          font-family: "iconfont" !important;
+          font-family: "iconfontHome" !important;
           font-weight: bold;
           margin-right: 2px;
           font-size: 10px;
@@ -61,6 +61,7 @@ $itemOuterWidth: 160px;
         visibility: hidden;
 
         .iconfont {
+          font-family: "iconfontHome" !important;
           text-align: center;
           line-height: 25px;
           font-size: 12px;

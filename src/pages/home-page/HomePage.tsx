@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import "./base.css";
-import Header from "../../components/Head/Head";
+import Header from "../../components/Header/Header";
 import SearchRes from "../Search/SearchRes";
 import Footer from "../../components/Footer/Footer";
 import BackTop from "../../components/BackTop/BackTop";
@@ -40,7 +40,7 @@ function HomePage() {
           <SearchKeyWords.Provider
               value = {{keyWord: keyWord, setKeyWord: setKeyWord}}
           >
-            <Header />
+            {/*<Header />*/}
             <Routes>
               {keyWord === "" ? (
                   <></>

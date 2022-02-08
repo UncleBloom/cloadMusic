@@ -15,7 +15,8 @@ function Search(params: ISearchParams) {
   return (
       <div className = "Search">
         <div className = "iconfont searchIcon" onClick = {initiateSearchRequest}>&#xe622;</div>
-        <input type = "text"
+        <input className = "input"
+               type = "text"
                placeholder = "搜索"
                value = {inputContent}
                onChange = {(event) => {

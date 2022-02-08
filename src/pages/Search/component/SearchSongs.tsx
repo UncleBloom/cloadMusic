@@ -1,6 +1,6 @@
-import React, {createRef} from "react";
+import React from "react";
 import ChangeWordColor from "./ChangeWordColor";
-import PlayController from '../../../components/Play-controller/PlayController';
+import { playControllerRef } from "../../../App";
 
 interface ISearchSongAlbum {
   id?: number;
@@ -31,15 +31,13 @@ interface ISearchSongsProps {
   songs: ISearchSong[];
 }
 
-export const playControllerRef = createRef<PlayController>();
-
 function SearchSongs(props: ISearchSongsProps) {
   return (
     <div className="search-res-songs">
       <table>
         <thead>
           <tr>
-            <td/>
+            <td />
             <td>音乐标题</td>
             <td>歌手</td>
             <td>专辑</td>

@@ -1,48 +1,44 @@
-import React, {useState, useEffect} from "react";
-import {Route, HashRouter as Router, Routes} from "react-router-dom";
+import React, { useState, useEffect, createRef } from "react";
+import { Route, HashRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header/Header";
-import Home from "./pages/Home/Home"
+import Home from "./pages/Home/Home";
 import SearchRes from "./pages/Search/SearchRes";
-import {playControllerRef} from "./pages/Search/component/SearchSongs";
 import PlayController from "./components/Play-controller/PlayController";
 import BackTop from "./components/BackTop/BackTop";
+import Play from "./pages/Play/Play";
 
+export const playControllerRef = createRef<PlayController>();
 
 function App() {
-
   const [searchKeyword, setSearchKeyword] = useState<string>("");
 
   useEffect(() => {
     if (searchKeyword !== "") {
       window.location.hash = "/search";
     }
-  }, [searchKeyword])
-
-  window.onhashchange = function () {
-    if (window.location.hash === "#/Play-page") {
-      document.querySelector(".playPage")?.setAttribute("class", "playPage");
-    } else {
-      document
-          .querySelector(".playPage")
-          ?.setAttribute("class", "playPage hide");
-    }
-  };
+  }, [searchKeyword]);
 
   return (
-      <div className = "App">
-        <Header initiateSearchRequest = {(content: string) => {
+    <div className="App">
+      <Header
+        initiateSearchRequest={(content: string) => {
           setSearchKeyword(content);
-        }} />
-        <Router>
-          <Routes>
-            <Route path = "/" element = {<Home />} />
-            <Route path = "/search" element = {<SearchRes keywords = {searchKeyword} />} />
-          </Routes>
-        </Router>
-        <PlayController ref = {playControllerRef} />
-        <BackTop />
-      </div>
+        }}
+      />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/search"
+            element={<SearchRes keywords={searchKeyword} />}
+          />
+          <Route path="/play" element={<Play />} />
+        </Routes>
+      </Router>
+      <PlayController ref={playControllerRef} />
+      <BackTop />
+    </div>
   );
 }
 

@@ -9,6 +9,7 @@ import { message } from "antd";
 import Play from "../../pages/Play/Play";
 
 interface IPlayControllerState {
+  // playingInfo: ISongInfo;
   playList: IPlayList;
   currentTime: number;
   playPause: boolean;
@@ -29,6 +30,7 @@ class PlayController extends React.Component<
   constructor(props: IPlayControllerProps) {
     super(props);
     this.state = {
+      // playingInfo: EmptySongInfo,
       playList: EmptyList,
       // playList: testSongList,
       currentTime: 0,
@@ -36,6 +38,24 @@ class PlayController extends React.Component<
       playPattern: PlayPattern.Loop,
     };
   }
+
+  // 在播放列表改变时更新当前播放歌曲的信息
+  // componentDidUpdate(
+  //   prevProps: Readonly<IPlayControllerProps>,
+  //   prevState: Readonly<IPlayControllerState>,
+  //   snapshot?: any
+  // ) {
+  //   const flag =
+  //     prevState.playList.playing !== this.state.playList.playing ||
+  //     prevState.playList.songs !== this.state.playList.songs;
+  //   if (flag) {
+  //     let nextPlayingInfo =
+  //       this.state.playList.playing === -1
+  //         ? EmptySongInfo
+  //         : this.state.playList.songs[this.state.playList.playing];
+  //     this.setState({ playingInfo: nextPlayingInfo });
+  //   }
+  // }
 
   handleSetPlay = () => {
     if (this.state.playList.playing === -1) {
@@ -255,11 +275,11 @@ class PlayController extends React.Component<
           changePlaying={this.changePlaying}
           deleteSong={this.deleteSong}
         />
-        <Play
-          song={playingInfo}
-          currentTime={this.state.currentTime}
-          playPause={this.state.playPause}
-        />
+        {/*<Play*/}
+        {/*  song={playingInfo}*/}
+        {/*  currentTime={this.state.currentTime}*/}
+        {/*  playPause={this.state.playPause}*/}
+        {/*/>*/}
       </>
     );
   }

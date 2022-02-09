@@ -1,6 +1,5 @@
 import React from "react";
 import ChangeWordColor from "./ChangeWordColor";
-import { playControllerRef } from "../../../App";
 
 interface ISearchSongAlbum {
   id?: number;
@@ -29,6 +28,7 @@ interface ISearchSongsProps {
   //取值意义 : 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合
   songCount: number;
   songs: ISearchSong[];
+  addToSongList: (id: number, andPlay?: boolean) => void;
 }
 
 function SearchSongs(props: ISearchSongsProps) {
@@ -51,7 +51,7 @@ function SearchSongs(props: ISearchSongsProps) {
               <tr
                 key={index}
                 onDoubleClick={() => {
-                  playControllerRef.current?.addToPlayList(song.id, true);
+                  props.addToSongList(song.id, true);
                 }}
               >
                 <td className="iconfont">

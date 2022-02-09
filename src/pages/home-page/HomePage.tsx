@@ -4,10 +4,9 @@ import Header from "../../components/Header/Header";
 import SearchRes from "../Search/SearchRes";
 import Footer from "../../components/Footer/Footer";
 import BackTop from "../../components/BackTop/BackTop";
-import PlayController from "../../components/Play-controller/PlayController";
 import { Route, Routes } from "react-router-dom";
 import Login from "../../components/Login/Login";
-import { playControllerRef } from "../../App";
+// import { playControllerRef } from "../../App";
 import Register from "../../components/Register/Register";
 import Home from "../Home/Home";
 
@@ -41,24 +40,24 @@ function HomePage() {
           value={{ keyWord: keyWord, setKeyWord: setKeyWord }}
         >
           {/*<Header />*/}
-          <Routes>
-            {keyWord === "" ? (
-              <></>
-            ) : (
-              <Route
-                path="/search"
-                element={<SearchRes keywords={keyWord} />}
-              />
-            )}
-            <Route path="/playPage" element={<></>} />
+          {/*<Routes>*/}
+          {/*  {keyWord === "" ? (*/}
+          {/*    <></>*/}
+          {/*  ) : (*/}
+          {/*    <Route*/}
+          {/*      path="/search"*/}
+          {/*      element={<SearchRes keywords={keyWord} />}*/}
+          {/*    />*/}
+          {/*  )}*/}
+          {/*  <Route path="/playPage" element={<></>} />*/}
 
-            {/* <Route path="/login" element={<Login />} /> */}
-          </Routes>
+          {/*  /!* <Route path="/login" element={<Login />} /> *!/*/}
+          {/*</Routes>*/}
         </SearchKeyWords.Provider>
         <Login />
         <Register />
         <BackTop />
-        <PlayController ref={playControllerRef} />
+        {/*<PlayController ref={playControllerRef} />*/}
         <Home />
       </div>
 

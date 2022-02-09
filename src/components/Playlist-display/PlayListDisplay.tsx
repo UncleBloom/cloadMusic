@@ -1,10 +1,11 @@
 import * as React from "react";
-import IPlayList from "../../api/types/playList";
 import { Drawer } from "antd";
 import "./PlayListDisplay.scss";
+import ISongInfo from "../../api/types/songInfo";
 
 interface IPlayListDisplayProps {
-  playList: IPlayList;
+  songList: ISongInfo[];
+  playingIndex: number;
   visible: boolean;
   onClose: () => void;
   deleteSong: (index: number) => void;
@@ -15,17 +16,13 @@ function PlayListDisplay(params: IPlayListDisplayProps) {
   const title = (
     <div className="title">
       <span className="titleName">播放列表</span>
-      <span className="count">
-        （{params.playList.songs.length.toString()}首）
-      </span>
+      <span className="count">（{params.songList.length.toString()}首）</span>
     </div>
   );
 
-  const listItems = params.playList.songs.map((song, index) => (
+  const listItems = params.songList.map((song, index) => (
     <div
-      className={
-        index === params.playList.playing ? "playingItem" : "playListItem"
-      }
+      className={index === params.playingIndex ? "playingItem" : "playListItem"}
       key={index}
       onDoubleClick={() => params.changePlaying(index)}
     >

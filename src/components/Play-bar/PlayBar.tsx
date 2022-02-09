@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import ISongInfo, { EmptySongInfo } from "../../api/types/songInfo";
 import { Popover, Slider } from "antd";
 import { StepBackwardOutlined, StepForwardOutlined } from "@ant-design/icons";
@@ -7,7 +7,6 @@ import "./PlayBar.scss";
 import PlayPattern from "../../api/types/playPattern";
 import axios from "axios";
 import serverHost from "../../api/serverHost";
-import IPlayList from "../../api/types/playList";
 import PlayListDisplay from "../Playlist-display/PlayListDisplay";
 // import { EmptyList } from "../../api/types/playList";
 import useInterval from "../../hooks/useInterval";
@@ -21,7 +20,8 @@ interface ISongUrlResponse {
 }
 
 interface IPlayBarParams {
-  playList: IPlayList;
+  songList: ISongInfo[];
+  playingIndex: number;
   songInfo: ISongInfo; // 歌曲信息
   playPause: boolean; // 播放/暂停
   pattern: PlayPattern; // 播放模式
@@ -29,13 +29,15 @@ interface IPlayBarParams {
   setPause: () => void;
   changePattern: () => void; // 改变播放模式的回调函数
   fetchCurrentTime: (value: number) => void; // 获得当前播放时间的回调函数
-  playNextSong: (replayCallback: () => void) => boolean; // 播放下一首歌曲
-  playPreviousSong: (replayCallback: () => void) => boolean; // 播放上一首歌曲
+  playNextSong: () => boolean; // 播放下一首歌曲
+  playPreviousSong: () => boolean; // 播放上一首歌曲
   changePlaying: (index: number) => void;
   deleteSong: (index: number) => void; // 删除歌曲
 }
 
-function PlayBar(params: IPlayBarParams) {
+export const audioRef = React.createRef<HTMLAudioElement>();
+
+export function PlayBar(params: IPlayBarParams) {
   const info: ISongInfo = params.songInfo;
   const [isFolded, setIsFolded] = React.useState(true);
   const [volume, setVolume] = useState<number>(70);
@@ -45,8 +47,8 @@ function PlayBar(params: IPlayBarParams) {
   const [progressDotX, setProgressDotX] = useState<number>(0);
   const [songUrl, setSongUrl] = useState<string>("");
   const [currentTime, setCurrentTime] = useState<number>(0);
-  const songAudio = useRef<HTMLAudioElement>(null);
-  const audioNode = songAudio.current;
+  // const songAudio = useRef<HTMLAudioElement>(null);
+  const audioNode = audioRef.current;
 
   /**
    * 每 200ms 更新一次播放进度
@@ -153,16 +155,6 @@ function PlayBar(params: IPlayBarParams) {
       setVolume(value);
     }
   };
-  /**
-   * 当播放模式为单曲循环时，点击上一首 或 下一首
-   */
-  const replayThisSong = () => {
-    if (audioNode && params.songInfo !== EmptySongInfo) {
-      (audioNode as HTMLAudioElement).currentTime = 0;
-    } else {
-      params.setPlay();
-    }
-  };
 
   const playedLineCss: React.CSSProperties = {
     width: progressDotX,
@@ -178,17 +170,18 @@ function PlayBar(params: IPlayBarParams) {
       onMouseUp={handleMouseUp}
     >
       <PlayListDisplay
-        playList={params.playList}
+        songList={params.songList}
+        playingIndex={params.playingIndex}
         visible={playlistVisible}
         onClose={() => setPlaylistVisible(false)}
         changePlaying={params.changePlaying}
         deleteSong={params.deleteSong}
       />
       <audio
-        ref={songAudio}
+        ref={audioRef}
         src={songUrl}
         autoPlay
-        onEnded={() => params.playNextSong(replayThisSong)}
+        onEnded={() => params.playNextSong()}
         onPlay={params.setPlay}
         onPause={params.setPause}
       />
@@ -247,7 +240,7 @@ function PlayBar(params: IPlayBarParams) {
         <span className="playController">
           <StepBackwardOutlined
             style={{ fontSize: 30, color: "#d43a31" }}
-            onClick={() => params.playPreviousSong(replayThisSong)}
+            onClick={() => params.playPreviousSong()}
           />
           <span
             className="playPauseButton"
@@ -271,7 +264,7 @@ function PlayBar(params: IPlayBarParams) {
           </span>
           <StepForwardOutlined
             style={{ fontSize: 30, color: "#d43a31" }}
-            onClick={() => params.playNextSong(replayThisSong)}
+            onClick={() => params.playNextSong()}
           />
         </span>
         <span className="listController">

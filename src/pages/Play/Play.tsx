@@ -1,27 +1,26 @@
 import React from "react";
 import "./Play.scss";
-import { EmptySongInfo } from "../../api/types/songInfo";
+import ISongInfo, { EmptySongInfo } from "../../api/types/songInfo";
 import CommentsBar from "./components/commentsBar";
 import LyricBar from "./components/lyricBar";
-import { playControllerRef } from "../../App";
 
-function Play() {
-  let playingInfo = playControllerRef.current
-    ? playControllerRef.current.state.playList.playing === -1
-      ? EmptySongInfo
-      : playControllerRef.current.state.playList.songs[
-          playControllerRef.current.state.playList.playing
-        ]
-    : EmptySongInfo;
+// import { playControllerRef } from "../../App";
 
+interface IPlayParam {
+  song: ISongInfo;
+  currentTime: number;
+  playPause: boolean;
+}
+
+function Play(params: IPlayParam) {
   return (
     <div className={"playPage"}>
       <div className="albg">
-        {playingInfo === EmptySongInfo ? (
+        {params.song === EmptySongInfo ? (
           <></>
         ) : (
           <img
-            src={playingInfo.al.picUrl}
+            src={params.song.al.picUrl}
             alt="background"
             style={{ width: Math.max(window.innerWidth, window.innerHeight) }}
           />
@@ -34,22 +33,18 @@ function Play() {
             <div>
               <div
                 className={
-                  playControllerRef.current?.state.playPause
+                  params.playPause
                     ? "diskBar diskBarAfter"
                     : "diskBar diskBarOrigin"
                 }
               />
               <div className="disk">
-                {playingInfo === EmptySongInfo ? (
+                {params.song === EmptySongInfo ? (
                   <></>
                 ) : (
                   <img
-                    className={
-                      playControllerRef.current?.state.playPause
-                        ? "rotateImg"
-                        : "standImg"
-                    }
-                    src={playingInfo.al.picUrl}
+                    className={params.playPause ? "rotateImg" : "standImg"}
+                    src={params.song.al.picUrl}
                     alt=""
                   />
                 )}
@@ -57,28 +52,24 @@ function Play() {
             </div>
           </div>
           <div className="playPageUpRight">
-            <div className="playPageSongName">{playingInfo.name}</div>
+            <div className="playPageSongName">{params.song.name}</div>
             <div className="playPageArAl">
               <span className="playPageAl">
                 <p>专辑: </p>
-                <span>{playingInfo.al.name}</span>
+                <span>{params.song.al.name}</span>
               </span>
               <span className="playPageAr">
                 <p>歌手: </p>
-                <span>{playingInfo.ar[0].name}</span>
+                <span>{params.song.ar[0].name}</span>
               </span>
             </div>
             <LyricBar
-              songId={playingInfo.id}
-              currentTime={
-                playControllerRef.current
-                  ? playControllerRef.current.state.currentTime
-                  : 0
-              }
+              songId={params.song.id}
+              currentTime={params.currentTime}
             />
           </div>
         </div>
-        <CommentsBar songId={playingInfo.id} />
+        <CommentsBar songId={params.song.id} />
       </div>
     </div>
   );

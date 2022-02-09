@@ -1,10 +1,12 @@
 .playPage {
-  background-color: rgba(64, 64, 64, 0.6);
+  background-color: rgba(99, 119, 157, 0.65);
+
   .albg {
     position: fixed;
     filter: blur(100px);
     z-index: -1;
     transition: all 0.5s;
+
     .img {
       display: block;
       // transform: scale(1.5, 1.5);
@@ -106,6 +108,7 @@
 .playPage .playPageUpRight {
   display: inline-block;
   width: 500px;
+
   .playPageSongName {
     display: inline-block;
     width: 100%;
@@ -114,12 +117,15 @@
     margin-top: 80px;
     margin-bottom: 40px;
   }
+
   .playPageArAl {
     display: flex;
     width: 100%;
     justify-content: space-around;
+
     span {
       display: flex;
+
       span {
         display: flex;
         color: rgba(130, 151, 235, 0.9);
@@ -128,6 +134,7 @@
         white-space: nowrap;
         text-overflow: ellipsis;
       }
+
       p {
         display: inline-block;
         color: rgba(256, 256, 256, 0.7);

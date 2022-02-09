@@ -32,8 +32,8 @@ src/components/Head/font/demo_index.html
 src/components/PlayBar/font/demo.css
 src/components/PlayBar/font/demo_index.html
 
-src/components/Playlist-display/font/demo.css
-src/components/Playlist-display/font/demo_index.html
+src/components/PlaylistDisplay/font/demo.css
+src/components/PlaylistDisplay/font/demo_index.html
 
 src/pages/Home/font/demo.css
 src/pages/Home/font/demo_index.html

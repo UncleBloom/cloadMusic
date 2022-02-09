@@ -7,7 +7,7 @@ import "./PlayBar.scss";
 import PlayPattern from "../../api/types/playPattern";
 import axios from "axios";
 import serverHost from "../../api/serverHost";
-import PlayListDisplay from "../Playlist-display/PlayListDisplay";
+import PlayListDisplay from "../PlaylistDisplay/PlayListDisplay";
 // import { EmptyList } from "../../api/types/playList";
 import useInterval from "../../hooks/useInterval";
 

@@ -9,7 +9,7 @@ import ISongInfo, { EmptySongInfo } from "./api/types/songInfo";
 import PlayPattern from "./api/types/playPattern";
 import axios from "axios";
 import serverHost from "./api/serverHost";
-import { audioRef, PlayBar } from "./components/Play-bar/PlayBar";
+import { audioRef, PlayBar } from "./components/PlayBar/PlayBar";
 import { message } from "antd";
 import Play from "./pages/Play/Play";
 

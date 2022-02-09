@@ -1,10 +1,10 @@
 @import "~antd/dist/antd.css";
 @import "font/iconfont.css";
 
-//font-face {
-//  font-family: "iconfont";
-//  src: url("font/iconfont.ttf?t=1640056692595")
-//}
+@font-face {
+  font-family: "iconfont";
+  src: url("font/iconfont.ttf?t=1640056692595")
+}
 
 .playBar {
   position: fixed;
@@ -63,57 +63,55 @@
   align-items: center;
   height: 50px;
   width: 450px;
+
+  img {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  > div {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 380px;
+    height: 50px;
+    padding: 5px 0;
+    margin-left: 10px;
+
+    .nameAndArtist {
+      display: inline-block;
+      width: 380px;
+      padding: 0;
+      margin: 0;
+      text-align-last: left;
+
+      .name {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: #3b3b3b;
+      }
+
+      .artistName {
+        color: rgb(76, 76, 76);
+        font-size: 13px;
+      }
+    }
+
+    .duration {
+      display: inline-block;
+      width: 140px;
+      text-align: left;
+      color: rgb(76, 76, 76);
+      font-size: 12px;
+    }
+  }
 }
 
-.infoDisplayPlayBar img {
-  display: inline-block;
-  height: 50px;
-  width: 50px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.infoDisplayPlayBar > div {
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 380px;
-  height: 50px;
-  padding: 5px 0;
-  margin-left: 10px;
-}
-
-.infoDisplayPlayBar .nameAndArtist {
-  display: inline-block;
-  width: 380px;
-  padding: 0;
-  margin: 0;
-  text-align-last: left;
-}
-
-.infoDisplayPlayBar .nameAndArtist .name {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  color: #3b3b3b;
-}
-
-.infoDisplayPlayBar .duration {
-  display: inline-block;
-  width: 140px;
-  text-align: left;
-}
-
-.infoDisplayPlayBar .nameAndArtist .artistName {
-  color: rgba(76, 76, 76, 0.8);
-  font-size: 12px;
-}
-
-.infoDisplayPlayBar .duration {
-  color: rgba(76, 76, 76, 0.8);
-  font-size: 12px;
-}
 
 .playController {
   display: inline-flex;
@@ -129,9 +127,17 @@
   margin: 0 20px;
 }
 
-.listController > span {
-  margin: 0 10px;
-  font-size: 20px;
+.listController {
+
+
+  > span {
+    margin: auto 10px;
+  }
+
+  .controlIcon {
+
+    font-size: 20px;
+  }
 }
 
 .infoDisplayPlayBar .emptyImg {

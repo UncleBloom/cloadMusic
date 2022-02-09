@@ -196,7 +196,7 @@ export function PlayBar(params: IPlayBarParams) {
         </div>
       </div>
       <div className="playBarContent">
-        <span
+        <div
           className="infoDisplayPlayBar"
           style={{ visibility: info === EmptySongInfo ? "hidden" : "visible" }}
         >
@@ -236,7 +236,7 @@ export function PlayBar(params: IPlayBarParams) {
               currentTime
             )} / ${formatDuration(info.dt)}`}</div>
           </div>
-        </span>
+        </div>
         <span className="playController">
           <StepBackwardOutlined
             style={{ fontSize: 30, color: "#d43a31" }}
@@ -268,20 +268,23 @@ export function PlayBar(params: IPlayBarParams) {
           />
         </span>
         <span className="listController">
-          <span className="patternButton" onClick={params.changePattern}>
+          <span
+            className="patternButton iconfont controlIcon"
+            onClick={params.changePattern}
+          >
             {(() => {
               switch (params.pattern) {
                 case PlayPattern.Random:
-                  return <span className="iconfont">&#xea75;</span>;
+                  return <>&#xea75;</>;
                 case PlayPattern.Loop:
-                  return <span className="iconfont">&#xea76;</span>;
+                  return <>&#xea76;</>;
                 case PlayPattern.Single:
-                  return <span className="iconfont">&#xea77;</span>;
+                  return <>&#xea77;</>;
               }
             })()}
           </span>
           <span
-            className="iconfont"
+            className="iconfont controlIcon"
             onClick={
               playlistVisible
                 ? () => setPlaylistVisible(false)
@@ -313,7 +316,7 @@ export function PlayBar(params: IPlayBarParams) {
             placement="top"
             trigger="hover"
           >
-            <span className="iconfont" onClick={handleSetMute}>
+            <span className="iconfont controlIcon" onClick={handleSetMute}>
               {volume === 0 || mute ? (
                 <>&#xea0b;</>
               ) : volume <= 33 ? (

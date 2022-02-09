@@ -4,8 +4,6 @@ import ISongInfo, { EmptySongInfo } from "../../api/types/songInfo";
 import CommentsBar from "./components/commentsBar";
 import LyricBar from "./components/lyricBar";
 
-// import { playControllerRef } from "../../App";
-
 interface IPlayParam {
   song: ISongInfo;
   currentTime: number;

@@ -12,6 +12,7 @@ import serverHost from "./api/serverHost";
 import { audioRef, PlayBar } from "./components/PlayBar/PlayBar";
 import { message } from "antd";
 import Play from "./pages/Play/Play";
+import Page404 from "./pages/404/404";
 
 interface ISongInfoResponse {
   code: number;
@@ -222,6 +223,7 @@ function App() {
               />
             }
           />
+          <Route path="/404" element={<Page404 />} />
         </Routes>
       </Router>
 
@@ -244,7 +246,6 @@ function App() {
         changePlaying={changePlaying}
         deleteSong={deleteSong}
       />
-      {/*<PlayController ref={playControllerRef} />*/}
       <BackTop />
     </div>
   );

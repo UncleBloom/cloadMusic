@@ -20,6 +20,7 @@ $HeaderHeight: 50px;
     display: flex;
     width: 200px;
     flex-shrink: 0;
+    justify-content: space-between;
 
     .windowController {
       display: flex;
@@ -58,6 +59,30 @@ $HeaderHeight: 50px;
         background-color: #64c653;
       }
     }
+
+    .routerController {
+      display: flex;
+      margin-right: 6px;
+
+      > div {
+        height: 30px;
+        width: 30px;
+        margin: auto 0;
+        border-radius: 50%;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #eaeaea;
+        }
+
+        .iconfont {
+          line-height: 30px;
+          font-size: 18px;
+          color: #666666;
+        }
+      }
+
+    }
   }
 
   .HeaderRight {
@@ -69,14 +94,17 @@ $HeaderHeight: 50px;
       display: flex;
       margin-left: 20px;
 
-      .pageItem {
+      div {
         height: 100%;
         width: 90px;
         line-height: $HeaderHeight;
-        color: #646464;
         font-weight: bold;
         font-size: 15px;
         cursor: pointer;
+      }
+
+      .pageItem {
+        color: #646464;
 
         &:hover {
           color: #323232;
@@ -115,6 +143,7 @@ $HeaderHeight: 50px;
           }
 
           .iconfont {
+            font-size: 18px;
             line-height: 30px;
             color: #666666;
           }

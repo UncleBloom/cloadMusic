@@ -1,0 +1,28 @@
+.Page404 {
+  width: 100%;
+  height: auto;
+  margin: auto;
+  padding-top: 150px;
+  padding-bottom: 200px;
+
+  background: radial-gradient(#aaaaaa, #ffffffff 60%);
+
+  img {
+    width: 500px;
+  }
+
+  .title {
+    h2 {
+      color: #2d2d2d;
+      font-size: 36px;
+      letter-spacing: 4px;
+      line-height: 120px;
+    }
+
+    h4 {
+      color: #2d2d2d;
+      font-size: 18px;
+      line-height: 38px;
+    }
+  }
+}

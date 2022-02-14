@@ -33,7 +33,11 @@ function PlaylistRecommended() {
         return (
           <div className="listItem" key={index}>
             <div className="listPic">
-              <img src={value.picUrl} alt={""} loading={"lazy"} />
+              <img
+                src={value.picUrl + "?param=200y200"}
+                alt={""}
+                loading={"lazy"}
+              />
               <div className="playCount">
                 {formatPlayCount(value.playCount)}
               </div>

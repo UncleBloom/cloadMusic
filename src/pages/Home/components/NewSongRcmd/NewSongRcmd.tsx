@@ -5,7 +5,11 @@ import axios from "axios";
 import serverHost from "../../../../api/serverHost";
 import "./NewSongRcmd.scss";
 
-function NewSongRcmd() {
+interface INewSongRcmdParams {
+  addToPlaylist: (id: number, addPlay?: boolean) => void;
+}
+
+function NewSongRcmd(params: INewSongRcmdParams) {
   const [newSongItems, setNewSongItems] = useState<INewSongRcmdItem[]>(
     new Array<INewSongRcmdItem>(10).fill(LoadingSongInfo)
   );
@@ -31,8 +35,17 @@ function NewSongRcmd() {
         return (
           <div className="NewSongItem" key={index}>
             <div className="SongPic">
-              <img src={value.picUrl} alt="" loading="lazy" />
-              <div className="iconContainer">
+              <img
+                src={value.picUrl + "?param=200y200"}
+                alt=""
+                loading="lazy"
+              />
+              <div
+                className="iconContainer"
+                onClick={() => {
+                  params.addToPlaylist(value.id, true);
+                }}
+              >
                 <div className="iconfont">&#xea82;</div>
               </div>
             </div>

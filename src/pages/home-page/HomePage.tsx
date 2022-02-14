@@ -58,7 +58,7 @@ function HomePage() {
         <Register />
         <BackTop />
         {/*<PlayController ref={playControllerRef} />*/}
-        <Home />
+        {/*<Home />*/}
       </div>
 
       <Footer />

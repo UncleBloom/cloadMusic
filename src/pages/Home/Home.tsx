@@ -4,7 +4,11 @@ import NewSongRcmd from "./components/NewSongRcmd/NewSongRcmd";
 import PlaylistRecommended from "./components/PlaylistRecommended/PlaylistRecommended";
 import "./Home.scss";
 
-function Home() {
+interface IHomeParams {
+  addToPlaylist: (id: number, addPlay?: boolean) => void;
+}
+
+function Home(params: IHomeParams) {
   return (
     <div className="Home">
       <div className="user"></div>
@@ -21,7 +25,7 @@ function Home() {
           </div>
           <div className="findingItem newSongRcmdItem">
             <div className="findingItemName newSongRcmdItemName">新歌推荐</div>
-            <NewSongRcmd />
+            <NewSongRcmd addToPlaylist={params.addToPlaylist} />
           </div>
         </div>
       </div>

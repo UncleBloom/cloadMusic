@@ -37,6 +37,7 @@ $HeaderHeight: 50px;
         margin: auto 5px;
         display: flex;
         justify-content: center;
+        cursor: pointer;
 
         .iconfont {
           font-size: 12px;
@@ -137,6 +138,7 @@ $HeaderHeight: 50px;
           width: 30px;
           border-radius: 50%;
           margin: auto 5px;
+          cursor: pointer;
 
           &:hover {
             background-color: #eaeaea;

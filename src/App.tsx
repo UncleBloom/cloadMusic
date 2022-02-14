@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {HashRouter as Router, Route, Routes} from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Home from "./pages/Home/Home";
 import SearchRes from "./pages/Search/SearchRes";
 import BackTop from "./components/BackTop/BackTop";
-import ISongInfo, { EmptySongInfo } from "./api/types/songInfo";
+import ISongInfo, {EmptySongInfo} from "./api/types/songInfo";
 import PlayPattern from "./api/types/playPattern";
 import axios from "axios";
 import serverHost from "./api/serverHost";
-import { audioRef, PlayBar } from "./components/PlayBar/PlayBar";
-import { message } from "antd";
+import {audioRef, PlayBar} from "./components/PlayBar/PlayBar";
+import {message} from "antd";
 import Play from "./pages/Play/Play";
 import Page404 from "./pages/404/404";
 
@@ -31,11 +31,11 @@ function App() {
   const [playPause, setPlayPause] = useState<boolean>(false); // 播放暂停
   const [playPattern, setPlayPattern] = useState<PlayPattern>(PlayPattern.Loop); // 播放循环方式
 
-  useEffect(() => {
-    if (searchKeyword !== "") {
-      window.location.hash = "/search";
-    }
-  }, [searchKeyword]);
+  // useEffect(() => {
+  //   if (searchKeyword !== "") {
+  //     window.location.hash = "/search";
+  //   }
+  // }, [searchKeyword]);
 
   const handleSetPlay = () => {
     if (ptPlaying === -1) {
@@ -93,8 +93,8 @@ function App() {
       case PlayPattern.Random:
         if (ptHistory === playHistory.length - 1) {
           const nextPlayIndex = generateRandomNumber(
-            songList.length,
-            ptPlaying
+              songList.length,
+              ptPlaying
           );
           let nextHistory = playHistory;
           nextHistory.push(nextPlayIndex);
@@ -132,8 +132,8 @@ function App() {
       case PlayPattern.Random:
         if (ptHistory === 0) {
           const nextPlayIndex = generateRandomNumber(
-            songList.length,
-            ptPlaying
+              songList.length,
+              ptPlaying
           );
           let nextPlayHistory = playHistory;
           nextPlayHistory.unshift(nextPlayIndex);
@@ -149,13 +149,13 @@ function App() {
 
   /**
    * 加入一首歌曲至播放队列
-   * @param id 歌曲的详情(建议)或Id
+   * @param id 歌曲的Id
    * @param andPlay 是否在加入播放队列时开始播放
    */
   const addToSongList = async (id: number, andPlay: boolean = false) => {
     if (
-      songList.length !== 0 &&
-      songList.map((value) => value.id).includes(id)
+        songList.length !== 0 &&
+        songList.map((value) => value.id).includes(id)
     ) {
       message.warning("播放队列中已有当前歌曲", 1);
       return;
@@ -170,6 +170,14 @@ function App() {
   };
 
   /**
+   * 将歌单歌曲设置为播放列表
+   * @param id 歌单的id
+   */
+  const addSongsFromList = (id: number) => {
+
+  }
+
+  /**
    * 从播放列表中删除索引为 index 的歌曲
    * @param index 歌曲索引值
    */
@@ -182,7 +190,7 @@ function App() {
       return;
     }
     let nextSongList = songList,
-      nextPtPlaying = ptPlaying;
+        nextPtPlaying = ptPlaying;
     nextSongList.splice(index, 1);
     if (nextPtPlaying > index) {
       nextPtPlaying--;
@@ -194,60 +202,65 @@ function App() {
   let playingInfo = ptPlaying === -1 ? EmptySongInfo : songList[ptPlaying];
 
   return (
-    <div className="App">
-      <Header
-        initiateSearchRequest={(content: string) => {
-          setSearchKeyword(content);
-        }}
-      />
+      <div className="App">
+        <Header
+            initiateSearchRequest={(content: string) => {
+              setSearchKeyword(content);
+              if (content === "") {
+                message.warning("搜索栏为空", 1);
+              } else {
+                window.location.hash = "/search";
+              }
+            }}
+        />
 
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home addToPlaylist={addToSongList} />} />
-          <Route
-            path="/search"
-            element={
-              <SearchRes
-                keywords={searchKeyword}
-                addToSongList={addToSongList}
-              />
-            }
-          />
-          <Route
-            path="/play"
-            element={
-              <Play
-                currentTime={currentTime}
-                playPause={playPause}
-                song={playingInfo}
-              />
-            }
-          />
-          <Route path="/404" element={<Page404 />} />
-        </Routes>
-      </Router>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home addToPlaylist={addToSongList} />} />
+            <Route
+                path="/search"
+                element={
+                  <SearchRes
+                      keywords={searchKeyword}
+                      addToSongList={addToSongList}
+                  />
+                }
+            />
+            <Route
+                path="/play"
+                element={
+                  <Play
+                      currentTime={currentTime}
+                      playPause={playPause}
+                      song={playingInfo}
+                  />
+                }
+            />
+            <Route path="/404" element={<Page404 />} />
+          </Routes>
+        </Router>
 
-      <PlayBar
-        songList={songList}
-        playingIndex={ptPlaying}
-        songInfo={playingInfo}
-        playPause={playPause}
-        pattern={playPattern}
-        setPlay={handleSetPlay}
-        setPause={() => setPlayPause(false)}
-        changePattern={() => {
-          setPlayPattern((playPattern + 1) % 3);
-        }}
-        fetchCurrentTime={(value) => {
-          setCurrentTime(value);
-        }}
-        playNextSong={playNextSong}
-        playPreviousSong={playPrevSong}
-        changePlaying={changePlaying}
-        deleteSong={deleteSong}
-      />
-      <BackTop />
-    </div>
+        <PlayBar
+            songList={songList}
+            playingIndex={ptPlaying}
+            songInfo={playingInfo}
+            playPause={playPause}
+            pattern={playPattern}
+            setPlay={handleSetPlay}
+            setPause={() => setPlayPause(false)}
+            changePattern={() => {
+              setPlayPattern((playPattern + 1) % 3);
+            }}
+            fetchCurrentTime={(value) => {
+              setCurrentTime(value);
+            }}
+            playNextSong={playNextSong}
+            playPreviousSong={playPrevSong}
+            changePlaying={changePlaying}
+            deleteSong={deleteSong}
+        />
+        <BackTop />
+      </div>
   );
 }
 

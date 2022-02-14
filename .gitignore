@@ -35,5 +35,11 @@ src/components/PlayBar/font/demo_index.html
 src/components/PlaylistDisplay/font/demo.css
 src/components/PlaylistDisplay/font/demo_index.html
 
+src/components/Header/font/demo_index.html
+src/components/Header/font/demo.css
+
 src/pages/Home/font/demo.css
 src/pages/Home/font/demo_index.html
+
+src/asset/fonts/demo_index.html
+src/asset/fonts/demo.css

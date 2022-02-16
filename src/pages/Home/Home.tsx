@@ -6,6 +6,7 @@ import "./Home.scss";
 
 interface IHomeParams {
   addToPlaylist: (id: number, addPlay?: boolean) => void;
+  resetPlaylistBySongList: (id: number) => void;
 }
 
 function Home(params: IHomeParams) {
@@ -21,7 +22,9 @@ function Home(params: IHomeParams) {
             <div className="findingItemName playlistRecommendedItemName">
               推荐歌单
             </div>
-            <PlaylistRecommended />
+            <PlaylistRecommended
+              resetPlaylistBySongList={params.resetPlaylistBySongList}
+            />
           </div>
           <div className="findingItem newSongRcmdItem">
             <div className="findingItemName newSongRcmdItemName">新歌推荐</div>

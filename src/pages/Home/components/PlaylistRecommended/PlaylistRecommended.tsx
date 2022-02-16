@@ -7,7 +7,11 @@ import axios from "axios";
 import serverHost from "../../../../api/serverHost";
 import "./PlaylistRecommended.scss";
 
-function PlaylistRecommended() {
+interface IPlaylistRcmdParams {
+  resetPlaylistBySongList: (id: number) => void;
+}
+
+function PlaylistRecommended(params: IPlaylistRcmdParams) {
   const [listItems, setListItems] = useState<IListRcmd[]>(
     new Array<IListRcmd>(10).fill(LoadingListRcmd)
   );
@@ -41,7 +45,12 @@ function PlaylistRecommended() {
               <div className="playCount">
                 {formatPlayCount(value.playCount)}
               </div>
-              <div className="iconContainer">
+              <div
+                className="iconContainer"
+                onClick={() => {
+                  params.resetPlaylistBySongList(value.id);
+                }}
+              >
                 <div className="iconfont">&#xea82;</div>
               </div>
             </div>

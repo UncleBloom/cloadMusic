@@ -47,7 +47,6 @@ export function PlayBar(params: IPlayBarParams) {
   const [progressDotX, setProgressDotX] = useState<number>(0);
   const [songUrl, setSongUrl] = useState<string>("");
   const [currentTime, setCurrentTime] = useState<number>(0);
-  // const songAudio = useRef<HTMLAudioElement>(null);
   const audioNode = audioRef.current;
 
   /**
@@ -89,6 +88,9 @@ export function PlayBar(params: IPlayBarParams) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [info, currentTime]);
 
+  /**
+   * 当前播放歌曲改变时 获取歌曲播放 URL 并设置
+   */
   useEffect(() => {
     const getSongUrl = async (songId: number): Promise<ISongUrlResponse> => {
       const data = await axios.get(serverHost + "/song/url", {

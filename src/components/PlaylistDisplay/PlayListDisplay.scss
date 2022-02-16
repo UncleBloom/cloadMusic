@@ -88,7 +88,7 @@
       font-size: 12px;
       width: 30px;
       color: #aaa;
-      transition: all 0.2s;
+      transition: font-size, font-weight, color 0.2s;
 
       &:hover {
         font-weight: bolder;

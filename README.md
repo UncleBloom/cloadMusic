@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# My React Music-163
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+一个使用 React、TypeScript 开发的，模仿网易云音乐 Mac 客户端的 webAPP 播放器
 
-## Available Scripts
+## 项目体验地址
 
-In the project directory, you can run:
+<https://music163-unclebloom.vercel.app>
+<https://music163-git-main-unclebloom.vercel.app>
+<https://music163-flame.vercel.app>
 
-### `npm start`
+## 功能列表
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **播放功能**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  - [x] 设置播放模式（随机播放/列表循环/单曲循环）
+  - [x] 设置播放音量
+  - [x] 拖动/点击进度条改变播放进度
+  - [x] 随机播放模式下记录播放历史
+  - [x] 随机播放模式下不连续播放同一首歌曲
 
-### `npm test`
+- **播放列表展示**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  - [x] 展示所有歌曲
+  - [x] 从播放列表移除歌曲
 
-### `npm run build`
+- **导航栏**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - [x] 切换页面
+  - [x] 路由前进后退
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **发现页**
+  - [x] banner
+  - [x] 推荐歌单 *- 点击设为播放队列*
+  - [x] 新歌推荐 *- 点击加入播放队列*
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **搜索页**
 
-### `npm run eject`
+  - [x] 展示搜索结果
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **播放详情页**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  - [x] 歌词自动滚动
+  - [x] 分页展示歌曲评论
+  - [x] 点赞/取消点赞歌曲评论
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- [ ] 登录
+- [ ] 发现页的歌单、排行榜等页面
+- [ ] MV 播放功能与详情页面
+- [ ] ...
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+> PS：部分歌曲因版权限制只能播放 30s 片段。
 
-## Learn More
+## 技术栈
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- React，使用原生 react hooks 状态管理
+- TypeScript，对开发过程进行类型约束
+- antd 组件库，主要使用 popover、drawer 组件
+- 渐进地使用 Sass 代替 CSS
+- Webpack
+- ESLint
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## API 接口
 
-### Code Splitting
+使用开源的 NeteaseCloudMusicApi
+部署地址：<https://music163-api.vercel.app>
+API 源码仓库：<https://github.com/Binaryify/NeteaseCloudMusicApi>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 播放器截图
 
-### Analyzing the Bundle Size
+## 项目启动
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 将仓库 clone 到本地
+- cd 到项目目录，安装依赖包
+  `npm install`
+- 启动服务
+  `npm run start`/`npm start`
+- 在浏览器中打开 `https://localhost:3000`

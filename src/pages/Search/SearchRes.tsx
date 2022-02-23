@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./searchres.css";
+import "./searchres.scss";
 import getSearchDataSong, {
   ISearchSongsProps,
 } from "./component/getSearchDataSong";
@@ -482,13 +482,15 @@ function BestMatched(props: IBestMatchedProps) {
 function PlayAll() {
   return (
     <div className="play-all">
-      <button title="播放全部" className="play-all-btn">
-        <span className="iconfont">&#xe87c;</span>
-        <span>播放全部</span>
-      </button>
-      <button title="添加所有到播放列表中" className="add-all-to-play-btn">
-        <span className="iconfont">&#xe664;</span>
-      </button>
+      <span className="iconfont">&#xe87c;</span>
+      <div className="playAllButtonName">播放全部</div>
+      {/*<button title="播放全部" className="play-all-btn">*/}
+      {/*  <span className="iconfont">&#xe87c;</span>*/}
+      {/*  <span>播放全部</span>*/}
+      {/*</button>*/}
+      {/*<button title="添加所有到播放列表中" className="add-all-to-play-btn">*/}
+      {/*  <span className="iconfont">&#xe664;</span>*/}
+      {/*</button>*/}
     </div>
   );
 }
@@ -497,10 +499,8 @@ function PlayAll() {
 function DownLoadAll() {
   return (
     <div className="download-all">
-      <button title="下载全部" className="download-all-btn">
-        <span className="iconfont">&#xe69a;</span>
-        <span>下载全部</span>
-      </button>
+      <span className="iconfont">&#xe69a;</span>
+      <div>下载全部</div>
     </div>
   );
 }

@@ -241,7 +241,7 @@ export function PlayBar(params: IPlayBarParams) {
         </div>
         <span className="playController">
           <StepBackwardOutlined
-            style={{ fontSize: 30, color: "#d43a31" }}
+            style={{ fontSize: 30, color: "#d53a31" }}
             onClick={() => params.playPreviousSong()}
           />
           <span
@@ -251,21 +251,21 @@ export function PlayBar(params: IPlayBarParams) {
             {params.playPause ? (
               <span
                 className="iconfont"
-                style={{ fontSize: 40, color: "#d43a31" }}
+                style={{ fontSize: 40, color: "#d53a31" }}
               >
                 &#xe61b;
               </span>
             ) : (
               <span
                 className="iconfont"
-                style={{ fontSize: 40, color: "#d43a31" }}
+                style={{ fontSize: 40, color: "#d53a31" }}
               >
                 &#xea82;
               </span>
             )}
           </span>
           <StepForwardOutlined
-            style={{ fontSize: 30, color: "#d43a31" }}
+            style={{ fontSize: 30, color: "#d53a31" }}
             onClick={() => params.playNextSong()}
           />
         </span>
@@ -294,7 +294,7 @@ export function PlayBar(params: IPlayBarParams) {
             }
             style={
               playlistVisible
-                ? { color: "#d43a31", fontWeight: "100" }
+                ? { color: "#d53a31", fontWeight: "100" }
                 : { fontWeight: "100" }
             }
           >

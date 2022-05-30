@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import ReactDOM from "react-dom";
+// import React, { useContext, useState } from "react";
+// import ReactDOM from "react-dom";
 import ChangeWordColor from "./ChangeWordColor";
 
 interface ICreator {

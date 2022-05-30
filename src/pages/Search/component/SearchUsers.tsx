@@ -1,7 +1,7 @@
-import axios, { AxiosResponse } from "axios";
-import { type } from "os";
-import React, { useContext, useState } from "react";
-import ReactDOM from "react-dom";
+// import axios, { AxiosResponse } from "axios";
+// import { type } from "os";
+// import React, { useContext, useState } from "react";
+// import ReactDOM from "react-dom";
 import ChangeWordColor from "./ChangeWordColor";
 
 interface ISearchResProps {

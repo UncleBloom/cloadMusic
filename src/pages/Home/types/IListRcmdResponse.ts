@@ -2,8 +2,8 @@ interface IListRcmd {
   id: number;
   name: string;
   copywriter: string;
-  picUrl: string
-  playCount: number
+  picUrl: string;
+  playCount: number;
 }
 
 const LoadingListRcmd: IListRcmd = {
@@ -12,10 +12,11 @@ const LoadingListRcmd: IListRcmd = {
   copywriter: "",
   picUrl: "",
   playCount: -1,
-}
+};
 
 export default interface IListRcmdResponse {
   result: IListRcmd[];
 }
 
-export {IListRcmd, LoadingListRcmd} ;
+export { LoadingListRcmd };
+export type { IListRcmd };

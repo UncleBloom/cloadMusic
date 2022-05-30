@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "iconfontHome";
-  src: url("../../font/iconfont.ttf?t=1644068845673") format('truetype');
+  src: url("../../font/iconfont.ttf?t=1644068845673") format("truetype");
 }
 
 $itemInnerWidth: 120px;
@@ -16,8 +16,8 @@ $itemOuterWidth: 160px;
   .listItem {
     display: flex;
     width: $itemInnerWidth;
-    margin-left: ($itemOuterWidth - $itemInnerWidth)/2;
-    margin-right: ($itemOuterWidth - $itemInnerWidth)/2;
+    margin-left: calc(($itemOuterWidth - $itemInnerWidth) / 2);
+    margin-right: calc(($itemOuterWidth - $itemInnerWidth) / 2);
     height: 200px;
     flex-flow: column;
 

@@ -149,7 +149,7 @@ export function PlayBar(params: IPlayBarParams) {
    * 处理设置音量
    * @param value 音量值
    */
-  const handleSetVolume = (value) => {
+  const handleSetVolume = (value: number) => {
     if (value === 0) {
       setMute(true);
     } else {

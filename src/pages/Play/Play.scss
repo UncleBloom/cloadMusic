@@ -125,6 +125,7 @@
 
     span {
       display: flex;
+      height: 50px;
 
       span {
         display: flex;
@@ -133,6 +134,7 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        align-items: center;
       }
 
       p {

@@ -1,9 +1,8 @@
-@import "~antd/dist/antd.css";
 @import "font/iconfont.css";
 
 @font-face {
   font-family: "iconfont";
-  src: url("font/iconfont.ttf?t=1640056692595")
+  src: url("font/iconfont.ttf?t=1640056692595");
 }
 
 .playBar {
@@ -17,7 +16,7 @@
   padding: 0 10px;
   z-index: 10;
   user-select: none;
-  box-shadow: 0 -6px 12px rgba($color: #000000, $alpha: 0.05),
+  box-shadow: 0 -6px 12px rgba($color: #000000, $alpha: 0.05);
 }
 
 .playBar .progressBar {
@@ -112,7 +111,6 @@
   }
 }
 
-
 .playController {
   display: inline-flex;
   align-items: center;
@@ -128,14 +126,11 @@
 }
 
 .listController {
-
-
   > span {
     margin: auto 10px;
   }
 
   .controlIcon {
-
     font-size: 20px;
   }
 }

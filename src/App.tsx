@@ -13,7 +13,7 @@ import { audioRef, PlayBar } from "./components/PlayBar/PlayBar";
 import { message } from "antd";
 import Play from "./pages/Play/Play";
 import Page404 from "./pages/404/404";
-import { config } from "react-transition-group";
+// import { config } from "react-transition-group";
 
 interface ISongInfoResponse {
   code: number;
